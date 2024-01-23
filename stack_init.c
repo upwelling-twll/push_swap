@@ -1,6 +1,15 @@
 #include "push_swap.h"
 #include "libft/ft_atoi.c"
 
+void	swap_data(tt_list *n1, tt_list *n2)
+{
+	int	tmp;
+
+	tmp = n1 -> data;
+	n1 -> data = n2 -> data;
+	n2 -> data = tmp;
+}
+
 tt_list	*add_node(tt_list *nlist, int data)
 {
 	tt_list	*new;
@@ -60,5 +69,6 @@ int	main(int argc, char *argv[])
 		nlist = nlist -> next;
 	}
 	print_list(head);
+	swap_data((head->next->next), (head->next));
 	print_list_back(nlist);
 }
