@@ -12,6 +12,12 @@ typedef struct ss_list
 	struct ss_list	*next;
 }					tt_list;
 
+typedef struct inst_list
+{
+	int	down;
+	int	up;
+}					i_list;
+
 int	check_if_sorted(tt_list *lst);
 tt_list	*init_list(int i);
 tt_list	*ft_llstlast(tt_list *lst);
