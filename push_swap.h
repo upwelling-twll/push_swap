@@ -12,11 +12,16 @@ typedef struct ss_list
 	struct ss_list	*next;
 }					tt_list;
 
-typedef struct inst_list
-{
-	int	down;
-	int	up;
-}					i_list;
+// typedef struct inst_list
+// {
+// 	tt_list	*target;
+// 	int		s1_rotate_up; 
+// 	int		s1_rotate_down;
+
+// 	int		s2_rup_inum; //  up = rb The first element becomes the last one. the number of instructions rb which are needed to place the element
+// 	int 	s2_rdown_inum;// down = rrb The last element becomes the first one.
+// 	int		mood; //
+// }					i_list;
 
 int	check_if_sorted(tt_list *lst);
 tt_list	*init_list(int i);
