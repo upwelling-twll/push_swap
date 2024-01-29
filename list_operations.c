@@ -1,28 +1,29 @@
 #include "push_swap.h"
 
-// void	print_itarget(i_list *lst)
-// {
-// 	printf("target_data:%i\n", lst->target->data);
-// 	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
-// 	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
-// 	printf("s2_rup_inum:%i\n", lst->s2_rup_inum);
-// 	printf("s2_rdown_inum:%i\n", lst->s2_rdown_inum);
-// 	printf("mood:%i\n", lst->mood);
-// }
+void	print_itarget(i_list *lst)
+{
+	printf("will print target\n");
+	//printf("target_data:%i\n", lst->target->data);
+	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
+	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
+	printf("s2_rup_inum:%i\n", lst->s2_rup_inum);
+	printf("s2_rdown_inum:%i\n", lst->s2_rdown_inum);
+	printf("mood:%i\n", lst->mood);
+}
 
-// void	print_list(tt_list *lst)
-// {
-// 	tt_list	*head;
+void	print_list(tt_list *lst)
+{
+	tt_list	*head;
 
-// 	head = lst;
-// 	printf("data:%i\n", lst->data);
-// 	lst = lst -> next;
-// 	while(lst != head)
-// 	{
-// 		printf("data:%i\n", lst->data);
-// 		lst = lst -> next;
-// 	}
-// }
+	head = lst;
+	printf("data:%i\n", lst->data);
+	lst = lst -> next;
+	while(lst != head)
+	{
+		printf("data:%i\n", lst->data);
+		lst = lst -> next;
+	}
+}
 
 int	ft_llstsize(tt_list *lst)
 {
