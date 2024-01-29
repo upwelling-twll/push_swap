@@ -1,7 +1,91 @@
 #include "push_swap.h"
-#include "list_operations.c"   //for debugger only
-#include "instructions.c"    //for debugger only
+// #include "list_operations.c"   //for debugger only
+// #include "instructions.c"    //for debugger only
 #include "libft/ft_atoi.c"
+
+void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target)
+{
+	while (i_target->s1_rotate_up != 0)
+	{
+		ra(stack1);
+		i_target->s1_rotate_up--;
+	}
+	while (i_target->s2_rdown_inum != 0)
+	{
+		rrb(stack2);
+		i_target->s2_rdown_inum--;
+	}
+	pb(stack1, stack2);
+}
+
+void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
+{
+	while (i_target->s1_rotate_down != 0)
+	{
+		rra(stack1);
+		i_target->s1_rotate_down--;
+	}
+	while (i_target->s2_rup_inum != 0)
+	{
+		rb(stack2);
+		i_target->s2_rup_inum--;
+	}
+	pb(stack1, stack2);
+}
+
+void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
+{
+	while (i_target->s1_rotate_up != 0 && i_target->s2_rup_inum != 0)
+	{
+		rr(stack1, stack2);
+		i_target->s1_rotate_up--;
+		i_target->s2_rup_inum--;
+	}
+	while (i_target->s1_rotate_up != 0)
+	{
+		ra(stack2);
+		i_target->s1_rotate_up--;
+	}
+	while (i_target->s2_rup_inum != 0)
+	{
+		rb(stack2);
+		i_target->s2_rup_inum--;
+	}
+	pb(stack1, stack2);
+}
+
+void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
+{
+	while (i_target->s1_rotate_down != 0 && i_target->s2_rdown_inum != 0)
+	{
+		rrr(stack1, stack2);
+		i_target->s1_rotate_down--;
+		i_target->s2_rdown_inum--;
+	}
+	while (i_target->s1_rotate_down != 0)
+	{
+		rra(stack2);
+		i_target->s1_rotate_down--;
+	}
+	while (i_target->s2_rdown_inum != 0)
+	{
+		rrb(stack2);
+		i_target->s2_rdown_inum--;
+	}
+	pb(stack1, stack2);
+}
+
+void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target)
+{
+	if (i_target->mood == 1) // run (ra and rrb) rotate stack1 up and rotate stack 2 down;
+		run_mood1(stack1, stack2, i_target);
+	if (i_target->mood == 2) // run (rra and rb) rotate stack1 down and rotate stack 2 up;
+		run_mood2(stack1, stack2, i_target);
+	if (i_target->mood == 3) // run (rr) rotate stack1 and stack 2 up (and some ra / rb);
+		run_mood3(stack1, stack2, i_target);
+	if (i_target->mood == 4) // run (rrr) rotate stack1 and stack 2 down (and some rra / rrb);
+		run_mood4(stack1, stack2, i_target);
+}
 
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber)
 {
@@ -15,16 +99,13 @@ tt_list	*get_min(tt_list *stack, int size)
 
 	size++;
 	min = stack;
-	printf("size=%i\n", size);
 	while (size>0)
 	{
 		if (stack->data < min->data)
 			min = stack;
 		stack=stack->next;
 		size--;
-		printf("size=%i\n", size);
 	}
-	printf("done min\n");
 	return (min);
 }
 
@@ -127,10 +208,8 @@ void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size)
 	tt_list	*upper_nebor;
 	int		inum;
 
-	printf("is min ?\n");	
 	min_s2 = get_min(stack2, size);
 	max_s2 = get_max(stack2, size);
-	printf("searching place\n");
 	if (target_s1->data < min_s2->data)
 		push_on_max(stack2, max_s2, inumber);
 	else if (target_s1->data > max_s2->data)
@@ -144,11 +223,11 @@ void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size)
 
 int	gmin(int a, int b , int c, int d)
 {
-	if (a < b && a < c && a < d)
+	if (a <= b && a <= c && a <= d)
 		return (a);
-	if (b < a && b < c && b < d)
+	if (b <= a && b <= c && b <= d)
 		return (b);
-	if (c < a && c < b && c < d)
+	if (c <= a && c <= b && c <= d)
 		return (c);
 	else
 		return (d);
@@ -206,26 +285,21 @@ int	inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list 
 	inst_num = 0;
 	heads1 = stack1;
 	size2 = ft_llstsize(stack2);
-	printf("inst_num\n");
-	(*inumber)->target = node;
+	(*inumber)->target = node->data;
 	while (stack1 -> data != node->data)
 	{
 		position++;
 		stack1 = stack1->next;
 	}
-	printf("---\n");
-	printf("lets float\n");
 	i_to_float(position, heads1, size1, inumber);
-	printf("lets place\n");
 	i_to_place(node, stack2, inumber, size2);
-	printf("after place\n");
 	inst_num = optimize(inumber);
 	return (inst_num+1);
 }
 
 void	update_inst(i_list **i_target, i_list **inumber)
 {
-	(*i_target)-> target = (*inumber)-> target; 
+	(*i_target)-> target = (*inumber)-> target;
 	(*i_target)-> s1_rotate_up = (*inumber)-> s1_rotate_up; 
 	(*i_target)-> s1_rotate_down = (*inumber)-> s1_rotate_down; 
 	(*i_target)-> s2_rup_inum = (*inumber)-> s2_rup_inum; 
@@ -247,16 +321,16 @@ tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target)
 	i = 0;
 	target = head;
 	min = 0;
-	cur_inst = 0;
 	inumber = malloc(sizeof(i_list));
 	shead = head;
 	list1_size = ft_llstsize(head);
 	cur = head;
+	min = inst_num(shead, stack2, cur, list1_size, &inumber);
+	update_inst(i_target, &inumber);
+	target = cur;
 	while(i < list1_size)
 	{
-		printf("-\n");
 		cur_inst = inst_num(shead, stack2, cur, list1_size, &inumber);
-		printf("--\n");
 		if (min > cur_inst)
 		{
 			target = cur;
@@ -266,6 +340,7 @@ tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target)
 		cur = (head)->next;
 		i++;
 	}
+	free (inumber);
 	return (target);
 }
 
@@ -331,6 +406,13 @@ int	main(void)
 	}
 	find_target(head, stack2, &i_target);
 	print_itarget(i_target);
+	exec_instr(&head, &stack2, i_target);
+	printf("---------------------------------\n");
+		printf("		stack1\n");
+		print_list(head);
+		printf("		stack2\n");
+		print_list(stack2);
+	free(i_target);
 	// while (ft_llstsize(head) > 3)
 	// {
 	// 	find_target(head, stack2, &i_target);

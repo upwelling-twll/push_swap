@@ -3,7 +3,7 @@
 void	print_itarget(i_list *lst)
 {
 	printf("will print target\n");
-	//printf("target_data:%i\n", lst->target->data);
+	printf("target_data:%i\n", lst->target);
 	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
 	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
 	printf("s2_rup_inum:%i\n", lst->s2_rup_inum);
@@ -16,7 +16,7 @@ void	print_list(tt_list *lst)
 	tt_list	*head;
 
 	head = lst;
-	printf("data:%i\n", lst->data);
+	printf("data:%d\n", lst->data);
 	lst = lst -> next;
 	while(lst != head)
 	{

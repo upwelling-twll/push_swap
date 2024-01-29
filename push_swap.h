@@ -14,9 +14,9 @@ typedef struct ss_list
 
 typedef struct inst_list
 {
-	tt_list	*target;
-	int		s1_rotate_up; 
-	int		s1_rotate_down;
+	int		target;
+	int		s1_rotate_up; // up = ra
+	int		s1_rotate_down; // down = rra
 
 	int		s2_rup_inum; //  up = rb The first element becomes the last one. the number of instructions rb which are needed to place the element
 	int 	s2_rdown_inum;// down = rrb The last element becomes the first one.
