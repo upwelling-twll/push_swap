@@ -1,5 +1,35 @@
 #include "push_swap.h"
 
+int	cmp(int a, int b)
+{
+	if (a < b)
+		return (1);
+	return(0);
+}
+
+void	sort_3(tt_list **lst)
+{
+	int tmp;
+	tt_list	*swap;
+	tt_list	*head;
+
+	swap = *lst;
+	head = *lst;
+	while((*lst)->next!= head)
+	{ 
+		if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
+		{
+			tmp = (*lst)->data;
+			(*lst)->data = (*lst)->next->data;
+			(*lst)->next->data = tmp;
+			*lst = swap;
+		}
+		else
+			*lst = (*lst)->next;
+	}
+	*lst = swap;
+}
+
 void	print_itarget(i_list *lst)
 {
 	printf("will print target\n");
@@ -79,7 +109,7 @@ int	check_if_sorted(tt_list *lst)
 	{
 		if (lst->data < lst->next->data)
 		{
-			if (lst->next)
+			if (lst->next != head)
 				lst = lst->next;
 			else
 				return (1);

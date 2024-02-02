@@ -174,14 +174,20 @@ void	push_under_min(tt_list *stack, tt_list *min, i_list **instr)
 
 tt_list	*find_place(tt_list *stack2, int target_data, int size)
 {
+	tt_list	*neighbour;
+
+	neighbour = stack2;
 	while (size)
 	{
 		if (target_data > stack2->data && target_data < stack2->prev->data)
-			return(stack2);
+		{
+			if (stack2->data < neighbour->data)
+				neighbour = stack2;
+		}
 		stack2 = stack2->next;
 		size--;
 	}
-	return (stack2);
+	return (neighbour);
 }
 
 void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber)

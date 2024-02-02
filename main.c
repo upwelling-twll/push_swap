@@ -1,7 +1,7 @@
 #include "push_swap.h"
-// #include "list_operations.c"   //for debugger only
-// #include "instructions.c"    //for debugger only
-// #include "sorting.c"    //for debugger only
+#include "list_operations.c"   //for debugger only
+#include "instructions.c"    //for debugger only
+#include "sorting.c"    //for debugger only
 #include "libft/ft_atoi.c"
 
 int	main(void)
@@ -35,7 +35,25 @@ int	main(void)
 	nlist -> next = add_node(nlist, 9);
 	nlist = nlist -> next;
 
-	nlist -> next = add_node(nlist, -2);
+	nlist -> next = add_node(nlist, -155);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, 6540);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, -33);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, 150);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, 559);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, -52);
+	nlist = nlist -> next;
+
+	nlist -> next = add_node(nlist, 2000);
 	nlist = nlist -> next;
 	nlist -> next = head;
 
@@ -68,10 +86,27 @@ int	main(void)
 			print_list(stack2);
 		free(i_target);
 	}
-	sort_stack1(&head)
+	rrb(&stack2);
+	sort_3(&head);
+	printf("-----I WILL PUSH BACK TO 	A-----\n");
+			printf("		stack1\n");
+			print_list(head);
+			printf("		stack2\n");
+			print_list(stack2);
+	while (ft_llstsize(stack2) > 1)
 	{
-		
+		i_target = malloc(sizeof(i_list));
+		find_target(stack2, head, &i_target);
+		print_itarget(i_target);
+		exec_instr(&stack2, &head, i_target);
+		printf("---------------------------------\n");
+			printf("		stack1\n");
+			print_list(head);
+			printf("		stack2\n");
+			print_list(stack2);
+		free(i_target);
 	}
+
 	// while (ft_llstsize(head) > 3)
 	// {
 	// 	find_target(head, stack2, &i_target);

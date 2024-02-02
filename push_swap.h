@@ -29,6 +29,8 @@ tt_list	*ft_llstlast(tt_list *lst);
 int	ft_llstsize(tt_list *lst);
 void	print_list(tt_list *lst);
 void	print_itarget(i_list *lst);
+void	sort_3(tt_list **lst);
+int	cmp(int a, int b);
 
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target);
 void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target);
