@@ -30,6 +30,8 @@ void	move_first(tt_list **stack1, tt_list **stack2) //pb
 {
 	int	tmp;
 	tt_list	*tmp_s2;
+	tt_list *new_head;
+	tt_list *old_last;
 
 	tmp = (*stack1)->data;
 	if (*stack2 == NULL)
@@ -40,12 +42,19 @@ void	move_first(tt_list **stack1, tt_list **stack2) //pb
 	}
 	else
 	{
-		(*stack2)->prev->next = add_node(*stack2, tmp);
-		(tmp_s2) = (*stack2);
-		(*stack2) = (*stack2)->prev->next;
-		(*stack2)->next = tmp_s2;
-		(*stack2)->prev = ft_llstlast(*stack2);
-		(ft_llstlast(*stack2))->next = (*stack2);
+		old_last = ft_llstlast(*stack2);
+		new_head =  add_node(*stack2, tmp);
+		old_last->next = new_head;
+		new_head->next = *stack2;
+		new_head->prev = old_last;
+		(*stack2)->prev = new_head;
+		*stack2= new_head;
+		// (tmp_s2) = (*stack2);
+		// (*stack2)->prev->next = add_node(*stack2, tmp);
+		// (*stack2) = (*stack2)->prev->next;
+		// (*stack2)->next = tmp_s2;
+		// (*stack2)->prev = ft_llstlast(*stack2);
+		// (ft_llstlast(*stack2))->next = (*stack2);
 	}
 	*stack1 = delfirst(*stack1);
 	//printf("stack2_head_after_move:%d\n", (*stack2)->data);
@@ -78,12 +87,12 @@ void	ss(tt_list *stack1, tt_list *stack2)
 
 void	pa(tt_list **stack1, tt_list **stack2)
 {
-	move_first(stack1, stack2);
+	move_first(stack2, stack1);
 }
 
 void	pb(tt_list **stack1, tt_list **stack2)
 {
-	move_first(stack2, stack1);
+	move_first(stack1, stack2);
 }
 
 void	ra(tt_list **stack)

@@ -6,8 +6,8 @@ void	print_itarget(i_list *lst)
 	printf("target_data:%i\n", lst->target);
 	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
 	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
-	printf("s2_rup_inum:%i\n", lst->s2_rup_inum);
-	printf("s2_rdown_inum:%i\n", lst->s2_rdown_inum);
+	printf("s2_rotate_up:%i\n", lst->s2_rotate_up);
+	printf("s2_rotate_down:%i\n", lst->s2_rotate_down);
 	printf("mood:%i\n", lst->mood);
 }
 

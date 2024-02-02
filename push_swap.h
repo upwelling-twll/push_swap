@@ -18,8 +18,8 @@ typedef struct inst_list
 	int		s1_rotate_up; // up = ra
 	int		s1_rotate_down; // down = rra
 
-	int		s2_rup_inum; //  up = rb The first element becomes the last one. the number of instructions rb which are needed to place the element
-	int 	s2_rdown_inum;// down = rrb The last element becomes the first one.
+	int		s2_rotate_up; //  up = rb The first element becomes the last one. the number of instructions rb which are needed to place the element
+	int 	s2_rotate_down;// down = rrb The last element becomes the first one.
 	int		mood; //
 }					i_list;
 
@@ -29,6 +29,26 @@ tt_list	*ft_llstlast(tt_list *lst);
 int	ft_llstsize(tt_list *lst);
 void	print_list(tt_list *lst);
 void	print_itarget(i_list *lst);
+
+void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
+tt_list	*get_min(tt_list *stack, int size);
+tt_list	*get_max(tt_list *stack, int size);
+void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);
+void	push_under_min(tt_list *stack, tt_list *min, i_list **instr);
+tt_list	*find_place(tt_list *stack2, int target_data, int size);
+void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
+void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size);
+int	gmin(int a, int b , int c, int d);
+int	best_option(int s1us2d, int s1ds2u, int tu, int td);
+int	optimize(i_list **inumber);
+int	inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber);
+void	update_inst(i_list **i_target, i_list **inumber);
+tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target);
 
 void	swap_data(tt_list *n1, tt_list *n2);
 void	rrr(tt_list **stack1, tt_list **stack2);
