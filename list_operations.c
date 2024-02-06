@@ -46,6 +46,11 @@ void	print_list(tt_list *lst)
 	tt_list	*head;
 
 	head = lst;
+	if (lst == NULL)
+	{
+		printf("empty\n");
+		return;
+	}
 	printf("data:%d\n", lst->data);
 	lst = lst -> next;
 	while(lst != head)
@@ -58,17 +63,17 @@ void	print_list(tt_list *lst)
 int	ft_llstsize(tt_list *lst)
 {
 	int		i;
-	tt_list	*next;
-	tt_list	*head;
+	//tt_list	*next;
+	int		head;
 
 	if (lst == NULL)
 		return (0);
-	head = lst;
-	next = lst->next;
+	head = lst->data;
+	//next = lst->next;
 	i = 1;
-	while (next != head)
+	while (lst->next->data != head)
 	{
-		next = next -> next;
+		lst = lst -> next;
 		i++;
 	}
 	return (i);

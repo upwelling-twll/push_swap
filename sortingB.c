@@ -172,22 +172,31 @@ void	push_under_min(tt_list *stack, tt_list *min, i_list **instr)
 	(*instr)->s2_rotate_down = i_rrb;
 }
 
-tt_list	*find_place(tt_list *stack2, int target_data, int size)
-{
-	tt_list	*neighbour;
+// tt_list	*search_for_closest(tt_list *stack2, int target_data, int size)
+// {
+// 	while (size)
+// 	{
+// 		if (stack2->data < target_data && stack2->next->data > target_data)
+// 			return (stack2);
+// 		size--;
+// 		stack2 = stack2->next;
+// 	}
+// }
 
-	neighbour = stack2;
+tt_list	*find_place(tt_list *stack2, int target_data, int size, tt_list *max, tt_list *min)
+{
 	while (size)
 	{
-		if (target_data > stack2->data && target_data < stack2->prev->data)
+		if ((target_data > stack2->data && target_data < stack2->prev->data))
 		{
-			if (stack2->data < neighbour->data)
-				neighbour = stack2;
+			return (stack2);
+			// if (stack2->data == min && stack2->prev->data == max)
+			// 	return (search_for_closest(stack2->next, target_data, size));
 		}
 		stack2 = stack2->next;
 		size--;
 	}
-	return (neighbour);
+	return (stack2);
 }
 
 void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber)
@@ -201,11 +210,12 @@ void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumb
 			stack2 = stack2->next;
 	}
 	(*inumber)->s2_rotate_up = un_position - 1;
-	if (un_position == size)
-		(*inumber)->s2_rotate_down = un_position - 1;
+	if (un_position != size)
+		(*inumber)->s2_rotate_down = size - un_position + 1;
 	else
-		(*inumber)->s2_rotate_down = size - un_position - 1;
+		(*inumber)->s2_rotate_down = 1;
 }
+
 
 void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size)
 {
@@ -223,31 +233,31 @@ void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size)
 		push_under_min(stack2, min_s2, inumber);
 	else
 	{
-		upper_nebor = find_place(stack2, target_s1->data, size);
+		upper_nebor = find_place(stack2, target_s1->data, size, max_s2, min_s2);
 		clclt_instr(upper_nebor, stack2, size, inumber);
 	}
 }
 
-int	gmin(int a, int b , int c, int d)
+char	gmin(int a, int b , int c, int d)
 {
 	if (a <= b && a <= c && a <= d)
-		return (a);
+		return ('a');
 	if (b <= a && b <= c && b <= d)
-		return (b);
+		return ('b');
 	if (c <= a && c <= b && c <= d)
-		return (c);
+		return ('c');
 	else
-		return (d);
+		return ('d');
 }
 
 int	best_option(int s1us2d, int s1ds2u, int tu, int td)
 {
-	int	min_inst = gmin(s1us2d,s1ds2u,tu, td);
-	if (s1us2d == min_inst)
+	char	min_inst = gmin(s1us2d,s1ds2u,tu, td);
+	if (min_inst == 'a')
 		return (1);
-	else if (s1ds2u == min_inst)
+	else if (min_inst == 'b')
 		return (2);
-	else if (tu == min_inst)
+	else if (min_inst == 'c')
 		return (3);
 	return (4);
 }
@@ -351,3 +361,4 @@ tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target)
 	free (inumber);
 	return (target);
 }
+

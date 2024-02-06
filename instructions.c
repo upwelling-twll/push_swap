@@ -17,6 +17,11 @@ tt_list	*delfirst(tt_list  *lst)
 	tt_list	*lst_prev;
 	int	data;
 
+	if (ft_llstsize(lst) == 1)
+	{
+		free (lst);
+		return (NULL);
+	}
 	new_head = lst->next;
 	lst_prev = lst->prev;
 	new_head->prev = lst_prev;
@@ -123,8 +128,8 @@ void	rrb(tt_list **stack)
 
 void	rrr(tt_list **stack1, tt_list **stack2)
 {
-	ra(stack1);
-	rb(stack2);
+	rra(stack1);
+	rrb(stack2);
 }
 
 void	swap_data(tt_list *n1, tt_list *n2)
