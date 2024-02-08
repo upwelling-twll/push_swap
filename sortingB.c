@@ -6,14 +6,17 @@ void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	while (i_target->s1_rotate_up != 0)
 	{
 		ra(stack1);
+		write(1, "ra\n", 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
 		rrb(stack2);
+		write(1, "rrb\n", 4);
 		i_target->s2_rotate_down--;
 	}
 	pb(stack1, stack2);
+	write(1, "pb\n", 3);
 }
 
 void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -21,14 +24,17 @@ void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	while (i_target->s1_rotate_down != 0)
 	{
 		rra(stack1);
+		write(1, "rra\n", 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
 		rb(stack2);
+		write(1, "rb\n", 3);
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
+	write(1, "pb\n", 3);
 }
 
 void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -36,20 +42,24 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	while (i_target->s1_rotate_up != 0 && i_target->s2_rotate_up != 0)
 	{
 		rr(stack1, stack2);
+		write(1, "rr\n", 3);
 		i_target->s1_rotate_up--;
 		i_target->s2_rotate_up--;
 	}
 	while (i_target->s1_rotate_up != 0)
 	{
 		ra(stack2);
+		write(1, "ra\n", 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
 		rb(stack2);
+		write(1, "rb\n", 3);
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
+	write(1, "pb\n", 3);
 }
 
 void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -57,20 +67,24 @@ void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	while (i_target->s1_rotate_down != 0 && i_target->s2_rotate_down != 0)
 	{
 		rrr(stack1, stack2);
+		write(1, "rrr\n", 4);
 		i_target->s1_rotate_down--;
 		i_target->s2_rotate_down--;
 	}
 	while (i_target->s1_rotate_down != 0)
 	{
 		rra(stack2);
+		write(1, "rra\n", 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
 		rrb(stack2);
+		write(1, "rrb\n", 4);
 		i_target->s2_rotate_down--;
 	}
 	pb(stack1, stack2);
+	write(1, "pb\n", 3);
 }
 
 void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target)

@@ -15,7 +15,7 @@ void	sort_3(tt_list **lst)
 
 	swap = *lst;
 	head = *lst;
-	while((*lst)->next!= head)
+	while((*lst) -> next!= head)
 	{ 
 		if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
 		{
@@ -27,7 +27,7 @@ void	sort_3(tt_list **lst)
 		else
 			*lst = (*lst)->next;
 	}
-	*lst = swap;
+	*lst = get_min(*lst, 3);
 }
 
 void	print_itarget(i_list *lst)
@@ -52,7 +52,7 @@ void	print_list(tt_list *lst)
 		return;
 	}
 	printf("data:%d\n", lst->data);
-	lst = lst -> next;
+	lst = lst->next;
 	while(lst != head)
 	{
 		printf("data:%i\n", lst->data);
