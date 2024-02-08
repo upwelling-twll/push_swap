@@ -66,17 +66,17 @@ void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inum
 
 void	swap_data(tt_list *n1, tt_list *n2);
 void	rrr(tt_list **stack1, tt_list **stack2);
-void	rrb(tt_list **stack);
-void	rra(tt_list **stack);
+void	rrb(tt_list **stack, tt_list *s2); //no s2
+void	rra(tt_list **stack, tt_list *s2); //no s2);
 void	rr(tt_list **stack1, tt_list **stack2);
-void	rb(tt_list **stack);
-void	ra(tt_list **stack);
+void	rb(tt_list **stack, tt_list *s2); //no s2);
+void	ra(tt_list **stack,  tt_list *s2); //no s2);
 void	pb(tt_list **stack1, tt_list **stack2);
 void	pa(tt_list **stack1, tt_list **stack2);
 void	ss(tt_list *stack1, tt_list *stack2);
-void	sb(tt_list *stack);
-void	sa(tt_list *stack);
-void	swap(tt_list *stack);
+void	sb(tt_list *stack,  tt_list *s2); //no s2);
+void	sa(tt_list *stack,  tt_list *s2); //no s2);
+void	swap(tt_list *stack,  tt_list *s2); //no s2);
 void	move_first(tt_list **stack1, tt_list **stack2);
 tt_list	*delfirst(tt_list  *lst);
 tt_list	*add_node(tt_list *nlist, int data);

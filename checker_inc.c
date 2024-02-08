@@ -1,11 +1,10 @@
 #include "push_swap.h"
 
-
 #  define SA "sa"
 #  define SB "sb"
 #  define SS "ss"
 #  define PA "pa"
-#  define PB "pr"
+#  define PB "pb"
 #  define RA "ra"
 #  define RB "rb"
 #  define RR "rr"
@@ -13,7 +12,13 @@
 #  define RRB "rrb"
 #  define RRR "rrr"
 
-static const char *pssbl_op[]={SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRA, RRR};
+static char *pssbl_op_list[]={SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
+
+// this is a new type - function pointer type which will be used for instruction functions;
+typedef void	(*ins_func)(tt_list **);
+
+//this a definition of arrey of function pointers to instruction finctions;
+ins_func	pssbl_op[]={sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
 
 typedef struct in_list
 {
@@ -77,16 +82,16 @@ int	valid_ins(char *ins)
 	i = 0;
 	while (i < 10)
 	{
-		if ((ft_strcmp(ins, *pssbl_op[i]) == 0))
-			return (1);
+		if ((ft_strcmp(ins, pssbl_op_list[i]) == 0))
+			return (i);
 		i++;
 	}
-	return (0);
+	return (-1);
 }
 
-void	apply_ins(tt_list **stack1, tt_list **stack2, void (*ins)(tt_list **))
+void	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
 {
-	inst(lst)
+	ins_recived(stack1);
 }
 
 void	del_instr_list(t_instr *lst)

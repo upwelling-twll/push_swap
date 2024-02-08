@@ -43,10 +43,11 @@ int main(int argc, char *argv[])
 //2) process instructions from the list by alidation and apply
 	while ((ins = get_next_line(0)) != NULL)
 	{
-		if ((valid_ins(ins)) != 0)
-			apply_ins(&lst, &stack2, ins);
+		if ((i = valid_ins(ins)) >= 0)
+			apply_ins(&lst, &stack2, pssbl_op[i]);
 		else
 			return (ft_exit(lst, oper, 1));
 		free(ins);
 	}
+	return (0);
 }
