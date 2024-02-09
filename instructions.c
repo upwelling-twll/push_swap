@@ -65,29 +65,29 @@ void	move_first(tt_list **stack1, tt_list **stack2) //pb
 	//printf("stack2_head_after_move:%d\n", (*stack2)->data);
 }
 
-void	swap(tt_list *stack,  tt_list *s2); //no s2)
+void	swap(tt_list **stack,  tt_list **s2) //no s2)
 {
 	int tmp;
 
-	tmp = stack->data;
-	stack->data = stack->next->data;
-	stack->next->data = tmp;
+	tmp = (*stack)->data;
+	(*stack)->data = (*stack)->next->data;
+	(*stack)->next->data = tmp;
 }
 
-void	sa(tt_list *stack, tt_list *s2)
+void	sa(tt_list **stack, tt_list **s2)
 {
-	swap(stack);
+	swap(stack, s2);
 }
 
-void	sb(tt_list *stack, tt_list *s2)
+void	sb(tt_list **stack, tt_list **s2)
 {
-	swap(stack);
+	swap(stack, s2);
 }
 
-void	ss(tt_list *stack1, tt_list *stack2)
+void	ss(tt_list **stack1, tt_list **stack2)
 {
-	swap(stack1);
-	swap(stack2);
+	swap(stack1, stack2);
+	swap(stack2, stack1);
 }
 
 void	pa(tt_list **stack1, tt_list **stack2)
@@ -100,36 +100,36 @@ void	pb(tt_list **stack1, tt_list **stack2)
 	move_first(stack1, stack2);
 }
 
-void	ra(tt_list **stack, tt_list *s2)
+void	ra(tt_list **stack, tt_list **s2)
 {
 	*stack = (*stack)->next; 
 }
 
-void	rb(tt_list **stack, tt_list *s2)
+void	rb(tt_list **stack, tt_list **s2)
 {
 	*stack = (*stack)->next; 
 }
 
 void	rr(tt_list **stack1, tt_list **stack2)
 {
-	ra(stack1);
-	rb(stack2);
+	ra(stack1, stack2);
+	rb(stack2, stack2);
 }
 
-void	rra(tt_list **stack, tt_list *s2)
+void	rra(tt_list **stack, tt_list **s2)
 {
 	*stack = (*stack)->prev; 
 }
 
-void	rrb(tt_list **stack, tt_list *s2)
+void	rrb(tt_list **stack, tt_list **s2)
 {
 	*stack = (*stack)->prev; 
 }
 
 void	rrr(tt_list **stack1, tt_list **stack2)
 {
-	rra(stack1);
-	rrb(stack2);
+	rra(stack1, stack2);
+	rrb(stack2, stack2);
 }
 
 void	swap_data(tt_list *n1, tt_list *n2)

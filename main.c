@@ -1,8 +1,8 @@
 #include "push_swap.h"
-// #include "list_operations.c"   //for debugger only
-// #include "instructions.c"    //for debugger only
-// #include "sortingB.c"    //for debugger only
-// #include "sortingA.c"    //for debugger only
+#include "list_operations.c"   //for debugger only
+#include "instructions.c"    //for debugger only
+#include "sortingB.c"    //for debugger only
+#include "sortingA.c"    //for debugger only
 #include "libft/ft_atoi.c"
 
 int	check_if_sorted_final(tt_list *lst)
@@ -32,18 +32,18 @@ int	main(int argc, char *argv[])
 	tt_list	*stack2;
 	i_list	*i_target;
 
+	if (argc < 2)
+		return (0);
 	i_target = malloc(sizeof(i_list));
 	stack2 = malloc(sizeof(stack2));
 	stack2 = NULL;
 	
 	nlist = malloc(sizeof(tt_list));
-	
+	argv++;
 	nlist->prev = NULL;
 	nlist->data = ft_atoi(*argv);
 	nlist ->next = NULL;
 	head = nlist;
-	if (argc < 2)
-		return (0);
 	argv++;
 	while (*argv)
 	{
@@ -53,7 +53,7 @@ int	main(int argc, char *argv[])
 	}
 	head->prev = nlist; 
 	nlist->next  = head;
-	//print_list(head);
+//	print_list(head);
 	if (check_if_sorted(head))
 	{
 		printf("already sorted\n");
@@ -70,11 +70,17 @@ int	main(int argc, char *argv[])
 		// printf("		stack2\n");
 		// print_list(stack2);
 	}
+	// printf("---------------------------------\n");
+	// 	printf("		stack1\n");
+	// 	print_list(head);
+	// 	printf("		stack2\n");
+	// 	print_list(stack2);
 	while (ft_llstsize(head) > 3)
 	{
 		i_target = malloc(sizeof(i_list));
 		find_target(head, stack2, &i_target);
-		//print_itarget(i_target);
+		printf("will print target\n");
+		print_itarget(i_target);
 		exec_instr(&head, &stack2, i_target);
 		if (check_if_sorted(head))
 			break;
@@ -85,7 +91,11 @@ int	main(int argc, char *argv[])
 		// 	print_list(stack2);
 		free(i_target);
 	}
+	// printf("-----BEFORE SORTING A -----\n");
+	// 		printf("		stack1\n");
+	// 		print_list(head);
 	sort_3(&head);
+	min_to_top(&head);
 	// printf("-----I WILL PUSH BACK TO 	A-----\n");
 	// 		printf("		stack1\n");
 	// 		print_list(head);
@@ -106,13 +116,17 @@ int	main(int argc, char *argv[])
 		// 	print_list(stack2);
 		free(i_target);
 	}
-	head = get_min(head, ft_llstsize(head));
 	// printf("---------------------------------\n");
-	// 		// printf("		RESULT		\n");
-	// 		// print_list(head);
-	// if (check_if_sorted_final(head))
-	// {
-	// 	printf("already sorted\n");
-	// 	return (0);
-	// }
+	// 		printf("		before MIN TO TOP		\n");
+	// 		print_list(head);
+	min_to_top(&head);
+	//head = get_min(head, ft_llstsize(head));
+	// printf("---------------------------------\n");
+	// 		printf("		RESULT		\n");
+	// 		print_list(head);
+	if (check_if_sorted_final(head))
+	{
+		// printf("already sorted\n");
+		return (0);
+	}
 }

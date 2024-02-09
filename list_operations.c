@@ -7,32 +7,57 @@ int	cmp(int a, int b)
 	return(0);
 }
 
+void	float_to_top(tt_list **head, tt_list *new_head)
+{
+	tt_list	*cplist;
+	int	position;
+
+	cplist = *head;
+	position = 0;
+	while(cplist->next != new_head)
+	{
+		cplist = cplist->next;
+		position++;
+	}
+	while (position) //rotating until the element which is prev to min is not on the top
+	{
+		ra(head, NULL);
+		write(1, "ra\n", 3);
+		position--;
+	}
+}
+
 void	sort_3(tt_list **lst)
 {
 	int tmp;
 	tt_list	*swap;
 	tt_list	*head;
+	tt_list	**head_ad;
+	tt_list	*cphead;
 
+	head_ad = lst;
+	cphead = *lst;
 	swap = *lst;
 	head = *lst;
-	while((*lst) -> next!= head)
+	while(!(check_if_sorted(cphead)))
 	{ 
 		if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
 		{
-			tmp = (*lst)->data;
-			(*lst)->data = (*lst)->next->data;
-			(*lst)->next->data = tmp;
-			*lst = swap;
+			float_to_top(head_ad, (*lst)->next);
+			sa(head_ad, NULL);
+			write(1, "sa\n", 3);
+			// tmp = (*lst)->data;
+			// (*lst)->data = (*lst)->next->data;
+			// (*lst)->next->data = tmp;
+			// *lst = swap;
 		}
 		else
 			*lst = (*lst)->next;
 	}
-	*lst = get_min(*lst, 3);
 }
 
 void	print_itarget(i_list *lst)
 {
-	printf("will print target\n");
 	printf("target_data:%i\n", lst->target);
 	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
 	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
@@ -103,6 +128,15 @@ tt_list	*init_list(int i)
 	nlist -> data = i;
 	nlist ->next = NULL;
 	return (nlist);
+}
+
+void	min_to_top(tt_list **lst)
+{
+	tt_list	*min;
+
+	min = get_min(*lst, ft_llstsize(*lst));
+
+	float_to_top(lst, min);
 }
 
 int	check_if_sorted(tt_list *lst)

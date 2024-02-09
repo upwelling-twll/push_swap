@@ -15,7 +15,7 @@
 static char *pssbl_op_list[]={SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
 
 // this is a new type - function pointer type which will be used for instruction functions;
-typedef void	(*ins_func)(tt_list **);
+typedef void	(*ins_func)(tt_list **, tt_list **);
 
 //this a definition of arrey of function pointers to instruction finctions;
 ins_func	pssbl_op[]={sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
@@ -91,7 +91,7 @@ int	valid_ins(char *ins)
 
 void	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
 {
-	ins_recived(stack1);
+	ins_recived(stack1, stack2);
 }
 
 void	del_instr_list(t_instr *lst)

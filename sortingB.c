@@ -5,13 +5,13 @@ void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target)
 {
 	while (i_target->s1_rotate_up != 0)
 	{
-		ra(stack1);
+		ra(stack1, NULL);
 		write(1, "ra\n", 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
-		rrb(stack2);
+		rrb(stack2, NULL);
 		write(1, "rrb\n", 4);
 		i_target->s2_rotate_down--;
 	}
@@ -23,13 +23,13 @@ void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
 {
 	while (i_target->s1_rotate_down != 0)
 	{
-		rra(stack1);
+		rra(stack1, NULL);
 		write(1, "rra\n", 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
-		rb(stack2);
+		rb(stack2, NULL);
 		write(1, "rb\n", 3);
 		i_target->s2_rotate_up--;
 	}
@@ -48,13 +48,13 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	}
 	while (i_target->s1_rotate_up != 0)
 	{
-		ra(stack2);
+		ra(stack2, NULL);
 		write(1, "ra\n", 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
-		rb(stack2);
+		rb(stack2, NULL);
 		write(1, "rb\n", 3);
 		i_target->s2_rotate_up--;
 	}
@@ -73,13 +73,13 @@ void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	}
 	while (i_target->s1_rotate_down != 0)
 	{
-		rra(stack2);
+		rra(stack2, NULL);
 		write(1, "rra\n", 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
-		rrb(stack2);
+		rrb(stack2, NULL);
 		write(1, "rrb\n", 4);
 		i_target->s2_rotate_down--;
 	}
@@ -149,14 +149,14 @@ void	push_on_max(tt_list *stack, tt_list *max, i_list **instr)
 	head = stack;
 	while (stack->data != max->data)
 	{
-		rb(&stack);
+		rb(&stack, NULL);
 		i_rb++;
 	}
 	(*instr)->s2_rotate_up = i_rb;
 	stack = head;
 	while (stack->data != max->data)
 	{
-		rrb(&stack);
+		rrb(&stack, NULL);
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;
@@ -173,14 +173,14 @@ void	push_under_min(tt_list *stack, tt_list *min, i_list **instr)
 	head = stack;
 	while (stack->data != min->next->data)
 	{
-		rb(&stack);
+		rb(&stack, NULL);
 		i_rb++;
 	}
 	(*instr)->s2_rotate_up = i_rb;
 	stack = head;
 	while (stack->data != min->next->data)
 	{
-		rrb(&stack);
+		rrb(&stack, NULL);
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;

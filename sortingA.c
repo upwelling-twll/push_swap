@@ -12,14 +12,14 @@ void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 	head = stack;
 	while (stack->data != max->next->data)
 	{
-		rb(&stack);
+		rb(&stack, NULL);
 		i_rb++;
 	}
 	(*instr)->s2_rotate_up = i_rb;
 	stack = head;
 	while (stack->data != max->next->data)
 	{
-		rrb(&stack);
+		rrb(&stack, NULL);
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;
@@ -36,14 +36,14 @@ void	push_on_min(tt_list *stack, tt_list *min, i_list **instr)
 	head = stack;
 	while (stack->data != min->data)
 	{
-		rb(&stack); //The first element becomes the last one.
+		rb(&stack, NULL); //The first element becomes the last one.
 		i_rb++;
 	}
 	(*instr)->s2_rotate_up = i_rb;
 	stack = head;
 	while (stack->data != min->data)
 	{
-		rrb(&stack); //The last element becomes the first one.
+		rrb(&stack, NULL); //The last element becomes the first one.
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;
