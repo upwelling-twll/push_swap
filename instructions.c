@@ -102,28 +102,35 @@ void	pb(tt_list **stack1, tt_list **stack2)
 
 void	ra(tt_list **stack, tt_list **s2)
 {
-	*stack = (*stack)->next; 
+	if (*stack)
+		*stack = (*stack)->next; 
 }
 
 void	rb(tt_list **stack, tt_list **s2)
 {
-	*stack = (*stack)->next; 
+	if (*stack)
+		*stack = (*stack)->next; 
 }
 
 void	rr(tt_list **stack1, tt_list **stack2)
 {
+	printf("will use rr\n");
+	printf("lst->data:%d\n", (*stack1)->data);
+	//printf("lst->data:%d\n, stack2->data:%d\n", (*stack1)->data, (*stack2)->data);
 	ra(stack1, stack2);
 	rb(stack2, stack2);
 }
 
 void	rra(tt_list **stack, tt_list **s2)
 {
-	*stack = (*stack)->prev; 
+	if (*stack)
+		*stack = (*stack)->prev; 
 }
 
 void	rrb(tt_list **stack, tt_list **s2)
 {
-	*stack = (*stack)->prev; 
+	if (*stack)
+		*stack = (*stack)->prev; 
 }
 
 void	rrr(tt_list **stack1, tt_list **stack2)

@@ -50,7 +50,7 @@ tt_list	*search_for_closest(tt_list *stack2, int target_data, int size);
 tt_list	*find_place(tt_list *stack2, int target_data, int size,tt_list *max, tt_list *min);
 void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
 void	i_to_place(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size);
-char		gmin(int a, int b , int c, int d);
+char	gmin(int a, int b , int c, int d);
 int		best_option(int s1us2d, int s1ds2u, int tu, int td);
 int		optimize(i_list **inumber);
 int		inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber);

@@ -2,6 +2,7 @@
 #include "checker_inc.c"
 #include "libft/ft_atoi.c"
 
+
 int main(int argc, char *argv[])
 {
 	char *ins;
@@ -12,13 +13,14 @@ int main(int argc, char *argv[])
 	t_instr	*hoper;
 	int i;
 
+	i = 0;
 	lst = malloc(sizeof(tt_list));
 	stack2 = malloc(sizeof(stack2));
 	stack2 = NULL;
 	if (argc < 2)
 		return (0);
 	argv++;
-	lst = add_node(lst, ft_atoi(*argv));
+	lst = add_node(lst, ft_atoi(*argv)); //atoi(*argv)
 	head = lst;
 	argv++;
 	while (*argv)
@@ -31,23 +33,28 @@ int main(int argc, char *argv[])
 	lst->next  = head;
 	print_list(head);
 //1) add instructions from stdin to the list instr *oper;
-	oper = malloc(sizeof(oper));
+	oper = malloc(sizeof(t_instr));
+	oper = add_node_ins(oper,read_stdin(0));
 	hoper = oper;
-	while ((ins = get_next_line(0)) != NULL)
+	while (i < 6)
 	{
-		add_node_ins(oper, ins);
+		ins = read_stdin(0);
+		//printf("ins to search:%s$\n", ins);
+		oper->next = add_node_ins(oper, ins);
 		oper = oper->next;
 		free(ins);
+		i++;
 	}
 	oper = hoper;
+	i = 0;
 //2) process instructions from the list by alidation and apply
-	while ((ins = get_next_line(0)) != NULL)
+	while (oper->next != NULL)
 	{
-		if ((i = valid_ins(ins)) >= 0)
+		if ((i = valid_ins(oper->content)) >= 0)
 			apply_ins(&lst, &stack2, pssbl_op[i]);
 		else
 			return (ft_exit(lst, oper, 1));
-		free(ins);
+		oper = oper ->next;
 	}
 	return (0);
 }
