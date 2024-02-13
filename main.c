@@ -1,8 +1,8 @@
 #include "push_swap.h"
-#include "list_operations.c"   //for debugger only
-#include "instructions.c"    //for debugger only
-#include "sortingB.c"    //for debugger only
-#include "sortingA.c"    //for debugger only
+// #include "list_operations.c"   //for debugger only
+// #include "instructions.c"    //for debugger only
+// #include "sortingB.c"    //for debugger only
+// #include "sortingA.c"    //for debugger only
 #include "libft/ft_atoi.c"
 
 int	check_if_sorted_final(tt_list *lst)
