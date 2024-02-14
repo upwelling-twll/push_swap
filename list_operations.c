@@ -93,19 +93,15 @@ int	ft_llstsize(tt_list *lst)
 
 	if (lst == NULL)
 		return (0);
-	head = lst->data;
+	//if (lst->data)
+		head = lst->data;
 	//next = lst->next;
 	i = 1;
-	printf("lst->data:%i\n", lst->data);
-	printf("lst->next->data:%i\n", lst->next->data);
 	while (lst->next->data != head)
 	{
-		printf("ft_size=%i\n", i);
 		lst = lst -> next;
-		printf("lst=lst->data:%i\n", lst->next->data);
 		i++;
 	}
-	printf("i size:%i\n", i);
 	return (i);
 }
 

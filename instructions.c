@@ -54,96 +54,112 @@ void	move_first(tt_list **stack1, tt_list **stack2) //pb
 		new_head->prev = old_last;
 		(*stack2)->prev = new_head;
 		*stack2= new_head;
-		// (tmp_s2) = (*stack2);
-		// (*stack2)->prev->next = add_node(*stack2, tmp);
-		// (*stack2) = (*stack2)->prev->next;
-		// (*stack2)->next = tmp_s2;
-		// (*stack2)->prev = ft_llstlast(*stack2);
-		// (ft_llstlast(*stack2))->next = (*stack2);
 	}
 	*stack1 = delfirst(*stack1);
-	//printf("stack2_head_after_move:%d\n", (*stack2)->data);
 }
 
-void	swap(tt_list **stack,  tt_list **s2) //no s2)
+int	swap(tt_list **stack,  tt_list **s2) //no s2)
 {
 	int tmp;
 
+	if (!(*stack))
+		return (0);
 	tmp = (*stack)->data;
 	(*stack)->data = (*stack)->next->data;
 	(*stack)->next->data = tmp;
+	return (1);
 }
 
-void	sa(tt_list **stack, tt_list **s2)
+int	sa(tt_list **stack, tt_list **s2)
 {
+	if (!(*stack))
+		return (0);
 	swap(stack, s2);
+	return (1);
 }
 
-void	sb(tt_list **stack, tt_list **s2)
+int	sb(tt_list **stack, tt_list **s2)
 {
+	if (!(*stack))
+		return (0);
 	swap(stack, s2);
+	return(1);
 }
 
-void	ss(tt_list **stack1, tt_list **stack2)
+int	ss(tt_list **stack1, tt_list **stack2)
 {
+	if (!(*stack1) || (!(*stack2)))
+		return (0);
 	swap(stack1, stack2);
 	swap(stack2, stack1);
+	return (0);
 }
 
-void	pa(tt_list **stack1, tt_list **stack2)
+int	pa(tt_list **stack1, tt_list **stack2)
 {
+	if (!(*stack2))
+		return (0);
 	move_first(stack2, stack1);
+	return (1);
 }
 
-void	pb(tt_list **stack1, tt_list **stack2)
+int	pb(tt_list **stack1, tt_list **stack2)
 {
+	if (!(*stack1))
+		return (0);
 	move_first(stack1, stack2);
+	return (1);
 }
 
-void	ra(tt_list **stack, tt_list **s2)
+int	ra(tt_list **stack, tt_list **s2)
+{	
+	if (!(*stack))
+		return (0);
+	*stack = (*stack)->next;
+	return (1);
+}
+
+int	rb(tt_list **stack, tt_list **s2)
 {
-	if (*stack)
-		*stack = (*stack)->next; 
+	if (!(*stack))
+		return (0);
+	*stack = (*stack)->next; 
+	return (1);
 }
 
-void	rb(tt_list **stack, tt_list **s2)
-{
-	if (*stack)
-		*stack = (*stack)->next; 
-}
-
-void	rr(tt_list **stack1, tt_list **stack2)
+int	rr(tt_list **stack1, tt_list **stack2)
 {
 	printf("will use rr\n");
 	printf("lst->data:%d\n", (*stack1)->data);
 	//printf("lst->data:%d\n, stack2->data:%d\n", (*stack1)->data, (*stack2)->data);
+	if (!(*stack1) || (!(*stack2)))
+		return (0);
 	ra(stack1, stack2);
 	rb(stack2, stack2);
+	return (1);
 }
 
-void	rra(tt_list **stack, tt_list **s2)
+int	rra(tt_list **stack, tt_list **s2)
 {
-	if (*stack)
-		*stack = (*stack)->prev; 
+	if (!(*stack))
+		return (0);
+	*stack = (*stack)->prev;
+	return (1);
 }
 
-void	rrb(tt_list **stack, tt_list **s2)
+int	rrb(tt_list **stack, tt_list **s2)
 {
-	if (*stack)
-		*stack = (*stack)->prev; 
+	if (!(*stack))
+		return (0);
+	*stack = (*stack)->prev;
+	return (1);
 }
 
-void	rrr(tt_list **stack1, tt_list **stack2)
+int	rrr(tt_list **stack1, tt_list **stack2)
 {
+	if (!(*stack1) || (!(*stack2)))
+		return (0);
 	rra(stack1, stack2);
 	rrb(stack2, stack2);
-}
-
-void	swap_data(tt_list *n1, tt_list *n2)
-{
-	int	tmp;
-
-	tmp = n1 -> data;
-	n1 -> data = n2 -> data;
-	n2 -> data = tmp;
+	return (1);
 }

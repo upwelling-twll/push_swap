@@ -67,20 +67,36 @@ tt_list	*find_place33(tt_list *stack2, int target_data, int size, tt_list *max, 
 void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size, tt_list *stack1);
 void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
 //instructions.c
-void	swap_data(tt_list *n1, tt_list *n2);
-void	rrr(tt_list **stack1, tt_list **stack2);
-void	rrb(tt_list **stack, tt_list **s2); //no s2
-void	rra(tt_list **stack, tt_list **s2); //no s2);
-void	rr(tt_list **stack1, tt_list **stack2);
-void	rb(tt_list **stack, tt_list **s2); //no s2);
-void	ra(tt_list **stack,  tt_list **s2); //no s2);
-void	pb(tt_list **stack1, tt_list **stack2);
-void	pa(tt_list **stack1, tt_list **stack2);
-void	ss(tt_list **stack1, tt_list **stack2);
-void	sb(tt_list **stack,  tt_list **s2); //no s2);
-void	sa(tt_list **stack,  tt_list **s2); //no s2);
-void	swap(tt_list **stack,  tt_list **s2); //no s2);
+// void	swap_data(tt_list *n1, tt_list *n2);
+// void	rrr(tt_list **stack1, tt_list **stack2);
+// void	rrb(tt_list **stack, tt_list **s2); //no s2
+// void	rra(tt_list **stack, tt_list **s2); //no s2);
+// void	rr(tt_list **stack1, tt_list **stack2);
+// void	rb(tt_list **stack, tt_list **s2); //no s2);
+// void	ra(tt_list **stack,  tt_list **s2); //no s2);
+// void	pb(tt_list **stack1, tt_list **stack2);
+// void	pa(tt_list **stack1, tt_list **stack2);
+// void	ss(tt_list **stack1, tt_list **stack2);
+// void	sb(tt_list **stack,  tt_list **s2); //no s2);
+// void	sa(tt_list **stack,  tt_list **s2); //no s2);
+// void	swap(tt_list **stack,  tt_list **s2); //no s2);
+// void	move_first(tt_list **stack1, tt_list **stack2);
+
+int	rrr(tt_list **stack1, tt_list **stack2);
+int	rrb(tt_list **stack, tt_list **s2); //no s2
+int	rra(tt_list **stack, tt_list **s2); //no s2);
+int	rr(tt_list **stack1, tt_list **stack2);
+int	rb(tt_list **stack, tt_list **s2); //no s2);
+int	ra(tt_list **stack,  tt_list **s2); //no s2);
+int	pb(tt_list **stack1, tt_list **stack2);
+int	pa(tt_list **stack1, tt_list **stack2);
+int	ss(tt_list **stack1, tt_list **stack2);
+int	sb(tt_list **stack,  tt_list **s2); //no s2);
+int	sa(tt_list **stack,  tt_list **s2); //no s2);
+int	swap(tt_list **stack,  tt_list **s2); //no s2);
 void	move_first(tt_list **stack1, tt_list **stack2);
+
+
 tt_list	*delfirst(tt_list  *lst);
 tt_list	*add_node(tt_list *nlist, int data);
 

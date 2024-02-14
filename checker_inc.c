@@ -21,7 +21,7 @@
 static char *pssbl_op_list[]={SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
 
 // this is a new type - function pointer type which will be used for instruction functions;
-typedef void	(*ins_func)(tt_list **, tt_list **);
+typedef int	(*ins_func)(tt_list **, tt_list **);
 
 //this a definition of arrey of function pointers to instruction finctions;
 ins_func	pssbl_op[]={sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
@@ -31,19 +31,6 @@ typedef struct in_list
 	char			*content;
 	struct in_list	*next;
 }					t_instr;
-
-int	pssbl_op_num(char **stat_ar)
-{
-	int	i;
-
-	i = 0;
-	while(*stat_ar)
-	{
-		stat_ar++;
-		i++;
-	}
-	return (i);
-}
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -97,12 +84,10 @@ t_instr	*add_node_ins(t_instr *lst, char *ins)
 int	valid_ins(char *ins)
 {
 	int i;
-	int	op_num;
 
 	i = 0;
 	printf("instr i receive:%s\n", ins);
-	op_num = pssbl_op_num(pssbl_op_list);
-	while (i < op_num) // 11 is a number of posible instructions;
+	while (i < 11) // 11 is a number of posible instructions;
 	{
 		//printf("compare instruction:%s$ and element:%s$\n", ins, pssbl_op_list[i]);
 		if ((ft_strcmp(ins, pssbl_op_list[i]) == 0))
@@ -113,10 +98,12 @@ int	valid_ins(char *ins)
 	return (-1);
 }
 
-void	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
+int	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
 {
 	printf("will apply instr\n");
-	ins_recived(stack1, stack2);
+	if (ins_recived(stack1, stack2))
+		return (1);
+	return (0);
 	// printf("---** stack1 **---\n");
 	// print_list(*stack1);
 	// printf("====stack2=====\n");
@@ -164,8 +151,8 @@ char	*read_stdin(int fd)
 
 int	check_overflow(const char *str, int flag, int i)
 {
-	int	n;
-	int	cn;
+	long long	n;
+	long long	cn;
 
 	n = 0;
 	cn = 0;
@@ -173,8 +160,7 @@ int	check_overflow(const char *str, int flag, int i)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			n = n * 10 + (str[i] - '0');
-		cn = n * flag;
-		if (cn > 2147483647 || cn <= -2147483648)
+		if (n*flag > 2147483647 || n*flag < -2147483648)
 			return (0);
 		i++;
 	}
@@ -211,18 +197,12 @@ int	verify_argv(tt_list *args_lst, char *argv)
 	int	num;
 	int	size;
 
-	printf("ver argv\n");
 	if(!(verify_atoi(argv)))
 		return (0);
 	num = ft_atoi(argv);
-	printf("num=%i\n", num);
-	if (args_lst)
-		printf("args_lst->data:%i\n", args_lst->data);
 	size = ft_llstsize(args_lst);
-	printf("size=%i\n", size);
 	while(size)
 	{
-		printf("size\n");
 		if (args_lst->data == num)
 			return (0);
 		args_lst = args_lst->next;
@@ -235,8 +215,10 @@ void	del_stack_lst(tt_list *lst)
 {
 	tt_list	*tmp;
 	tt_list	*tmp2;
+	int		size;
 
-	while (lst)
+	size = ft_llstsize(lst);
+	while (size)
 	{
 		tmp = lst->next;
 		if (!lst)
@@ -245,20 +227,24 @@ void	del_stack_lst(tt_list *lst)
 		if (lst)
 			free(tmp2);
 		lst = tmp;
+		size--;
 	}
 }
 
 int	ft_exit(tt_list *st1, tt_list *st2, t_instr *oper, int display)
 {
+	printf("\nmission aborted with flag %i\n", display);
 	if (st1)
 		del_stack_lst(st1);
+		printf("s1 deleted\n");
 	if (st2)
 		del_stack_lst(st2);
+		printf("s2 deleted\n");
 	if (oper)
 		del_instr_list(oper);
 	if (display == 1)
 		write(1, "Error\n", 6);
 	else if (display == 2)
-		write(1, "instructions did not sort the stack\n", 36);
+		write(1, "KO\n", 3);
 	return (0);
 }
