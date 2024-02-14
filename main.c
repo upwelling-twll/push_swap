@@ -77,13 +77,16 @@ int	verify_argv(tt_list *args_lst, char *argv)
 	if(!(verify_atoi(argv)))
 		return (0);
 	num = ft_atoi(argv);
-	size = ft_llstsize(args_lst);
-	while(size)
+	if (args_lst)
 	{
-		if (args_lst->data == num)
-			return (0);
-		args_lst = args_lst->next;
-		size--;
+		size = ft_llstsize(args_lst);
+		while(size)
+		{
+			if (args_lst->data == num)
+				return (0);
+			args_lst = args_lst->next;
+			size--;
+		}
 	}
 	return(1);
 }
@@ -134,12 +137,13 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (0);
 	nlist = malloc(sizeof(tt_list));
+	//nlist = NULL;
 	argv++;
-	if ((!(verify_argv(nlist, *argv))))
+	if ((!(verify_argv(NULL, *argv))))
 		ft_exit_ps(nlist, NULL, 2);
-	nlist->prev = NULL;
+	nlist->prev = nlist;
 	nlist->data = ft_atoi(*argv);
-	nlist ->next = NULL;
+	nlist ->next = nlist;
 	head = nlist;
 	argv++;
 	while (*argv)
@@ -147,8 +151,10 @@ int	main(int argc, char *argv[])
 		if ((!(verify_argv(head, *argv))))
 			ft_exit_ps(head, NULL, 2);
 		nlist->next = add_node(nlist, ft_atoi(*argv));
+		head->prev = nlist;
 		argv++;
 		nlist = nlist->next;
+		nlist->next = head;
 	}
 	head->prev = nlist; 
 	nlist->next  = head;
