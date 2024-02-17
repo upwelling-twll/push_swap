@@ -13,8 +13,10 @@ void	del_stack_lst(tt_list *lst)
 	int		size;
 
 	size = ft_llstsize(lst);
+	printf("size=%i\n", size);
 	while (size)
 	{
+		printf("lst->data=%i\n", lst->data);
 		tmp = lst->next;
 		if (!lst)
 			break ;
@@ -93,13 +95,10 @@ int	verify_argv(tt_list *args_lst, char *argv)
 
 int	ft_exit_ps(tt_list *st1, tt_list *st2, int display)
 {
-	printf("\nmission aborted with flag %i\n", display);
 	if (st1)
 		del_stack_lst(st1);
-		printf("s1 deleted\n");
 	if (st2)
 		del_stack_lst(st2);
-		printf("s2 deleted\n");
 	if (display == 1)
 		write(1, "Error\n", 6);
 	else if (display == 2)
@@ -140,7 +139,7 @@ int	main(int argc, char *argv[])
 	//nlist = NULL;
 	argv++;
 	if ((!(verify_argv(NULL, *argv))))
-		ft_exit_ps(nlist, NULL, 2);
+		return(ft_exit_ps(NULL, NULL, 2));
 	nlist->prev = nlist;
 	nlist->data = ft_atoi(*argv);
 	nlist ->next = nlist;
@@ -149,7 +148,7 @@ int	main(int argc, char *argv[])
 	while (*argv)
 	{
 		if ((!(verify_argv(head, *argv))))
-			ft_exit_ps(head, NULL, 2);
+			return(ft_exit_ps(head, NULL, 2));
 		nlist->next = add_node(nlist, ft_atoi(*argv));
 		head->prev = nlist;
 		argv++;
@@ -173,48 +172,77 @@ int	main(int argc, char *argv[])
 	i_target = malloc(sizeof(i_list));
 	while (ft_llstsize(head) > 3)
 	{
+		//printf("---------------------------------\n");
 		i_target = malloc(sizeof(i_list));
 		find_target(head, stack2, &i_target);
-		printf("will print target\n");
-		print_itarget(i_target);
-		exec_instr(&head, &stack2, i_target);
-		if (check_if_sorted(head))
-			break;
-		free(i_target);
-	}
-	sort_3(&head);
-	min_to_top(&head);
-	// printf("-----I WILL PUSH BACK TO 	A-----\n");
-	// 		printf("		stack1\n");
-	// 		print_list(head);
-	// 		printf("		stack2\n");
-	// 		print_list(stack2);
-	while (ft_llstsize(stack2) >= 1)
-	{
-		i_target = malloc(sizeof(i_list));
-		find_targetA(stack2, head, &i_target);
 		//print_itarget(i_target);
-		//printf("fail here-instructions\n");
-		exec_instr(&stack2, &head, i_target);
+		exec_instr(&head, &stack2, i_target, 1);
 		// printf("---------------------------------\n");
-		// 	printf("		stack1\n");
+		// printf("		stack1\n");
 		// 	print_list(head);
 		// 	//printf("fail here\n");
 		// 	printf("		stack2\n");
 		// 	print_list(stack2);
+		if (check_if_sorted(head))
+			break;
+		free(i_target);
+	}
+	// printf("---------------------------------\n");
+	// 	printf("		stack1\n");
+	// 		print_list(head);
+	// printf("-------------need to sort_3 s1--------------------\n");
+	// printf("		stack1\n");
+	// print_list(head);
+	// printf("		stack2\n");
+	// print_list(stack2);
+
+	sort_3(&head);
+
+	//printf("-----min to top-----\n");
+	min_to_top(&head);
+	printf("-----I WILL PUSH BACK TO 	A-----\n");
+			printf("		stack1\n");
+			print_list(head);
+			printf("		stack2\n");
+			print_list(stack2);
+	while (ft_llstsize(stack2) >= 1)
+	{
+		// printf("---------------------------------\n");
+		// printf("		stack1\n");
+		// 	print_list(head);
+		// 	//printf("fail here\n");
+		// 	printf("		stack2\n");
+		// 	print_list(stack2);
+		i_target = malloc(sizeof(i_list));
+		find_targetA(stack2, head, &i_target);
+		// printf("-   ---------  ----- -\n");
+		// print_itarget(i_target);
+		//printf("fail here-instructions\n");
+		exec_instr(&stack2, &head, i_target, 2);
+		printf("---------------------------------\n");
+			printf("		stack1\n");
+			print_list(head);
+			//printf("fail here\n");
+			printf("		stack2\n");
+			print_list(stack2);
 		free(i_target);
 	}
 	// printf("---------------------------------\n");
 	// 		printf("		before MIN TO TOP		\n");
 	// 		print_list(head);
 	min_to_top(&head);
-	//head = get_min(head, ft_llstsize(head));
-	// printf("---------------------------------\n");
-	// 		printf("		RESULT		\n");
-	// 		print_list(head);
+	head = get_min(head, ft_llstsize(head));
+	printf("---------------------------------\n");
+			printf("		RESULT		\n");
+			print_list(head);
 	if (check_if_sorted_final(head))
 	{
-		// printf("already sorted\n");
+		printf("sorted -OK\n");
+		return (0);
+	}
+	else
+	{
+		printf(" not sorted -KO\n");
 		return (0);
 	}
 }

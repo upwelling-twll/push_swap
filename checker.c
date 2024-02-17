@@ -78,6 +78,11 @@ int main(int argc, char *argv[])
 		else
 			return (ft_exit(head, stack2, hoper, 1)); // maybe replace lst to head
 		oper = oper ->next;
+		printf("---------------------------------\n");
+			printf("		stack1\n");
+			print_list(head);
+			printf("		stack2\n");
+			print_list(stack2);
 	}
 	printf("RESULT---** stack1 **---\n");
 	print_list(head);

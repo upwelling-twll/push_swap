@@ -1,22 +1,25 @@
 
 #include "push_swap.h"
 
-void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target)
+#define RA_STR (dr == 1 ? "ra\n" : "rb\n")
+#define RRB_STR (dr == 1 ? "rrb\n" : "rra\n")
+
+void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
+	//printf("mood 1 started\n");
 	while (i_target->s1_rotate_up != 0)
 	{
 		ra(stack1, NULL);
-		write(1, "ra\n", 3);
+		write(1, RA_STR, 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
 		rrb(stack2, NULL);
-		write(1, "rrb\n", 4);
+		write(1, RRB_STR, 4);
 		i_target->s2_rotate_down--;
 	}
 	pb(stack1, stack2);
-	write(1, "pb\n", 3);
 }
 
 void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -34,7 +37,6 @@ void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
-	write(1, "pb\n", 3);
 }
 
 void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -59,7 +61,6 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
-	write(1, "pb\n", 3);
 }
 
 void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
@@ -84,19 +85,22 @@ void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
 		i_target->s2_rotate_down--;
 	}
 	pb(stack1, stack2);
-	write(1, "pb\n", 3);
 }
 
-void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target)
+void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
 	if (i_target->mood == 1) // run (ra and rrb) rotate stack1 up and rotate stack 2 down;
-		run_mood1(stack1, stack2, i_target);
+		run_mood1(stack1, stack2, i_target, dr);
 	if (i_target->mood == 2) // run (rra and rb) rotate stack1 down and rotate stack 2 up;
 		run_mood2(stack1, stack2, i_target);
 	if (i_target->mood == 3) // run (rr) rotate stack1 and stack 2 up (and some ra / rb);
 		run_mood3(stack1, stack2, i_target);
 	if (i_target->mood == 4) // run (rrr) rotate stack1 and stack 2 down (and some rra / rrb);
 		run_mood4(stack1, stack2, i_target);
+	if (dr == 1)
+		write(1, "pb\n", 3);
+	else if (dr == 2)
+		write(1, "pa\n", 3);
 }
 
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber)

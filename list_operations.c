@@ -9,22 +9,42 @@ int	cmp(int a, int b)
 
 void	float_to_top(tt_list **head, tt_list *new_head)
 {
+	printf("min to top\n");
 	tt_list	*cplist;
 	int	position;
 
 	cplist = *head;
 	position = 0;
+	if (new_head == *head)
+		return;
 	while(cplist->next != new_head)
 	{
 		cplist = cplist->next;
 		position++;
 	}
-	while (position) //rotating until the element which is prev to min is not on the top
+	// printf("new head= %i\n", new_head->data);
+	// printf("position=%i\n", position);
+	
+	if (position <= (ft_llstsize(*head) / 2))
 	{
-		ra(head, NULL);
-		write(1, "ra\n", 3);
-		position--;
+		while (position) //rotating until the element which is prev to min is not on the top
+		{
+			ra(head, NULL);
+			write(1, "ra\n", 3);
+			position--;
+		}
 	}
+	else
+	{
+		position = ft_llstsize(*head) - position - 1;
+		while (position) //rotating until the element which is prev to min is not on the top
+		{
+			rra(head, NULL);
+			write(1, "rra\n", 4);
+			position--;
+		}
+	}
+
 }
 
 void	sort_3(tt_list **lst)
@@ -157,3 +177,6 @@ int	check_if_sorted(tt_list *lst)
 	}
 	return (1);
 }
+
+
+

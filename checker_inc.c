@@ -101,6 +101,18 @@ int	valid_ins(char *ins)
 int	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
 {
 	printf("will apply instr\n");
+	if (ins_recived == rrb)
+	{
+		if (ins_recived(stack2, stack1))
+			return (1);
+		return (0);
+	}
+	else if (ins_recived == rb)
+	{
+		if (ins_recived(stack2, stack1))
+			return (1);
+		return (0);
+	}
 	if (ins_recived(stack1, stack2))
 		return (1);
 	return (0);
