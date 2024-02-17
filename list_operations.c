@@ -9,7 +9,7 @@ int	cmp(int a, int b)
 
 void	float_to_top(tt_list **head, tt_list *new_head)
 {
-	printf("min to top\n");
+	//printf("min to top\n");
 	tt_list	*cplist;
 	int	position;
 
@@ -47,34 +47,70 @@ void	float_to_top(tt_list **head, tt_list *new_head)
 
 }
 
+#define RA_STR (dr == 1 ? "ra\n" : "rb\n")
+#define RRB_STR (dr == 1 ? "rrb\n" : "rra\n")
+
+void	run(tt_list **lst, int opt)
+{
+	if (opt == 1) 
+		sa(*lst, NULL);
+	if (opt == 2)
+		rra(*lst, NULL);
+	if (opt == 3)
+	{
+		run(lst, 1);
+		run(lst, 2);
+	}
+	if (opt == 4)
+	{
+		run(lst, 2);
+		run(lst, 2);
+	}
+	if (opt == 5)
+	{
+		run(lst, 2);
+		run(lst, 1);
+	}
+	write(1, )
+}
+
 void	sort_3(tt_list **lst)
 {
-	int tmp;
-	tt_list	*swap;
-	tt_list	*head;
-	tt_list	**head_ad;
-	tt_list	*cphead;
+	int	a;
+	int	b;
+	int	c;
 
-	head_ad = lst;
-	cphead = *lst;
-	swap = *lst;
-	head = *lst;
-	while(!(check_if_sorted(cphead)))
-	{ 
-		if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
-		{
-			float_to_top(head_ad, (*lst)->next);
-			sa(head_ad, NULL);
-			write(1, "sa\n", 3);
-			// tmp = (*lst)->data;
-			// (*lst)->data = (*lst)->next->data;
-			// (*lst)->next->data = tmp;
-			// *lst = swap;
-		}
-		else
-			*lst = (*lst)->next;
-	}
+	a = (*lst)->data;
+	b = (*lst)->next->data;
+	c = (*lst)->prev->data;
+	if (a > b && a < c)
+		run(lst, 1);
+	else if (a > c && a < b)
+		run(lst, 2);
+	else if (a > b && b > c)
+		run (lst, 3);
+	else if (a < b && b < c)
+		run (lst, 4);
+	else if (a < b && b > c)
+		run (lst, 5);
+	return;	
 }
+	// while(!(check_if_sorted(cphead)))
+	// { 
+	// 	if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
+	// 	{
+	// 		float_to_top(head_ad, (*lst)->next);
+	// 		sa(head_ad, NULL);
+	// 		write(1, "sa\n", 3);
+	// 		// tmp = (*lst)->data;
+	// 		// (*lst)->data = (*lst)->next->data;
+	// 		// (*lst)->next->data = tmp;
+	// 		// *lst = swap;
+	// 	}
+	// 	else
+	// 		*lst = (*lst)->next;
+	// }
+// }
 
 void	print_itarget(i_list *lst)
 {

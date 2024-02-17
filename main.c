@@ -200,11 +200,11 @@ int	main(int argc, char *argv[])
 
 	//printf("-----min to top-----\n");
 	min_to_top(&head);
-	printf("-----I WILL PUSH BACK TO 	A-----\n");
-			printf("		stack1\n");
-			print_list(head);
-			printf("		stack2\n");
-			print_list(stack2);
+	// printf("-----I WILL PUSH BACK TO 	A-----\n");
+	// 		printf("		stack1\n");
+	// 		print_list(head);
+	// 		printf("		stack2\n");
+	// 		print_list(stack2);
 	while (ft_llstsize(stack2) >= 1)
 	{
 		// printf("---------------------------------\n");
@@ -219,12 +219,12 @@ int	main(int argc, char *argv[])
 		// print_itarget(i_target);
 		//printf("fail here-instructions\n");
 		exec_instr(&stack2, &head, i_target, 2);
-		printf("---------------------------------\n");
-			printf("		stack1\n");
-			print_list(head);
-			//printf("fail here\n");
-			printf("		stack2\n");
-			print_list(stack2);
+		// printf("---------------------------------\n");
+		// 	printf("		stack1\n");
+		// 	print_list(head);
+		// 	//printf("fail here\n");
+		// 	printf("		stack2\n");
+		// 	print_list(stack2);
 		free(i_target);
 	}
 	// printf("---------------------------------\n");
@@ -232,9 +232,9 @@ int	main(int argc, char *argv[])
 	// 		print_list(head);
 	min_to_top(&head);
 	head = get_min(head, ft_llstsize(head));
-	printf("---------------------------------\n");
-			printf("		RESULT		\n");
-			print_list(head);
+	// printf("---------------------------------\n");
+	// 		printf("		RESULT		\n");
+	// 		print_list(head);
 	if (check_if_sorted_final(head))
 	{
 		printf("sorted -OK\n");
