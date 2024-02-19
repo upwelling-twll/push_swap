@@ -50,7 +50,7 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	}
 	while (i_target->s1_rotate_up != 0)
 	{
-		ra(stack2, NULL);
+		ra(stack1, NULL);
 		write(1, "ra\n", 3);
 		i_target->s1_rotate_up--;
 	}

@@ -217,7 +217,7 @@ int	main(int argc, char *argv[])
 		find_targetA(stack2, head, &i_target);
 		// printf("-   ---------  ----- -\n");
 		// print_itarget(i_target);
-		//printf("fail here-instructions\n");
+		// printf("fail here-instructions\n");
 		exec_instr(&stack2, &head, i_target, 2);
 		// printf("---------------------------------\n");
 		// 	printf("		stack1\n");
@@ -227,9 +227,8 @@ int	main(int argc, char *argv[])
 		// 	print_list(stack2);
 		free(i_target);
 	}
-	// printf("---------------------------------\n");
-	// 		printf("		before MIN TO TOP		\n");
-	// 		print_list(head);
+	// 
+	
 	min_to_top(&head);
 	head = get_min(head, ft_llstsize(head));
 	// printf("---------------------------------\n");

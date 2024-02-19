@@ -17,13 +17,13 @@ void	float_to_top(tt_list **head, tt_list *new_head)
 	position = 0;
 	if (new_head == *head)
 		return;
-	while(cplist->next != new_head)
+	while(cplist != new_head)
 	{
 		cplist = cplist->next;
 		position++;
 	}
-	// printf("new head= %i\n", new_head->data);
-	// printf("position=%i\n", position);
+///	printf("new head= %i\n", new_head->data);
+	//printf("position=%i\n", position);
 	
 	if (position <= (ft_llstsize(*head) / 2))
 	{
@@ -37,41 +37,60 @@ void	float_to_top(tt_list **head, tt_list *new_head)
 	else
 	{
 		position = ft_llstsize(*head) - position - 1;
-		while (position) //rotating until the element which is prev to min is not on the top
+		while ((*head) -> data != new_head->data) //rotating until the element which is prev to min is not on the top
 		{
 			rra(head, NULL);
 			write(1, "rra\n", 4);
-			position--;
 		}
 	}
 
 }
 
-#define RA_STR (dr == 1 ? "ra\n" : "rb\n")
-#define RRB_STR (dr == 1 ? "rrb\n" : "rra\n")
+void	write_oper(int opt)
+{
+	if (opt == 1)
+		write(1, "sa\n", 3);
+	if (opt == 2)
+		write(1, "rra\n", 4);
+	if (opt == 3)
+	{
+		write(1, "sa\n", 3);
+		write(1, "rra\n", 4);
+	}
+	if (opt == 4)
+	{
+		write(1, "rra\n", 4);
+		write(1, "rra\n", 4);
+	}
+	if (opt == 5)
+	{
+		write(1, "rra\n", 4);
+		write(1, "sa\n", 3);
+	}
+}
 
 void	run(tt_list **lst, int opt)
 {
 	if (opt == 1) 
-		sa(*lst, NULL);
+		sa(lst, NULL);
 	if (opt == 2)
-		rra(*lst, NULL);
+		rra(lst, NULL);
 	if (opt == 3)
 	{
-		run(lst, 1);
-		run(lst, 2);
+		sa(lst, NULL);
+		rra(lst, NULL);
 	}
 	if (opt == 4)
 	{
-		run(lst, 2);
-		run(lst, 2);
+		rra(lst, NULL);
+		rra(lst, NULL);
 	}
 	if (opt == 5)
 	{
-		run(lst, 2);
-		run(lst, 1);
+		rra(lst, NULL);
+		sa(lst, NULL);
 	}
-	write(1, )
+	write_oper(opt);
 }
 
 void	sort_3(tt_list **lst)
@@ -190,7 +209,6 @@ void	min_to_top(tt_list **lst)
 	tt_list	*min;
 
 	min = get_min(*lst, ft_llstsize(*lst));
-
 	float_to_top(lst, min);
 }
 
