@@ -1,5 +1,6 @@
 #include "push_swap.h"
 #include "checker_inc.c"
+#include "checker_flag.c"
 #include "libft/ft_atoi.c"
 
 
@@ -21,6 +22,10 @@ int main(int argc, char *argv[])
 	stack2 = malloc(sizeof(stack2));
 	stack2 = NULL;
 	argv++;
+	if (is_flag(*argv))
+	{
+		process_flag_input(argv);
+	}
 	if (!(verify_argv(lst, *argv)))
 			return(ft_exit(lst, stack2, NULL, 1));
 	else
@@ -31,7 +36,7 @@ int main(int argc, char *argv[])
 		head = lst;
 		argv++;
 	}
-	while (*argv)
+	while (*argv)  
 	{ 
 		if (!(verify_argv(head, *argv)))
 			return(ft_exit(head, stack2, NULL, 1));

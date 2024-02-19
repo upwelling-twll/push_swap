@@ -3,6 +3,8 @@
 
 #define RA_STR (dr == 1 ? "ra\n" : "rb\n")
 #define RRB_STR (dr == 1 ? "rrb\n" : "rra\n")
+#define RA2_STR (d2 == 1 ? "rra\n" : "rrb\n")
+#define RRA2_STR (d2 == 1 ? "rb\n" : "ra\n")
 
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
@@ -22,24 +24,24 @@ void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 	pb(stack1, stack2);
 }
 
-void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target)
+void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int d2)
 {
 	while (i_target->s1_rotate_down != 0)
 	{
 		rra(stack1, NULL);
-		write(1, "rra\n", 4);
+		write(1, RA2_STR, 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
 		rb(stack2, NULL);
-		write(1, "rb\n", 3);
+		write(1, RRA2_STR, 3);
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
 }
 
-void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
+void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
 	while (i_target->s1_rotate_up != 0 && i_target->s2_rotate_up != 0)
 	{
@@ -51,19 +53,25 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	while (i_target->s1_rotate_up != 0)
 	{
 		ra(stack1, NULL);
-		write(1, "ra\n", 3);
+		if (dr == 1)
+			write(1, "ra\n", 3);
+		else
+			write(1, "rb\n", 3);
 		i_target->s1_rotate_up--;
 	}
 	while (i_target->s2_rotate_up != 0)
 	{
 		rb(stack2, NULL);
-		write(1, "rb\n", 3);
+		if (dr == 1)
+			write(1, "rb\n", 3);
+		else
+			write(1, "ra\n", 3);
 		i_target->s2_rotate_up--;
 	}
 	pb(stack1, stack2);
 }
 
-void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
+void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
 	while (i_target->s1_rotate_down != 0 && i_target->s2_rotate_down != 0)
 	{
@@ -74,14 +82,20 @@ void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target)
 	}
 	while (i_target->s1_rotate_down != 0)
 	{
-		rra(stack2, NULL);
-		write(1, "rra\n", 4);
+		rra(stack1, NULL);
+		if (dr == 1)
+			write(1, "rra\n", 4);
+		else
+			write(1, "rrb\n", 4);
 		i_target->s1_rotate_down--;
 	}
 	while (i_target->s2_rotate_down != 0)
 	{
 		rrb(stack2, NULL);
-		write(1, "rrb\n", 4);
+		if (dr == 1)
+			write(1, "rrb\n", 4);
+		else
+			write(1, "rra\n", 4);
 		i_target->s2_rotate_down--;
 	}
 	pb(stack1, stack2);
@@ -92,11 +106,11 @@ void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 	if (i_target->mood == 1) // run (ra and rrb) rotate stack1 up and rotate stack 2 down;
 		run_mood1(stack1, stack2, i_target, dr);
 	if (i_target->mood == 2) // run (rra and rb) rotate stack1 down and rotate stack 2 up;
-		run_mood2(stack1, stack2, i_target);
+		run_mood2(stack1, stack2, i_target, dr);
 	if (i_target->mood == 3) // run (rr) rotate stack1 and stack 2 up (and some ra / rb);
-		run_mood3(stack1, stack2, i_target);
+		run_mood3(stack1, stack2, i_target, dr);
 	if (i_target->mood == 4) // run (rrr) rotate stack1 and stack 2 down (and some rra / rrb);
-		run_mood4(stack1, stack2, i_target);
+		run_mood4(stack1, stack2, i_target, dr);
 	if (dr == 1)
 		write(1, "pb\n", 3);
 	else if (dr == 2)

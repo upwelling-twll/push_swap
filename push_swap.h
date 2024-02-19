@@ -37,9 +37,9 @@ void	min_to_top(tt_list **lst);
 
 //sorting B
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
-void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target);
-void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target);
-void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target);
+void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
+void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
+void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
 tt_list	*get_min(tt_list *stack, int size);

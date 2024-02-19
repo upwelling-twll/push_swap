@@ -227,16 +227,20 @@ int	main(int argc, char *argv[])
 		// 	print_list(stack2);
 		free(i_target);
 	}
-	// 
-	
+	// printf("---------------------------------\n");
+	// 		printf("		before min to top		\n");
+	// 		print_list(head);
 	min_to_top(&head);
+		// printf("---------------------------------\n");
+		// 	printf("		after min to top		\n");
+		// 	print_list(head);
 	head = get_min(head, ft_llstsize(head));
 	// printf("---------------------------------\n");
 	// 		printf("		RESULT		\n");
 	// 		print_list(head);
 	if (check_if_sorted_final(head))
 	{
-		printf("sorted -OK\n");
+		//printf("sorted -OK\n");
 		return (0);
 	}
 	else
