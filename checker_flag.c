@@ -13,8 +13,10 @@ int	is_flag(char *argv[])
 	{
 		if (!ft_strrchr(flags, *str1))
 			return(-1);
-		
+		str1++;
 	}
+	if (verify_argv(*argv[0]))
+		return (0);
 	if (*argv[0] == '-' && !(verify_atoi(*argv)))
 	{
 		if(*argv[1] == 'f')
@@ -22,8 +24,9 @@ int	is_flag(char *argv[])
 			argv++;
 			parse_fname(*argv);
 		}
-		if (*argv[)
+		if (*argv)
 	}
+	
 }
 
 void	process_flag_input(char *str)

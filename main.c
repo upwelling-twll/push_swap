@@ -132,6 +132,7 @@ int	main(int argc, char *argv[])
 	tt_list	*head;
 	tt_list	*stack2;
 	i_list	*i_target;
+	int		p;
 
 	if (argc < 2)
 		return (0);
@@ -170,9 +171,16 @@ int	main(int argc, char *argv[])
 		write(1, "pb\n", 3);
 	}
 	i_target = malloc(sizeof(i_list));
+	p = 0;
 	while (ft_llstsize(head) > 3)
 	{
 		//printf("---------------------------------\n");
+		if ((p = presorted(head)) >= 0)
+		{
+			sort_presorted(&head, &stack2, p, &i_target);
+			break;
+		}
+		//printf("sorting as usual\n");
 		i_target = malloc(sizeof(i_list));
 		find_target(head, stack2, &i_target);
 		//print_itarget(i_target);
@@ -183,9 +191,9 @@ int	main(int argc, char *argv[])
 		// 	//printf("fail here\n");
 		// 	printf("		stack2\n");
 		// 	print_list(stack2);
+		free(i_target);
 		if (check_if_sorted(head))
 			break;
-		free(i_target);
 	}
 	// printf("---------------------------------\n");
 	// 	printf("		stack1\n");
@@ -196,15 +204,17 @@ int	main(int argc, char *argv[])
 	// printf("		stack2\n");
 	// print_list(stack2);
 
-	sort_3(&head);
-
-	//printf("-----min to top-----\n");
-	min_to_top(&head);
-	// printf("-----I WILL PUSH BACK TO 	A-----\n");
-	// 		printf("		stack1\n");
-	// 		print_list(head);
-	// 		printf("		stack2\n");
-	// 		print_list(stack2);
+	if (ft_llstsize(head) == 3)
+	{
+		sort_3(&head);
+		//printf("-----min to top-----\n");
+		min_to_top(&head);
+	}
+	printf("-----I WILL PUSH BACK TO 	A-----\n");
+			printf("		stack1\n");
+			print_list(head);
+			printf("		stack2\n");
+			print_list(stack2);
 	while (ft_llstsize(stack2) >= 1)
 	{
 		// printf("---------------------------------\n");
@@ -230,17 +240,19 @@ int	main(int argc, char *argv[])
 	// printf("---------------------------------\n");
 	// 		printf("		before min to top		\n");
 	// 		print_list(head);
-	min_to_top(&head);
-		// printf("---------------------------------\n");
-		// 	printf("		after min to top		\n");
-		// 	print_list(head);
-	head = get_min(head, ft_llstsize(head));
-	// printf("---------------------------------\n");
-	// 		printf("		RESULT		\n");
-	// 		print_list(head);
+		min_to_top(&head);
+			// printf("---------------------------------\n");
+			// 	printf("		after min to top		\n");
+			// 	print_list(head);
+		head = get_min(head, ft_llstsize(head));
+	printf("---------------------------------\n");
+			printf("		RESULT		\n");
+			print_list(head);
+			printf("RESULT====stack2=====\n");
+			print_list(stack2);
 	if (check_if_sorted_final(head))
 	{
-		//printf("sorted -OK\n");
+		printf("sorted -OK\n");
 		return (0);
 	}
 	else

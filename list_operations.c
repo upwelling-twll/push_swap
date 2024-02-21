@@ -108,7 +108,7 @@ void	sort_3(tt_list **lst)
 		run(lst, 2);
 	else if (a > b && b > c)
 		run (lst, 3);
-	else if (a < b && b < c)
+	else if (a > b && b < c)
 		run (lst, 4);
 	else if (a < b && b > c)
 		run (lst, 5);

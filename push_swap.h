@@ -36,6 +36,9 @@ int		cmp(int a, int b);
 void	min_to_top(tt_list **lst);
 
 //sorting B
+int		segment_sorted(tt_list *start);
+void	sort_presorted(tt_list **lst, tt_list **st2, int sgm_str, i_list **i_trg);
+int		presorted(tt_list *lst);
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);

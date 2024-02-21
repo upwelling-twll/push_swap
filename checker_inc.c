@@ -86,7 +86,7 @@ int	valid_ins(char *ins)
 	int i;
 
 	i = 0;
-	printf("instr i receive:%s\n", ins);
+	//printf("instr i receive:%s\n", ins);
 	while (i < 11) // 11 is a number of posible instructions;
 	{
 		//printf("compare instruction:%s$ and element:%s$\n", ins, pssbl_op_list[i]);
@@ -100,7 +100,7 @@ int	valid_ins(char *ins)
 
 int	apply_ins(tt_list **stack1, tt_list **stack2, ins_func ins_recived)
 {
-	printf("will apply instr\n");
+	//printf("will apply instr\n");
 	if (ins_recived == rrb)
 	{
 		if (ins_recived(stack2, stack1))

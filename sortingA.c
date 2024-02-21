@@ -1,5 +1,114 @@
-
 #include "push_swap.h"
+
+int	segment_sorted(tt_list *start)
+{
+	int	sort_len;
+	tt_list	*lst;
+
+	sort_len = 1;
+	lst = start;
+	while (lst->next != start) 
+	{
+		if (lst->data < lst->next->data)
+			sort_len++;
+		else
+			return (sort_len);
+		lst = lst->next;
+	}
+	return (sort_len);
+}
+
+void	sort_presorted(tt_list **lst, tt_list **st2, int sgm_str, i_list **i_trg)
+{
+	int	sort_len;
+	int	lst_size;
+	int	new_head;
+	int	cp_start;
+	tt_list	*cplst;
+
+	printf("---** stack1 sort presorted**---\n");
+	print_list(*lst);
+	cp_start = sgm_str;
+	cplst = *lst;
+	printf("sgm_start = %i\n", sgm_str);
+	while (cp_start)
+	{
+		cplst = cplst->next;
+		cp_start--;
+	}
+	sort_len = segment_sorted(cplst);
+	//printf("sort_len = %i\n", sort_len);
+	lst_size = ft_llstsize(*lst);
+	cplst = *lst;
+	new_head = (sgm_str + sort_len) - lst_size;
+	printf("sort_len = %i\n", sort_len);
+	printf("sgm_start = %i\n", sgm_str);
+	printf("lst_size = %i\n", lst_size);
+	if ((sgm_str + sort_len) < lst_size)
+		new_head = lst_size - (sgm_str + sort_len);
+	else
+	{
+		printf("hi\n");
+		new_head = sgm_str + sort_len;
+	}
+	printf("new_head: (%i + %i) - %i = %i\n",  sgm_str, sort_len,lst_size, new_head);
+	if (new_head == 0)
+		new_head = 1;
+	// printf("sort_len = %i\n", sort_len);
+	// printf("sgm_start = %i\n", sgm_str);
+	// printf("new_head = %i\n", new_head);
+	while(new_head > 0)
+	{
+		ra(lst, NULL);
+		write(1, "rra\n", 4);
+		new_head--;
+	}
+	printf("presorted was sorted---** stack1 **---\n");
+	print_list(*lst);
+	printf("lst->data=%i\n", (*lst)->data);
+	//printf("sort_len = %i\n", sort_len);
+	while (ft_llstsize(*lst) > sort_len)
+	{
+		*i_trg = malloc(sizeof(i_list));
+		//print_itarget(*i_trg);
+		find_target(*lst, *st2, i_trg);
+		exec_instr(lst, st2, *i_trg, 1);
+		free(*i_trg);
+		if (check_if_sorted(*lst))
+			break;
+	}
+}
+
+int	 presorted(tt_list *lst)
+{
+	tt_list	*start;
+	int		sorted_len;
+	int		i;
+	int		position;
+	int		sorted_start;
+
+	start = lst;
+	sorted_start = 0;
+	sorted_len = 0;
+	position = 0;
+	i = 1;
+	while(lst->next != start)
+	{
+		if ((i = segment_sorted(lst)) > sorted_len)
+		{
+			sorted_len = i;
+			sorted_start = position;
+		}
+		lst = lst->next;
+		position++;
+		//printf("sorted_start= %i\n", sorted_start);
+	}
+	//printf("sorted_len:%i\n", sorted_len);
+	if (sorted_len > ft_llstsize(start) / 2)
+		return (sorted_start);
+	//printf("is not presorted\n");
+	return (-1);
+}
 
 void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 {
