@@ -45,6 +45,7 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
+int	gmin_i(int a, int b , int c, int d);
 tt_list	*get_min(tt_list *stack, int size);
 tt_list	*get_max(tt_list *stack, int size);
 void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);

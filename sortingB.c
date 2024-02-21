@@ -294,6 +294,18 @@ int	best_option(int s1us2d, int s1ds2u, int tu, int td)
 	return (4);
 }
 
+int	gmin_i(int a, int b , int c, int d)
+{
+	if (a <= b && a <= c && a <= d)
+		return (a);
+	if (b <= a && b <= c && b <= d)
+		return (b);
+	if (c <= a && c <= b && c <= d)
+		return (c);
+	else
+		return (d);
+}
+
 int	optimize(i_list **inumber)
 {
 	int	ttl_up_i;
@@ -320,7 +332,7 @@ int	optimize(i_list **inumber)
 	else if (s1_down <= s2_down)
 		ttl_down_i = s1_down + (s2_down - s1_down);
 	(*inumber)->mood = best_option(s1up_s2d, s1d_s2up, ttl_up_i, ttl_down_i);
-	return (gmin(s1up_s2d, s1d_s2up, ttl_up_i, ttl_down_i));
+	return (gmin_i(s1up_s2d, s1d_s2up, ttl_up_i, ttl_down_i));
 }
 
 int	inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber)
