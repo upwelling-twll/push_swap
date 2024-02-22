@@ -398,7 +398,7 @@ tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target)
 			min = cur_inst;
 			update_inst(i_target, &inumber);
 		}
-		cur = (head)->next;
+		cur = cur->next;
 		i++;
 		//free(inumber);
 	}

@@ -13,10 +13,10 @@ void	del_stack_lst(tt_list *lst)
 	int		size;
 
 	size = ft_llstsize(lst);
-	printf("size=%i\n", size);
+	//printf("size=%i\n", size);
 	while (size)
 	{
-		printf("lst->data=%i\n", lst->data);
+		//printf("lst->data=%i\n", lst->data);
 		tmp = lst->next;
 		if (!lst)
 			break ;
@@ -100,7 +100,7 @@ int	ft_exit_ps(tt_list *st1, tt_list *st2, int display)
 	if (st2)
 		del_stack_lst(st2);
 	if (display == 1)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 	else if (display == 2)
 		write(1, "KO\n", 3);
 	return (0);
@@ -181,22 +181,22 @@ int	main(int argc, char *argv[])
 		// 	break;
 		// }
 		//printf("sorting as usual\n");
-		printf("---------------------------------\n");
-		printf("		stack1\n");
-			print_list(head); 
-			//printf("fail here\n");
-			printf("		stack2\n");
-			print_list(stack2);
+		// printf("---------------------------------\n");
+		// printf("		stack1\n");
+		// 	print_list(head); 
+		// 	//printf("fail here\n");
+		// 	printf("		stack2\n");
+		// 	print_list(stack2);
 		i_target = malloc(sizeof(i_list));
 		find_target(head, stack2, &i_target);
-		print_itarget(i_target);
+		//print_itarget(i_target);
 		exec_instr(&head, &stack2, i_target, 1);
-		printf("---------------------------------\n");
-		printf("		stack1\n");
-			print_list(head);
-			//printf("fail here\n");
-			printf("		stack2\n");
-			print_list(stack2);
+		// printf("---------------------------------\n");
+		// printf("		stack1\n");
+		// 	print_list(head);
+		// 	//printf("fail here\n");
+		// 	printf("		stack2\n");
+		// 	print_list(stack2);
 		free(i_target);
 		if (check_if_sorted(head))
 			break;
@@ -226,19 +226,16 @@ int	main(int argc, char *argv[])
 		// printf("---------------------------------\n");
 		// printf("		stack1\n");
 		// 	print_list(head);
-		// 	//printf("fail here\n");
 		// 	printf("		stack2\n");
 		// 	print_list(stack2);
 		i_target = malloc(sizeof(i_list));
 		find_targetA(stack2, head, &i_target);
 		// printf("-   ---------  ----- -\n");
 		// print_itarget(i_target);
-		// printf("fail here-instructions\n");
 		exec_instr(&stack2, &head, i_target, 2);
 		// printf("---------------------------------\n");
 		// 	printf("		stack1\n");
 		// 	print_list(head);
-		// 	//printf("fail here\n");
 		// 	printf("		stack2\n");
 		// 	print_list(stack2);
 		free(i_target);
@@ -256,14 +253,15 @@ int	main(int argc, char *argv[])
 	// 		print_list(head);
 	// 		printf("RESULT====stack2=====\n");
 	// 		print_list(stack2);
-	if (check_if_sorted_final(head))
-	{
-		printf("sorted -OK\n");
+	// if (check_if_sorted_final(head))
+	// {
+	// 	printf("sorted -OK\n");
+	// 	return (0);
+	// }
+	// else
+	// {
+	// 	printf(" not sorted -KO\n");
+		ft_exit_ps(head, stack2, 0);
 		return (0);
-	}
-	else
-	{
-		printf(" not sorted -KO\n");
-		return (0);
-	}
+//	}
 }

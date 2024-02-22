@@ -255,7 +255,7 @@ int	ft_exit(tt_list *st1, tt_list *st2, t_instr *oper, int display)
 	if (oper)
 		del_instr_list(oper);
 	if (display == 1)
-		write(1, "Error\n", 6);
+		write(2, "Error\n", 6);
 	else if (display == 2)
 		write(1, "KO\n", 3);
 	return (0);

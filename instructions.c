@@ -129,8 +129,8 @@ int	rb(tt_list **stack, tt_list **s2)
 
 int	rr(tt_list **stack1, tt_list **stack2)
 {
-	printf("will use rr\n");
-	printf("lst->data:%d\n", (*stack1)->data);
+	// printf("will use rr\n");
+	// printf("lst->data:%d\n", (*stack1)->data);
 	//printf("lst->data:%d\n, stack2->data:%d\n", (*stack1)->data, (*stack2)->data);
 	if (!(*stack1) || (!(*stack2)))
 		return (0);
