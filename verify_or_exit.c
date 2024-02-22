@@ -17,10 +17,8 @@ void	del_stack_lst(tt_list *lst)
 	int		size;
 
 	size = ft_llstsize(lst);
-	//printf("size=%i\n", size);
 	while (size)
 	{
-		//printf("lst->data=%i\n", lst->data);
 		tmp = lst->next;
 		if (!lst)
 			break ;

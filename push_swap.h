@@ -24,6 +24,8 @@ typedef struct inst_list
 	int		mood; //
 }					i_list;
 
+
+
 //sceleton.c
 
 int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
@@ -51,14 +53,25 @@ void	sort_3(tt_list **lst);
 int		cmp(int a, int b);
 void	min_to_top(tt_list **lst);
 
-//sorting B
-int		segment_sorted(tt_list *start);
-void	sort_presorted(tt_list **lst, tt_list **st2, int sgm_str, i_list **i_trg);
-int		presorted(tt_list *lst);
+//sort_mode.c
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
+
+//optimize_ins.c
+int	best_option(int s1us2d, int s1ds2u, int tu, int td);
+int	gmin_i(int a, int b , int c, int d);
+int	optimize(i_list **in);
+
+//maxmin_ins.c
+tt_list	*get_min(tt_list *stack, int size);
+tt_list	*get_max(tt_list *stack, int size);
+void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);
+void	push_under_min(tt_list *stack, tt_list *min, i_list **instr);
+char	gmin(int a, int b , int c, int d);
+
+//sorting B
 void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
 int		gmin_i(int a, int b , int c, int d);
@@ -75,7 +88,7 @@ int		best_option(int s1us2d, int s1ds2u, int tu, int td);
 int		optimize(i_list **inumber);
 int		inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber);
 void	update_inst(i_list **i_target, i_list **inumber);
-tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target);
+tt_list	*find_target(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 
 //sorting A
 void	push_on_min(tt_list *stack, tt_list *min, i_list **instr);

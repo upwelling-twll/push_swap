@@ -28,7 +28,7 @@ void	push_to_stack2(tt_list **stack1, tt_list **stack2)
 	while (ft_llstsize(*stack1) > 3)
 	{
 		i_target = malloc(sizeof(i_list));
-		find_target(*stack1, *stack2, &i_target);
+		find_target(*stack1, *stack2, &i_target, ft_llstsize(*stack1));
 		exec_instr(stack1, stack2, i_target, 1);
 		free(i_target);
 		if (check_if_sorted(*stack1))
@@ -72,7 +72,10 @@ int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 		return (0);
 	argv++;
 	if ((!(verify_argv(NULL, *argv))))
-		return(ft_exit_ps(*stack1, NULL, 1));
+	{
+		free(*stack1);
+		return(ft_exit_ps(NULL, NULL, 1));
+	}
 	if (!fill_stack1(argc, argv, stack1, &head))
 		return (0);
 	if (check_if_sorted(head) || ft_llstsize(head) == 1)

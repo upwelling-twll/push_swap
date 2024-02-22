@@ -21,3 +21,4 @@ int	main(int argc, char *argv[])
 	ft_exit_ps(stack1, stack2, 0);
 	return (0);
 }
+

@@ -1,115 +1,5 @@
 #include "push_swap.h"
 
-int	segment_sorted(tt_list *start)
-{
-	int	sort_len;
-	tt_list	*lst;
-
-	sort_len = 1;
-	lst = start;
-	while (lst->next != start) 
-	{
-		if (lst->data < lst->next->data)
-			sort_len++;
-		else
-			return (sort_len);
-		lst = lst->next;
-	}
-	return (sort_len);
-}
-
-void	sort_presorted(tt_list **lst, tt_list **st2, int sgm_str, i_list **i_trg)
-{
-	int	sort_len;
-	int	lst_size;
-	int	new_head;
-	int	cp_start;
-	tt_list	*cplst;
-
-	printf("---** stack1 sort presorted**---\n");
-	print_list(*lst);
-	cp_start = sgm_str;
-	cplst = *lst;
-	printf("sgm_start = %i\n", sgm_str);
-	while (cp_start)
-	{
-		cplst = cplst->next;
-		cp_start--;
-	}
-	sort_len = segment_sorted(cplst);
-	//printf("sort_len = %i\n", sort_len);
-	lst_size = ft_llstsize(*lst);
-	cplst = *lst;
-	new_head = (sgm_str + sort_len) - lst_size;
-	printf("sort_len = %i\n", sort_len);
-	printf("sgm_start = %i\n", sgm_str);
-	printf("lst_size = %i\n", lst_size);
-	if ((sgm_str + sort_len) < lst_size)
-		new_head = lst_size - (sgm_str + sort_len);
-	else
-	{
-		printf("hi\n");
-		new_head = sgm_str + sort_len;
-	}
-	printf("new_head: (%i + %i) - %i = %i\n",  sgm_str, sort_len,lst_size, new_head);
-	if (new_head == 0)
-		new_head = 1;
-	// printf("sort_len = %i\n", sort_len);
-	// printf("sgm_start = %i\n", sgm_str);
-	// printf("new_head = %i\n", new_head);
-	while(new_head > 0)
-	{
-		ra(lst, NULL);
-		write(1, "rra\n", 4);
-		new_head--;
-	}
-	printf("presorted was sorted---** stack1 **---\n");
-	print_list(*lst);
-	printf("lst->data=%i\n", (*lst)->data);
-	//printf("sort_len = %i\n", sort_len);
-	while (ft_llstsize(*lst) > sort_len)
-	{
-		*i_trg = malloc(sizeof(i_list));
-		//print_itarget(*i_trg);
-		find_target(*lst, *st2, i_trg);
-		exec_instr(lst, st2, *i_trg, 1);
-		free(*i_trg);
-		if (check_if_sorted(*lst))
-			break;
-	}
-}
-
-int	 presorted(tt_list *lst)
-{
-	tt_list	*start;
-	int		sorted_len;
-	int		i;
-	int		position;
-	int		sorted_start;
-
-	start = lst;
-	sorted_start = 0;
-	sorted_len = 0;
-	position = 0;
-	i = 1;
-	while(lst->next != start)
-	{
-		if ((i = segment_sorted(lst)) > sorted_len)
-		{
-			sorted_len = i;
-			sorted_start = position;
-		}
-		lst = lst->next;
-		position++;
-		//printf("sorted_start= %i\n", sorted_start);
-	}
-	//printf("sorted_len:%i\n", sorted_len);
-	if (sorted_len > ft_llstsize(start) / 2)
-		return (sorted_start);
-	//printf("is not presorted\n");
-	return (-1);
-}
-
 void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 {
 	tt_list	*head;
@@ -163,11 +53,7 @@ tt_list	*find_place3(tt_list *stack2, int target_data, int size, tt_list *max, t
 	while (size)
 	{
 		if ((target_data > stack2->data && target_data < stack2->next->data))
-		{
 			return (stack2);
-			// if (stack2->data == min && stack2->prev->data == max)
-			// 	return (search_for_closest(stack2->next, target_data, size));
-		}
 		stack2 = stack2->next;
 		size--;
 	}
@@ -196,20 +82,15 @@ tt_list	*  find_place33(tt_list *stack2, int target_data, int size, tt_list *max
 	while (size)
 	{
 		if ((target_data < stack2->data && target_data > stack2->prev->data))
-		{
 			return (stack2);
-			// if (stack2->data == min && stack2->prev->data == max)
-			// 	return (search_for_closest(stack2->next, target_data, size));
-		}
 		stack2 = stack2->next;
 		size--;
 	}
 	return (stack2);
 }
 
-void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size, tt_list *stack1)
+void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size, tt_list *stack1) //finding best position in stack A
 {
-	// how to find the best position for element in stack A?
 	tt_list *min_s2;
 	tt_list	*max_s2;
 	tt_list	*upper_neighbour;
@@ -217,10 +98,6 @@ void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size
 
 	min_s2 = get_min(stack2, size);
 	max_s2 = get_max(stack2, size);
-	// if (ft_llstsize(stack1) == 1 && target_s1-> data < min_s2->data)
-	// 	push_on_min(stack2, min_s2, inumber);
-	// else if (target_s1->data < min_s2->data)
-	// 	push_on_max(stack2, max_s2, inumber);
 	if (target_s1-> data < min_s2->data)
 		push_on_min(stack2, min_s2, inumber);
 	else if (target_s1->data > max_s2->data)
@@ -239,17 +116,6 @@ void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size
 		}
 	}
 }
-
-// tt_list	*search_for_closest(tt_list *stack2, int target_data, int size)
-// {
-// 	while (size)
-// 	{
-// 		if (stack2->data < target_data && stack2->next->data > target_data)
-// 			return (stack2);
-// 		size--;
-// 		stack2 = stack2->next;
-// 	}
-// }
 
 int		inst_numA(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber)
 {
@@ -306,7 +172,6 @@ tt_list	*find_targetA(tt_list *head, tt_list *stack2, i_list **i_target)
 		}
 		cur = (head)->next;
 		i++;
-		//free(inumber);
 	}
 	free (inumber);
 	return (target);
