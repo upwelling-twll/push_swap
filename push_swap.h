@@ -23,6 +23,22 @@ typedef struct inst_list
 	int 	s2_rotate_down;// down = rrb The last element becomes the first one.
 	int		mood; //
 }					i_list;
+
+//sceleton.c
+
+int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
+int		fill_stack1(int argc, char *argv[], tt_list **nlist, tt_list **head);
+void	push_to_stack2(tt_list **stack1, tt_list **stack2);
+void	push_to_stack1(tt_list **stack1, tt_list **stack2);
+//verify or exit.c
+tt_list *sort_2(tt_list **lst);
+void	del_stack_lst(tt_list *lst);
+int		check_overflow(const char *str, int flag, int i);
+int		verify_atoi(const char *str);
+int		verify_argv(tt_list *args_lst, char *argv);
+int		ft_exit_ps(tt_list *st1, tt_list *st2, int display);
+int		check_if_sorted_final(tt_list *lst);
+
 //list_operations.c
 int		check_if_sorted(tt_list *lst);
 tt_list	*init_list(int i);
@@ -45,7 +61,7 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
-int	gmin_i(int a, int b , int c, int d);
+int		gmin_i(int a, int b , int c, int d);
 tt_list	*get_min(tt_list *stack, int size);
 tt_list	*get_max(tt_list *stack, int size);
 void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);

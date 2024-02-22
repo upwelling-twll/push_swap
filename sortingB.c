@@ -8,7 +8,6 @@
 
 void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 {
-	//printf("mood 1 started\n");
 	while (i_target->s1_rotate_up != 0)
 	{
 		ra(stack1, NULL);

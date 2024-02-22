@@ -1,0 +1,84 @@
+#include "push_swap.h"
+
+void	push_to_stack1(tt_list **stack1, tt_list **stack2)
+{
+	i_list	*i_target;
+
+	while (ft_llstsize(*stack2) >= 1)
+	{
+		i_target = malloc(sizeof(i_list));
+		find_targetA(*stack2, *stack1, &i_target);
+		exec_instr(stack2, stack1, i_target, 2);
+		free(i_target);
+	}
+	min_to_top(stack1);
+	*stack1 = get_min(*stack1, ft_llstsize(*stack1));
+}
+
+void	push_to_stack2(tt_list **stack1, tt_list **stack2)
+{
+	i_list *i_target;
+
+	while (ft_llstsize(*stack2) < 2)
+	{
+		pb(stack1, stack2);
+		write(1, "pb\n", 3);
+	}
+	i_target = malloc(sizeof(i_list));
+	while (ft_llstsize(*stack1) > 3)
+	{
+		i_target = malloc(sizeof(i_list));
+		find_target(*stack1, *stack2, &i_target);
+		exec_instr(stack1, stack2, i_target, 1);
+		free(i_target);
+		if (check_if_sorted(*stack1))
+			break;
+	}
+	if (ft_llstsize(*stack1) == 3)
+	{
+		sort_3(stack1);
+		min_to_top(stack1);
+	}
+}
+
+int	fill_stack1(int argc, char *argv[], tt_list **stack1, tt_list **head)
+{
+	(*stack1)->prev = *stack1;
+	(*stack1)->data = ft_atoi(*argv);
+	(*stack1)->next = *stack1;
+	*head = *stack1;
+	argv++;
+	while (*argv)
+	{
+		if ((!(verify_argv(*head, *argv))))
+			return(ft_exit_ps(*head, NULL, 1));
+		(*stack1)->next = add_node(*stack1, ft_atoi(*argv));
+		(*head)->prev = *stack1;
+		argv++;
+		*stack1 = (*stack1)->next;
+		(*stack1)->next = *head;
+	}
+	(*head)->prev = *stack1; 
+	(*stack1)->next  = *head;
+	return (1);
+}
+
+
+int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
+{
+	tt_list	*head;
+
+	if (argc < 2)
+		return (0);
+	argv++;
+	if ((!(verify_argv(NULL, *argv))))
+		return(ft_exit_ps(*stack1, NULL, 1));
+	if (!fill_stack1(argc, argv, stack1, &head))
+		return (0);
+	if (check_if_sorted(head) || ft_llstsize(head) == 1)
+		return(ft_exit_ps(head, NULL, 0));
+	if (ft_llstsize(head) == 2)
+		return(ft_exit_ps(sort_2(&head), NULL, 0));
+	*stack1 = head;
+	return (1);
+}
