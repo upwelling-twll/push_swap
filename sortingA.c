@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sortingA.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 22:09:46 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 {
 	tt_list	*head;
-	int i_rb;
-	int	i_rrb;
+	int		i_rb;
+	int		i_rrb;
 
 	i_rb = 0;
 	i_rrb = 0;
@@ -27,153 +39,57 @@ void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 void	push_on_min(tt_list *stack, tt_list *min, i_list **instr)
 {
 	tt_list	*head;
-	int i_rb;
-	int	i_rrb;
+	int		i_rb;
+	int		i_rrb;
 
 	i_rb = 0;
 	i_rrb = 0;
 	head = stack;
 	while (stack->data != min->data)
 	{
-		rb(&stack, NULL); //The first element becomes the last one.
+		rb(&stack, NULL);
 		i_rb++;
 	}
 	(*instr)->s2_rotate_up = i_rb;
 	stack = head;
 	while (stack->data != min->data)
 	{
-		rrb(&stack, NULL); //The last element becomes the first one.
+		rrb(&stack, NULL);
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;
 }
 
-tt_list	*find_place3(tt_list *stack2, int target_data, int size, tt_list *max, tt_list *min)
+void	fnd_tra(tt_list *head, tt_list *st2, i_list **i_target, tr_list **data)
 {
-	while (size)
+	(*data)->cur_ins = inst_numa(head, st2, (*data)->cur, (*data)->ins_data);
+	if ((*data)->min_ins > (*data)->cur_ins)
 	{
-		if ((target_data > stack2->data && target_data < stack2->next->data))
-			return (stack2);
-		stack2 = stack2->next;
-		size--;
-	}
-	return (stack2);
-}
-
-void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber)
-{
-	int un_position;
-
-	un_position = 1;
-	while (stack2->data != upper_nebor->data)
-	{
-			un_position++;
-			stack2 = stack2->next;
-	}
-	(*inumber)->s2_rotate_up = un_position;
-	if (un_position == 1)
-		(*inumber)->s2_rotate_down = 2;
-	else
-		(*inumber)->s2_rotate_down = size - un_position;
-}
-
-tt_list	*  find_place33(tt_list *stack2, int target_data, int size, tt_list *max, tt_list *min)
-{
-	while (size)
-	{
-		if ((target_data < stack2->data && target_data > stack2->prev->data))
-			return (stack2);
-		stack2 = stack2->next;
-		size--;
-	}
-	return (stack2);
-}
-
-void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size, tt_list *stack1) //finding best position in stack A
-{
-	tt_list *min_s2;
-	tt_list	*max_s2;
-	tt_list	*upper_neighbour;
-	int		inum;
-
-	min_s2 = get_min(stack2, size);
-	max_s2 = get_max(stack2, size);
-	if (target_s1-> data < min_s2->data)
-		push_on_min(stack2, min_s2, inumber);
-	else if (target_s1->data > max_s2->data)
-		push_under_max(stack2, max_s2, inumber);
-	else
-	{
-		if (size == 3)
-		{
-			upper_neighbour = find_place3(stack2, target_s1->data, size, max_s2, min_s2);
-			clclt_instr3(upper_neighbour, stack2, size, inumber);
-		}
-		else
-		{
-			upper_neighbour = find_place33(stack2, target_s1->data, size, max_s2, min_s2);
-			clclt_instr(upper_neighbour, stack2, size, inumber);
-		}
+		(*data)->tr = (*data)->cur;
+		(*data)->min_ins = (*data)->cur_ins;
+		update_inst(i_target, (*data)->ins_data);
 	}
 }
 
-int		inst_numA(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber)
+void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s)
 {
-	int position;
-	tt_list	*heads1;
-	int	inst_num;
-	int	size2;
-
-	position = 1;
-	inst_num = 0;
-	heads1 = stack1;
-	size2 = ft_llstsize(stack2);
-	(*inumber)->target = node->data;
-	while (stack1 -> data != node->data)
-	{
-		position++;
-		stack1 = stack1->next;
-	}
-	i_to_float(position, heads1, size1, inumber);
-	i_to_placeA(node, stack2, inumber, size2, stack1);
-	inst_num = optimize(inumber);
-	return (inst_num+1);
-}
-
-tt_list	*find_targetA(tt_list *head, tt_list *stack2, i_list **i_target)
-{
-	tt_list	*shead;
-	int		list1_size;
-	int		i;
-	tt_list	*cur;
-	tt_list *target;
-	int		min;
-	int		cur_inst;
 	i_list	*inumber;
-	
-	i = 0;
-	target = head;
-	min = 0;
+	tr_list	*tr_data;
+
 	inumber = malloc(sizeof(i_list));
-	shead = head;
-	list1_size = ft_llstsize(head);
-	cur = head;
-	min = inst_numA(shead, stack2, cur, list1_size, &inumber);
+	tr_data = malloc(sizeof(tr_list));
+	tr_data->cur = head;
+	tr_data->ins_data = &inumber;
+	tr_data->min_ins = inst_numa(head, stack2, tr_data->cur, tr_data->ins_data);
 	update_inst(i_target, &inumber);
-	target = cur;
-	while(i < list1_size)
+	tr_data->tr = tr_data->cur;
+	while (s)
 	{
-		cur_inst = inst_numA(shead, stack2, cur, list1_size, &inumber);
-		if (min > cur_inst)
-		{
-			target = cur;
-			min = cur_inst;
-			update_inst(i_target, &inumber);
-		}
-		cur = (head)->next;
-		i++;
+		fnd_tra(head, stack2, i_target, &tr_data);
+		tr_data->cur = (tr_data->cur)->next;
+		s--;
 	}
 	free (inumber);
-	return (target);
+	free(tr_data);
+	return ;
 }
-

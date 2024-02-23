@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 16:45:33 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:01:35 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	push_to_stack1(tt_list **stack1, tt_list **stack2)
 	while (ft_llstsize(*stack2) >= 1)
 	{
 		i_target = malloc(sizeof(i_list));
-		find_targetA(*stack2, *stack1, &i_target);
+		find_targeta(*stack2, *stack1, &i_target, ft_llstsize(*stack2));
 		exec_instr(stack2, stack1, i_target, 2);
 		free(i_target);
 	}

@@ -85,7 +85,7 @@ tt_list	*get_max(tt_list *stack, int size);
 void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);
 void	push_under_min(tt_list *stack, tt_list *min, i_list **instr);
 
-//instr_clclt.c
+//instr_clcltB.c
 void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
 void	i_to_place(tt_list *target_s1, tt_list *st2, i_list **inumber, int s);
 tt_list	*find_place(tt_list *stack2, int target_data, tt_list *max, tt_list *min);
@@ -98,15 +98,20 @@ void	update_inst(i_list **i_target, i_list **inumber);
 void	fnd_tr(tt_list *head, tt_list *stack2, i_list **i_target, tr_list **data);
 void	find_target(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 
+//instr_clcltA.c
+void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
+void	i_to_placea(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size);
+int		inst_numa(tt_list *stack1, tt_list *stack2, tt_list *node, i_list **inumber);
+
+//find_place3.c
+tt_list	*find_place3(tt_list *stack2, int target_data, int size);
+tt_list	*find_place33(tt_list *stack2, int target_data, int size);
+
 //sorting A
 void	push_on_min(tt_list *stack, tt_list *min, i_list **instr);
 void	push_under_max(tt_list *stack, tt_list *max, i_list **instr);
-int		inst_numA(tt_list *stack1, tt_list *stack2, tt_list *node, int size1, i_list **inumber);
-tt_list	*find_targetA(tt_list *head, tt_list *stack2, i_list **i_target);
-tt_list	*find_place3(tt_list *stack2, int target_data, int size, tt_list *max, tt_list *min);
-tt_list	*find_place33(tt_list *stack2, int target_data, int size, tt_list *max, tt_list *min);
-void	i_to_placeA(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size, tt_list *stack1);
-void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
+void	fnd_tra(tt_list *head, tt_list *st2, i_list **i_target, tr_list **data);
+void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 
 //func_push.c
 tt_list	*delfirst(tt_list  *lst);
