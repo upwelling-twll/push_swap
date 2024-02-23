@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   maxmin_ins.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 17:43:38 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 tt_list	*get_min(tt_list *stack, int size)
@@ -6,11 +18,11 @@ tt_list	*get_min(tt_list *stack, int size)
 
 	size++;
 	min = stack;
-	while (size>0)
+	while (size > 0)
 	{
 		if (stack->data < min->data)
 			min = stack;
-		stack=stack->next;
+		stack = stack->next;
 		size--;
 	}
 	return (min);
@@ -26,7 +38,7 @@ tt_list	*get_max(tt_list *stack, int size)
 	{
 		if (stack->data > max->data)
 			max = stack;
-		stack=stack->next;
+		stack = stack->next;
 		size--;
 	}
 	return (max);
@@ -35,8 +47,8 @@ tt_list	*get_max(tt_list *stack, int size)
 void	push_on_max(tt_list *stack, tt_list *max, i_list **instr)
 {
 	tt_list	*head;
-	int i_rb;
-	int	i_rrb;
+	int		i_rb;
+	int		i_rrb;
 
 	i_rb = 0;
 	i_rrb = 0;
@@ -59,8 +71,8 @@ void	push_on_max(tt_list *stack, tt_list *max, i_list **instr)
 void	push_under_min(tt_list *stack, tt_list *min, i_list **instr)
 {
 	tt_list	*head;
-	int i_rb;
-	int	i_rrb;
+	int		i_rb;
+	int		i_rrb;
 
 	i_rb = 0;
 	i_rrb = 0;
@@ -78,16 +90,4 @@ void	push_under_min(tt_list *stack, tt_list *min, i_list **instr)
 		i_rrb++;
 	}
 	(*instr)->s2_rotate_down = i_rrb;
-}
-
-char	gmin(int a, int b , int c, int d)
-{
-	if (a <= b && a <= c && a <= d)
-		return ('a');
-	if (b <= a && b <= c && b <= d)
-		return ('b');
-	if (c <= a && c <= b && c <= d)
-		return ('c');
-	else
-		return ('d');
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sceleton.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 16:45:33 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push_to_stack1(tt_list **stack1, tt_list **stack2)
@@ -17,7 +29,7 @@ void	push_to_stack1(tt_list **stack1, tt_list **stack2)
 
 void	push_to_stack2(tt_list **stack1, tt_list **stack2)
 {
-	i_list *i_target;
+	i_list	*i_target;
 
 	while (ft_llstsize(*stack2) < 2)
 	{
@@ -32,7 +44,7 @@ void	push_to_stack2(tt_list **stack1, tt_list **stack2)
 		exec_instr(stack1, stack2, i_target, 1);
 		free(i_target);
 		if (check_if_sorted(*stack1))
-			break;
+			break ;
 	}
 	if (ft_llstsize(*stack1) == 3)
 	{
@@ -51,18 +63,17 @@ int	fill_stack1(int argc, char *argv[], tt_list **stack1, tt_list **head)
 	while (*argv)
 	{
 		if ((!(verify_argv(*head, *argv))))
-			return(ft_exit_ps(*head, NULL, 1));
+			return (ft_exit_ps(*head, NULL, 1));
 		(*stack1)->next = add_node(*stack1, ft_atoi(*argv));
 		(*head)->prev = *stack1;
 		argv++;
 		*stack1 = (*stack1)->next;
 		(*stack1)->next = *head;
 	}
-	(*head)->prev = *stack1; 
-	(*stack1)->next  = *head;
+	(*head)->prev = *stack1;
+	(*stack1)->next = *head;
 	return (1);
 }
-
 
 int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 {
@@ -74,14 +85,14 @@ int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 	if ((!(verify_argv(NULL, *argv))))
 	{
 		free(*stack1);
-		return(ft_exit_ps(NULL, NULL, 1));
+		return (ft_exit_ps(NULL, NULL, 1));
 	}
 	if (!fill_stack1(argc, argv, stack1, &head))
 		return (0);
 	if (check_if_sorted(head) || ft_llstsize(head) == 1)
-		return(ft_exit_ps(head, NULL, 0));
+		return (ft_exit_ps(head, NULL, 0));
 	if (ft_llstsize(head) == 2)
-		return(ft_exit_ps(sort_2(&head), NULL, 0));
+		return (ft_exit_ps(sort_2(&head), NULL, 0));
 	*stack1 = head;
 	return (1);
 }

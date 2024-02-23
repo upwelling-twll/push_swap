@@ -1,14 +1,16 @@
-#include "push_swap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verify_or_exit.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 17:51:06 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-tt_list *sort_2(tt_list **lst)
-{
-	if ((*lst)->data > (*lst)->next->data)
-	{
-		ra(lst, NULL);
-		write(1, "ra\n", 3);
-	}
-	return(*lst);
-}
+#include "push_swap.h"
 
 void	del_stack_lst(tt_list *lst)
 {
@@ -41,7 +43,7 @@ int	check_overflow(const char *str, int flag, int i)
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			n = n * 10 + (str[i] - '0');
-		if (n*flag > 2147483647 || n*flag < -2147483648)
+		if (n * flag > 2147483647 || n * flag < -2147483648)
 			return (0);
 		i++;
 	}
@@ -58,10 +60,10 @@ int	verify_atoi(const char *str)
 	flag = 1;
 	if (str[i] == '-' && str[i + 1] != '\0')
 		i++;
-	while(str[i])
+	while (str[i])
 	{
 		if (!(ft_isdigit(str[i])))
-			return(0);
+			return (0);
 		i++;
 	}
 	i = 0;
@@ -78,13 +80,13 @@ int	verify_argv(tt_list *args_lst, char *argv)
 	int	num;
 	int	size;
 
-	if(!(verify_atoi(argv)))
+	if (!(verify_atoi(argv)))
 		return (0);
 	num = ft_atoi(argv);
 	if (args_lst)
 	{
 		size = ft_llstsize(args_lst);
-		while(size)
+		while (size)
 		{
 			if (args_lst->data == num)
 				return (0);
@@ -92,7 +94,7 @@ int	verify_argv(tt_list *args_lst, char *argv)
 			size--;
 		}
 	}
-	return(1);
+	return (1);
 }
 
 int	ft_exit_ps(tt_list *st1, tt_list *st2, int display)
@@ -106,24 +108,4 @@ int	ft_exit_ps(tt_list *st1, tt_list *st2, int display)
 	else if (display == 2)
 		write(1, "KO\n", 3);
 	return (0);
-}
-
-int	check_if_sorted_final(tt_list *lst)
-{
-	int	head;
-
-	head = lst->data;
-	while(lst->next->data != head)
-	{
-		if (lst->data < lst->next->data)
-			lst = lst->next;
-		else
-		{
-			if (lst->next->data == head)
-				return (1);
-			else
-				return (0);
-		}
-	}
-	return (1);
 }

@@ -1,169 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_operations.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 18:00:20 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-
-int	cmp(int a, int b)
-{
-	if (a < b)
-		return (1);
-	return(0);
-}
-
-void	float_to_top(tt_list **head, tt_list *new_head)
-{
-	//printf("min to top\n");
-	tt_list	*cplist;
-	int	position;
-
-	cplist = *head;
-	position = 0;
-	if (new_head == *head)
-		return;
-	while(cplist != new_head)
-	{
-		cplist = cplist->next;
-		position++;
-	}
-///	printf("new head= %i\n", new_head->data);
-	//printf("position=%i\n", position);
-	
-	if (position <= (ft_llstsize(*head) / 2))
-	{
-		while (position) //rotating until the element which is prev to min is not on the top
-		{
-			ra(head, NULL);
-			write(1, "ra\n", 3);
-			position--;
-		}
-	}
-	else
-	{
-		position = ft_llstsize(*head) - position - 1;
-		while ((*head) -> data != new_head->data) //rotating until the element which is prev to min is not on the top
-		{
-			rra(head, NULL);
-			write(1, "rra\n", 4);
-		}
-	}
-
-}
-
-void	write_oper(int opt)
-{
-	if (opt == 1)
-		write(1, "sa\n", 3);
-	if (opt == 2)
-		write(1, "rra\n", 4);
-	if (opt == 3)
-	{
-		write(1, "sa\n", 3);
-		write(1, "rra\n", 4);
-	}
-	if (opt == 4)
-	{
-		write(1, "rra\n", 4);
-		write(1, "rra\n", 4);
-	}
-	if (opt == 5)
-	{
-		write(1, "rra\n", 4);
-		write(1, "sa\n", 3);
-	}
-}
-
-void	run(tt_list **lst, int opt)
-{
-	if (opt == 1) 
-		sa(lst, NULL);
-	if (opt == 2)
-		rra(lst, NULL);
-	if (opt == 3)
-	{
-		sa(lst, NULL);
-		rra(lst, NULL);
-	}
-	if (opt == 4)
-	{
-		rra(lst, NULL);
-		rra(lst, NULL);
-	}
-	if (opt == 5)
-	{
-		rra(lst, NULL);
-		sa(lst, NULL);
-	}
-	write_oper(opt);
-}
-
-void	sort_3(tt_list **lst)
-{
-	int	a;
-	int	b;
-	int	c;
-
-	a = (*lst)->data;
-	b = (*lst)->next->data;
-	c = (*lst)->prev->data;
-	if (a > b && a < c)
-		run(lst, 1);
-	else if (a > c && a < b)
-		run(lst, 2);
-	else if (a > b && b > c)
-		run (lst, 3);
-	else if (a > b && b < c)
-		run (lst, 4);
-	else if (a < b && b > c)
-		run (lst, 5);
-	return;	
-}
-	// while(!(check_if_sorted(cphead)))
-	// { 
-	// 	if ((*cmp)((*lst)->data, (*lst)->next->data) == 0)
-	// 	{
-	// 		float_to_top(head_ad, (*lst)->next);
-	// 		sa(head_ad, NULL);
-	// 		write(1, "sa\n", 3);
-	// 		// tmp = (*lst)->data;
-	// 		// (*lst)->data = (*lst)->next->data;
-	// 		// (*lst)->next->data = tmp;
-	// 		// *lst = swap;
-	// 	}
-	// 	else
-	// 		*lst = (*lst)->next;
-	// }
-// }
-
-void	print_itarget(i_list *lst)
-{
-	printf("target_data:%i\n", lst->target);
-	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
-	printf("s1_rotate_down:%i\n", lst->s1_rotate_down);
-	printf("s2_rotate_up:%i\n", lst->s2_rotate_up);
-	printf("s2_rotate_down:%i\n", lst->s2_rotate_down);
-	printf("mood:%i\n", lst->mood);
-}
-
-void	print_list(tt_list *lst)
-{
-	tt_list	*head;
-
-	head = lst;
-	if (lst == NULL)
-	{
-		printf("empty\n");
-		return;
-	}
-	printf("data:%d\n", lst->data);
-	lst = lst->next;
-	while(lst != head)
-	{
-		printf("data:%i\n", lst->data);
-		lst = lst -> next;
-	}
-}
 
 int	ft_llstsize(tt_list *lst)
 {
 	int		i;
-	//tt_list	*next;
 	int		head;
 
 	if (lst == NULL)
@@ -197,40 +48,20 @@ tt_list	*init_list(int i)
 {
 	tt_list	*nlist;
 
-	nlist = malloc(sizeof(tt_list)* 1);  //nlist = malloc(sizeof(*nlist)) - better to take sizeof(*nlist) because tt_list may be changed
+	nlist = malloc(sizeof(tt_list) * 1);
 	nlist -> prev = NULL;
 	nlist -> data = i;
 	nlist ->next = NULL;
 	return (nlist);
 }
 
-void	min_to_top(tt_list **lst)
+tt_list	*add_node(tt_list *nlist, int data)
 {
-	tt_list	*min;
+	tt_list	*new;
 
-	min = get_min(*lst, ft_llstsize(*lst));
-	float_to_top(lst, min);
+	new = malloc(sizeof(tt_list));
+	new -> prev = nlist;
+	new -> data = data;
+	new -> next = NULL;
+	return (new);
 }
-
-int	check_if_sorted(tt_list *lst)
-{
-	tt_list	*head;
-
-	head = lst;
-	while(lst->next != head)
-	{
-		if (lst->data < lst->next->data)
-		{
-			if (lst->next != head)
-				lst = lst->next;
-			else
-				return (1);
-		}
-		else
-			return (0);
-	}
-	return (1);
-}
-
-
-
