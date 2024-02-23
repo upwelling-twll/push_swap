@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/23 22:20:12 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
@@ -32,7 +44,6 @@ typedef	struct tr_data
 	int					min_ins;
 	int					cur_ins;
 }						tr_list;
-
 
 //sceleton.c
 int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
@@ -99,9 +110,9 @@ void	fnd_tr(tt_list *head, tt_list *stack2, i_list **i_target, tr_list **data);
 void	find_target(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 
 //instr_clcltA.c
-void	clclt_instr3(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
-void	i_to_placea(tt_list *target_s1, tt_list *stack2, i_list **inumber, int size);
-int		inst_numa(tt_list *stack1, tt_list *stack2, tt_list *node, i_list **inumber);
+void	clclt_instr3(tt_list *upper_nbr, tt_list *st2, int size, i_list **inmb);
+void	i_to_placea(tt_list *tr_s1, tt_list *st2, i_list **inumber, int size);
+int		inst_numa(tt_list *st1, tt_list *st2, tt_list *node, i_list **inumber);
 
 //find_place3.c
 tt_list	*find_place3(tt_list *stack2, int target_data, int size);
@@ -116,24 +127,24 @@ void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 //func_push.c
 tt_list	*delfirst(tt_list  *lst);
 void	move_first(tt_list **stack1, tt_list **stack2); //pb
-int	pa(tt_list **stack1, tt_list **stack2);
-int	pb(tt_list **stack1, tt_list **stack2);
+int		pa(tt_list **stack1, tt_list **stack2);
+int		pb(tt_list **stack1, tt_list **stack2);
 
 //func_swap.c
-int	ss(tt_list **stack1, tt_list **stack2);
-int	sb(tt_list **stack,  tt_list **s2); //no s2);
-int	sa(tt_list **stack,  tt_list **s2); //no s2);
-int	swap(tt_list **stack,  tt_list **s2); //no s2);
+int		ss(tt_list **stack1, tt_list **stack2);
+int		sb(tt_list **stack,  tt_list **s2); //no s2);
+int		sa(tt_list **stack,  tt_list **s2); //no s2);
+int		swap(tt_list **stack,  tt_list **s2); //no s2);
 
 //func_revrot.c
-int	rrr(tt_list **stack1, tt_list **stack2);
-int	rrb(tt_list **stack, tt_list **s2); //no s2
-int	rra(tt_list **stack, tt_list **s2); //no s2);
+int		rrr(tt_list **stack1, tt_list **stack2);
+int		rrb(tt_list **stack, tt_list **s2); //no s2
+int		rra(tt_list **stack, tt_list **s2); //no s2);
 
 //func_rotate.c
-int	rb(tt_list **stack, tt_list **s2); //no s2);
-int	ra(tt_list **stack,  tt_list **s2); //no s2);
-int	rr(tt_list **stack1, tt_list **stack2);
+int		rb(tt_list **stack, tt_list **s2); //no s2);
+int		ra(tt_list **stack,  tt_list **s2); //no s2);
+int		rr(tt_list **stack1, tt_list **stack2);
 
 //dbg_func.c
 void	print_list(tt_list *lst);
