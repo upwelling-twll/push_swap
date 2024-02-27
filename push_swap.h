@@ -47,16 +47,16 @@ typedef	struct tr_data
 
 //sceleton.c
 int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
-int		fill_stack1(int argc, char *argv[], tt_list **nlist, tt_list **head);
+int		fill_stack1(int argc, char *argv[], tt_list **nlist);
 void	push_to_stack2(tt_list **stack1, tt_list **stack2);
 void	push_to_stack1(tt_list **stack1, tt_list **stack2);
 
 //verify or exit.c
-void	del_stack_lst(tt_list *lst);
+void	del_stack_lst(tt_list **lst);
 int		check_overflow(const char *str, int flag, int i);
 int		verify_atoi(const char *str);
 int		verify_argv(tt_list *args_lst, char *argv);
-int		ft_exit_ps(tt_list *st1, tt_list *st2, int display);
+int		ft_exit_ps(tt_list **st1, tt_list **st2, int display);
 
 //list_operations.c
 tt_list	*init_list(int i);
@@ -126,6 +126,7 @@ void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s);
 
 //func_push.c
 tt_list	*delfirst(tt_list  *lst);
+void	pb_first(tt_list **stack1, tt_list **stack2);
 void	move_first(tt_list **stack1, tt_list **stack2); //pb
 int		pa(tt_list **stack1, tt_list **stack2);
 int		pb(tt_list **stack1, tt_list **stack2);

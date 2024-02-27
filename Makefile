@@ -14,7 +14,7 @@ RM = rm -f
 SRCS = func_push.c func_swap.c func_revrot.c func_rotate.c optimize_ins.c	\
 	maxmin_ins.c stack_analysis.c list_operations.c verify_or_exit.c	\
 	sort_small.c sort_mode.c instr_clcltA.c sortingA.c find_place3.c	\
-	instr_clcltB.c sortingB.c sceleton.c
+	instr_clcltB.c sortingB.c sceleton.c 
 
 SRCS_BONUS = checker.c instructions.c list_operations.c sortingA.c	\
 	sortingB.c get_next_line.c get_next_line_utils.c

@@ -31,6 +31,17 @@ tt_list	*delfirst(tt_list *lst)
 	return (new_head);
 }
 
+void	pb_first(tt_list **stack1, tt_list **stack2)
+{
+	int		tmp;
+
+	tmp = (*stack1)->data;
+	*stack2 = add_node(*stack2, tmp);
+	(*stack2)->next = *stack2;
+	(*stack2)->prev = (*stack2);
+	*stack1 = delfirst(*stack1);
+}
+
 void	move_first(tt_list **stack1, tt_list **stack2)
 {
 	int		tmp;

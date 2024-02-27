@@ -17,7 +17,7 @@ int	ft_llstsize(tt_list *lst)
 	int		i;
 	int		head;
 
-	if (lst == NULL)
+	if (!(lst))
 		return (0);
 	head = lst->data;
 	i = 1;

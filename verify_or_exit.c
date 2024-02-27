@@ -12,24 +12,47 @@
 
 #include "push_swap.h"
 
-void	del_stack_lst(tt_list *lst)
+void	del_stack_lst(tt_list **lst)
 {
 	tt_list	*tmp;
 	tt_list	*tmp2;
+	tt_list	*prev;
 	int		size;
+	tt_list *head;
 
-	size = ft_llstsize(lst);
+	head = *lst;
+	size = ft_llstsize(*lst);
 	while (size)
 	{
-		tmp = lst->next;
-		if (!lst)
+		printf("lst siaze while del:%i\n", ft_llstsize(*lst));
+		// printf("free_lst\n");
+		// print_list(lst);
+		//printf("lstlast->next=%i\n", ft_llstlast(lst)->next->data);
+		tmp = (*lst)->next;
+		prev = (*lst)->prev;
+		if (!(*lst))
 			break ;
-		tmp2 = lst;
-		if (lst)
+		tmp2 = *lst;
+		if (size == 1)
+		{
+			printf("lst->data=%i will null\n", (*lst)->data);
+			free(*lst);
+			//free(lst);
+			//*lst = NULL;
+			//lst=NULL;
+			return ;
+		}
+		if (*lst)
 			free(tmp2);
-		lst = tmp;
+		(*lst) = tmp;
+		prev->next = *lst;
+		(*lst)->prev = prev;
 		size--;
 	}
+	//printf("lst->data:%i\n", (*lst)->data);
+	printf("deleted_lst:\n");
+	print_list(*lst);
+//	printf("deleted_lst->data: %i\n", (*lst)->data);
 }
 
 int	check_overflow(const char *str, int flag, int i)
@@ -97,15 +120,23 @@ int	verify_argv(tt_list *args_lst, char *argv)
 	return (1);
 }
 
-int	ft_exit_ps(tt_list *st1, tt_list *st2, int display)
+int	ft_exit_ps(tt_list **st1, tt_list **st2, int flag)
 {
-	if (st1)
-		del_stack_lst(st1);
-	if (st2)
-		del_stack_lst(st2);
-	if (display == 1)
+	if (flag == 5) //5 means stack1 is empty
+	{
+		free(st1);
 		write(2, "Error\n", 6);
-	else if (display == 2)
-		write(1, "KO\n", 3);
+		return (0);
+	}
+	if (st1 || flag == 3)
+		del_stack_lst(st1);
+	if (st2 || flag == 3)
+	{
+		//printf("will del 2\n");
+		del_stack_lst(st2);
+		//free(st2);
+	}
+	if (flag == 1)
+		write(2, "Error\n", 6);
 	return (0);
 }
