@@ -18,16 +18,10 @@ void	del_stack_lst(tt_list **lst)
 	tt_list	*tmp2;
 	tt_list	*prev;
 	int		size;
-	tt_list *head;
 
-	head = *lst;
 	size = ft_llstsize(*lst);
 	while (size)
 	{
-		printf("lst siaze while del:%i\n", ft_llstsize(*lst));
-		// printf("free_lst\n");
-		// print_list(lst);
-		//printf("lstlast->next=%i\n", ft_llstlast(lst)->next->data);
 		tmp = (*lst)->next;
 		prev = (*lst)->prev;
 		if (!(*lst))
@@ -35,11 +29,7 @@ void	del_stack_lst(tt_list **lst)
 		tmp2 = *lst;
 		if (size == 1)
 		{
-			printf("lst->data=%i will null\n", (*lst)->data);
 			free(*lst);
-			//free(lst);
-			//*lst = NULL;
-			//lst=NULL;
 			return ;
 		}
 		if (*lst)
@@ -49,10 +39,6 @@ void	del_stack_lst(tt_list **lst)
 		(*lst)->prev = prev;
 		size--;
 	}
-	//printf("lst->data:%i\n", (*lst)->data);
-	printf("deleted_lst:\n");
-	print_list(*lst);
-//	printf("deleted_lst->data: %i\n", (*lst)->data);
 }
 
 int	check_overflow(const char *str, int flag, int i)
@@ -122,7 +108,7 @@ int	verify_argv(tt_list *args_lst, char *argv)
 
 int	ft_exit_ps(tt_list **st1, tt_list **st2, int flag)
 {
-	if (flag == 5) //5 means stack1 is empty
+	if (flag == 5)  //5 means stack1 is empty
 	{
 		free(st1);
 		write(2, "Error\n", 6);
@@ -131,11 +117,7 @@ int	ft_exit_ps(tt_list **st1, tt_list **st2, int flag)
 	if (st1 || flag == 3)
 		del_stack_lst(st1);
 	if (st2 || flag == 3)
-	{
-		//printf("will del 2\n");
 		del_stack_lst(st2);
-		//free(st2);
-	}
 	if (flag == 1)
 		write(2, "Error\n", 6);
 	return (0);

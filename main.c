@@ -50,10 +50,10 @@ int	main(int argc, char *argv[])
 	print_list(stack1);
 	ft_exit_ps(&stack1, &stack2, 3);
 	//free(stack1);
-	print_list(stack1);
-	printf("lst siaze:%i\n", ft_llstsize(stack1));
+	//print_list(stack1);
+	//printf("lst siaze:%i\n", ft_llstsize(stack1));
 	stack1 = NULL;
-	print_list(stack1);
+	//print_list(stack1);
 	stack2 = NULL;
 	return (0);
 }

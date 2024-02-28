@@ -24,5 +24,5 @@ gcc -c dbg_func.c #3f
 
 gcc -c get_next_line.c
 gcc -c get_next_line_utils.c
-gcc find_place3.o instr_clcltA.o instr_clcltB.o stack_analysis.o sort_small.o func_rotate.o func_revrot.o func_push.c func_swap.o dbg_func.o optimize_ins.o maxmin_ins.o sort_mode.o sceleton.o verify_or_exit.o list_operations.o sortingA.o sortingB.o get_next_line.o get_next_line_utils.o main.o -o push_swap -g -fsanitize=address
+gcc find_place3.o instr_clcltA.o instr_clcltB.o stack_analysis.o sort_small.o func_rotate.o func_revrot.o func_push.c func_swap.o dbg_func.o optimize_ins.o maxmin_ins.o sort_mode.o sceleton.o verify_or_exit.o list_operations.o sortingA.o sortingB.o get_next_line.o get_next_line_utils.o main.o -o push_swap #-g -fsanitize=address
 rm *.o
