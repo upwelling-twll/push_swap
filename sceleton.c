@@ -124,13 +124,13 @@ int	split_parse_fill_argv(char *argv, tt_list **stack1)
 	tt_list	*head;
 	tt_list	*new;
 
-	printf("spl_par_fll: stack1=%i\n", (*stack1)->data);
-	printf("spl_par_fll: stack1->next=%i\n", (*stack1)->next->data);
-	printf("spl_par_fll: stack1->next->next=%i\n", (*stack1)->next->next->data);
-	printf("spl_par_fll: stack1->prev=%i\n", (*stack1)->prev->data);
-	printf("lst size = %i\n", ft_llstsize(*stack1));
+	// printf("spl_par_fll: stack1=%i\n", (*stack1)->data);
+	// printf("spl_par_fll: stack1->next=%i\n", (*stack1)->next->data);
+	// printf("spl_par_fll: stack1->next->next=%i\n", (*stack1)->next->next->data);
+	// printf("spl_par_fll: stack1->prev=%i\n", (*stack1)->prev->data);
+	// printf("lst size = %i\n", ft_llstsize(*stack1));
 	str = ft_split(argv, ' ');
-	printf("str1 =%s\n", *str);
+	//printf("str1 =%s\n", *str);
 	if (!(fill_stack1_argv(str, stack1)))
 		return (ft_exit_ps(stack1, NULL, str, 1));
 	return (1);
@@ -157,13 +157,13 @@ int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 		return (0);
 	argc--;
 	argv++;
-	printf("argc=%i\n", argc);
-	print_list(*stack1);
+	// printf("argc=%i\n", argc);
+	// print_list(*stack1);
 	while (argc >= 2)
 	{
 		if (!(split_parse_fill_argv(*argv, stack1)))
 			return (0);
-		print_list(*stack1);
+		//print_list(*stack1);
 		argc--;
 		argv++;
 	}
