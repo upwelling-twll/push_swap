@@ -16,6 +16,7 @@ int	check_if_sorted(tt_list *lst)
 {
 	tt_list	*head;
 
+	//printf("check if sorted\n");
 	head = lst;
 	while (lst->next != head)
 	{
@@ -29,6 +30,7 @@ int	check_if_sorted(tt_list *lst)
 		else
 			return (0);
 	}
+	//printf("check complited\n");
 	return (1);
 }
 

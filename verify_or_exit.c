@@ -20,6 +20,7 @@ void	del_stack_lst(tt_list **lst)
 	int		size;
 
 	size = ft_llstsize(*lst);
+	//printf("size=%i\n", size);
 	while (size)
 	{
 		tmp = (*lst)->next;
@@ -39,6 +40,7 @@ void	del_stack_lst(tt_list **lst)
 		(*lst)->prev = prev;
 		size--;
 	}
+	//printf("del done\n");
 }
 
 int	check_overflow(const char *str, int flag, int i)
@@ -69,10 +71,14 @@ int	verify_atoi(const char *str)
 	flag = 1;
 	if (str[i] == '-' && str[i + 1] != '\0')
 		i++;
+	//printf("checking atoi\n");
 	while (str[i])
 	{
 		if (!(ft_isdigit(str[i])))
+		{
+			//printf("%c is not digit\n", str[i]);
 			return (0);
+		}
 		i++;
 	}
 	i = 0;
@@ -84,14 +90,18 @@ int	verify_atoi(const char *str)
 	return (check_overflow(str, flag, i));
 }
 
-int	verify_argv(tt_list *args_lst, char *argv)
+int	verify_argv(tt_list *args_lst, char *str)
 {
 	int	num;
 	int	size;
 
-	if (!(verify_atoi(argv)))
+	if (!(verify_atoi(str)))
+	{
+		//printf("atoi return 0");
 		return (0);
-	num = ft_atoi(argv);
+	}
+	num = ft_atoi(str);
+	//printf("str=%s\n", str);
 	if (args_lst)
 	{
 		size = ft_llstsize(args_lst);
@@ -103,22 +113,72 @@ int	verify_argv(tt_list *args_lst, char *argv)
 			size--;
 		}
 	}
+	//printf("first ok\n");
 	return (1);
 }
 
-int	ft_exit_ps(tt_list **st1, tt_list **st2, int flag)
+int	ft_splsize(char **str)
 {
+	//printf("what is str size\n");
+	int	s;
+
+	s = 0;
+	while (*str != NULL)
+	{
+		str++;
+		s++;
+	}
+	return (s);
+}
+
+void	ft_cleanstr_ext(char **arr, size_t n)
+{
+	//printf("clean str\n");
+	//printf("size str = %li\n", n);
+	size_t	i;
+
+	if (arr)
+	{
+		i = 0;
+		while (i < n)
+		{
+			//printf("will del: %s\n", arr[i]);
+			//printf("next del: %s\n", arr[i+1]);
+			if (arr[i] != NULL)
+				free(arr[i]);
+			i++;
+		}
+		free(arr);
+	}
+	//printf("str cleaned\n");
+	return ;
+}
+
+int	ft_exit_ps(tt_list **st1, tt_list **st2, char **str, int flag)
+{
+	//printf("cleaning\n");
+	//print_list(*st1);
+	// printf("str=%s\n", *str);
+	// printf("str2=%s\n", *(str+1));
+	//printf("flag=%i\n", flag);
 	if (flag == 5)  //5 means stack1 is empty
 	{
-		free(st1);
+		free(*st1);
+		//printf("will clean str\n");
+		ft_cleanstr_ext(str, ft_splsize(str));
 		write(2, "Error\n", 6);
 		return (0);
 	}
 	if (st1 || flag == 3)
 		del_stack_lst(st1);
+	//printf("st1 cleaned\n");
 	if (st2 || flag == 3)
 		del_stack_lst(st2);
+	//printf("str=%s\n", *str);
+	if (str)
+		ft_cleanstr_ext(str, ft_splsize(str));
 	if (flag == 1)
 		write(2, "Error\n", 6);
+	//printf("all cleaned\n");
 	return (0);
 }

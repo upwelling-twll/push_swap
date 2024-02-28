@@ -47,7 +47,7 @@ typedef	struct tr_data
 
 //sceleton.c
 int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
-int		fill_stack1(int argc, char *argv[], tt_list **nlist);
+int		fill_stack1(char **str, tt_list **nlist);
 void	push_to_stack2(tt_list **stack1, tt_list **stack2);
 void	push_to_stack1(tt_list **stack1, tt_list **stack2);
 
@@ -55,8 +55,10 @@ void	push_to_stack1(tt_list **stack1, tt_list **stack2);
 void	del_stack_lst(tt_list **lst);
 int		check_overflow(const char *str, int flag, int i);
 int		verify_atoi(const char *str);
-int		verify_argv(tt_list *args_lst, char *argv);
-int		ft_exit_ps(tt_list **st1, tt_list **st2, int display);
+int		verify_argv(tt_list *args_lst, char *str);
+int		ft_splsize(char **str);
+void	ft_cleanstr_ext(char **arr, size_t n);
+int		ft_exit_ps(tt_list **st1, tt_list **st2, char **str, int display);
 
 //list_operations.c
 tt_list	*init_list(int i);

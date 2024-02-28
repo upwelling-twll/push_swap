@@ -47,8 +47,8 @@ int	main(int argc, char *argv[])
 	//printf("st2 - size = %li\n", sizeof(stack2));
 	push_to_stack1(&stack1, &stack2);
 	//printf("st2 - size = %li\n", sizeof(stack2));
-	print_list(stack1);
-	ft_exit_ps(&stack1, &stack2, 3);
+	//print_list(stack1);
+	ft_exit_ps(&stack1, &stack2, NULL, 3);
 	//free(stack1);
 	//print_list(stack1);
 	//printf("lst siaze:%i\n", ft_llstsize(stack1));
