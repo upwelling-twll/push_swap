@@ -90,19 +90,51 @@ int	fill_stack1(char **str, tt_list **stack1)
 	return (1);
 }
 
-// int	split_parse_fill_argv(char *argv[], tt_list **stack1)
-// {
-// 	char	**str;
-// 	tt_list	*head;
-// 	tt_list	*new;
+int	fill_stack1_argv(char **str, tt_list **stack1)
+{
+	tt_list	*head;
+	char	**str_h;
+	tt_list	*new_last;
+	tt_list	*old_last;
 
-// 	head = *stack1;
-// 	str = ft_split(*argv, ' ');
+	head = *stack1;
+	str_h = str;
+	while(*str != NULL)
+	{
+		if ((!(verify_argv(head, *str))))
+			return (0);
+		old_last = ft_llstlast(*stack1);
+		new_last = add_node(*stack1, ft_atoi(*str));
+		old_last->next = new_last;
+		new_last->next = *stack1;
+		new_last->prev = old_last;
+		(*stack1)->prev = new_last;
+		str++;
+	}
+	str = str_h;
+	ft_cleanstr_ext(str, ft_splsize(str));
+	*stack1 = head;
+	//printf("all args are ok\n");
+	return (1);
+}
 
-// 	if (!(fill_stack1(str, &(ft_llstlast(*stack1)))))
-// 		return (0);
-// 	return (1);
-// }
+int	split_parse_fill_argv(char *argv, tt_list **stack1)
+{
+	char	**str;
+	tt_list	*head;
+	tt_list	*new;
+
+	printf("spl_par_fll: stack1=%i\n", (*stack1)->data);
+	printf("spl_par_fll: stack1->next=%i\n", (*stack1)->next->data);
+	printf("spl_par_fll: stack1->next->next=%i\n", (*stack1)->next->next->data);
+	printf("spl_par_fll: stack1->prev=%i\n", (*stack1)->prev->data);
+	printf("lst size = %i\n", ft_llstsize(*stack1));
+	str = ft_split(argv, ' ');
+	printf("str1 =%s\n", *str);
+	if (!(fill_stack1_argv(str, stack1)))
+		return (ft_exit_ps(stack1, NULL, str, 1));
+	return (1);
+}
 
 int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 {
@@ -123,15 +155,18 @@ int	ft_parse_input(int argc, char *argv[], tt_list **stack1)
 	//printf("fill st1:\n str 1 = %s;\n str2 = %s\n will verify while filling st1 \n", *str, *(str + 1));
 	if (!fill_stack1(str, stack1))
 		return (0);
-	// argc--;
-	// argv++;
-	// while (argc >= 2)
-	// {
-	// 	if (!(split_parse_fill_argv(argv, stack1)))
-	// 		return (0);
-	// 	argc--;
-	// 	argv++;
-	// }
+	argc--;
+	argv++;
+	printf("argc=%i\n", argc);
+	print_list(*stack1);
+	while (argc >= 2)
+	{
+		if (!(split_parse_fill_argv(*argv, stack1)))
+			return (0);
+		print_list(*stack1);
+		argc--;
+		argv++;
+	}
 	head = *stack1;
 	//print_list(*stack1);
 	if (check_if_sorted(head) || ft_llstsize(head) == 1)

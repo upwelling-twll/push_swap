@@ -45,7 +45,6 @@ void	pb_first(tt_list **stack1, tt_list **stack2)
 void	move_first(tt_list **stack1, tt_list **stack2)
 {
 	int		tmp;
-	tt_list	*tmp_s2;
 	tt_list	*new_head;
 	tt_list	*old_last;
 
