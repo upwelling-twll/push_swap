@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 16:59:59 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:31:09 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 int	swap(tt_list **stack, tt_list **s2)
 {
 	int	tmp;
-
+	int	data;
+	
 	if (!(*stack))
 		return (0);
+	if (s2)
+		data = (*s2)->data;
 	tmp = (*stack)->data;
 	(*stack)->data = (*stack)->next->data;
 	(*stack)->next->data = tmp;

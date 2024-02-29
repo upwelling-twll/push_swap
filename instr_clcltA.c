@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 22:10:13 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:16:04 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	i_to_placea(tt_list *tr_s1, tt_list *st2, i_list **inumber, int size)
 	tt_list	*min_s2;
 	tt_list	*max_s2;
 	tt_list	*upper_neighbour;
-	int		inum;
 
 	min_s2 = get_min(st2, size);
 	max_s2 = get_max(st2, size);
@@ -76,7 +75,7 @@ int	inst_numa(tt_list *st1, tt_list *st2, tt_list *node, i_list **inumber)
 		position++;
 		st1 = st1->next;
 	}
-	i_to_float(position, heads1, size1, inumber);
+	i_to_float(position, size1, inumber);
 	i_to_placea(node, st2, inumber, size2);
 	inst_num = optimize(inumber);
 	return (inst_num + 1);

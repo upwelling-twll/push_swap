@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:51:06 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:07:55 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,16 @@ int	check_overflow(const char *str, int flag, int i)
 int	verify_atoi(const char *str)
 {
 	long long	i;
-	long long	n;
 	long long	flag;
 
 	i = 0;
 	flag = 1;
 	if (str[i] == '-' && str[i + 1] != '\0')
 		i++;
-	//printf("checking atoi\n");
 	while (str[i])
 	{
 		if (!(ft_isdigit(str[i])))
-		{
-			//printf("%c is not digit\n", str[i]);
 			return (0);
-		}
 		i++;
 	}
 	i = 0;

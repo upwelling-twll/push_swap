@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:24:32 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:01:56 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ tt_list	*delfirst(tt_list *lst)
 {
 	tt_list	*new_head;
 	tt_list	*lst_prev;
-	int		data;
 
 	if (ft_llstsize(lst) == 1)
 	{

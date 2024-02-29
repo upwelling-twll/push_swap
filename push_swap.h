@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 22:20:12 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:14:29 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);
 void	push_under_min(tt_list *stack, tt_list *min, i_list **instr);
 
 //instr_clcltB.c
-void	i_to_float(int position, tt_list *stack1, int size, i_list **inumber);
+void	i_to_float(int position, int size, i_list **inumber);
 void	i_to_place(tt_list *target_s1, tt_list *st2, i_list **inumber, int s);
-tt_list	*find_place(tt_list *stack2, int target_data, tt_list *max, tt_list *min);
+tt_list	*find_place(tt_list *stack2, int target_data);
 void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
 int		inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, i_list **inumber);
 

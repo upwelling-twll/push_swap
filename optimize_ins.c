@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:42:25 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:07:27 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	optimize(i_list **in)
 	s1_down = (*in)->s1_rotate_down;
 	s1up_s2d = (*in)->s1_rotate_up + (*in)->s2_rotate_down;
 	s1d_s2up = s1_down + (*in)->s2_rotate_up;
+	ttl_up_i = 0;
+	ttl_down_i = 0;
 	if ((*in)->s1_rotate_up > (*in)->s2_rotate_up)
 		ttl_up_i = (*in)->s2_rotate_up + ((*in)->s1_rotate_up
 				- (*in)->s2_rotate_up);

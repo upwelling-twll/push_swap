@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   instructions.c                                     :+:      :+:    :+:   */
+/*   func_rotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:29:05 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:31:18 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,24 @@
 
 int	ra(tt_list **stack, tt_list **s2)
 {
+	int	data;
+	
 	if (!(*stack))
 		return (0);
+	if (s2)
+		data = (*s2)->data;
 	*stack = (*stack)->next;
 	return (1);
 }
 
 int	rb(tt_list **stack, tt_list **s2)
 {
+	int	data;
+	
 	if (!(*stack))
 		return (0);
+	if (s2)
+		data = (*s2)->data;
 	*stack = (*stack)->next;
 	return (1);
 }
