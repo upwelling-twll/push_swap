@@ -72,14 +72,12 @@ void	i_to_place(t_llist *target_s1, t_llist *st2, t_inst **inumber, int s)
 int	inst_num(t_llist *stack1, t_llist *stack2, t_llist *node, t_inst **inumber)
 {
 	int		position;
-	t_llist	*heads1;
 	int		inst_num;
 	int		size2;
 	int		size1;
 
 	position = 1;
 	inst_num = 0;
-	heads1 = stack1;
 	size2 = ft_llstsize(stack2);
 	size1 = ft_llstsize(stack1);
 	(*inumber)->target = node->data;

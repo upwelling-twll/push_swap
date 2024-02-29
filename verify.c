@@ -15,10 +15,8 @@
 int	check_overflow(const char *str, int flag, int i)
 {
 	long long	n;
-	long long	cn;
 
 	n = 0;
-	cn = 0;
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{
 		if (str[i] >= '0' && str[i] <= '9')

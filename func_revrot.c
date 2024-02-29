@@ -19,7 +19,10 @@ int	rra(t_llist **stack, t_llist **s2)
 	if (!(*stack))
 		return (0);
 	if (s2)
+	{
 		data = (*s2)->data;
+		(*s2)->data = data;
+	}
 	*stack = (*stack)->prev;
 	return (1);
 }
@@ -31,7 +34,10 @@ int	rrb(t_llist **stack, t_llist **s2)
 	if (!(*stack))
 		return (0);
 	if (s2)
+	{
 		data = (*s2)->data;
+		(*s2)->data = data;
+	}
 	*stack = (*stack)->prev;
 	return (1);
 }
