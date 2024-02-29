@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 12:10:33 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:07:59 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,14 @@ int	ft_parse_input(int argc, char *argv[], t_llist **stack1)
 	t_llist	*head;
 	char	**str;
 
-	if (argc < 2)
-	{
-		free(*stack1);
+	str = (check_frst_arg(argc, argv, stack1));
+	if (!(str))
 		return (0);
-	}
-	argv++;
-	str = ft_split(*argv, ' ');
 	if ((!(verify_argv(NULL, *str))))
 		return (ft_exit_ps(stack1, NULL, str, 5));
 	if (!fill_stack1(str, stack1))
 		return (0);
+	argv++;
 	if (!(more_args(argc, argv, stack1)))
 		return (0);
 	head = *stack1;

@@ -6,7 +6,7 @@ NAME = push_swap
 NAME_BONUS = checker
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
 SRCS = func_push.c func_swap.c func_revrot.c func_rotate.c optimize_ins.c	\

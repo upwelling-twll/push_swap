@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 12:21:18 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 18:08:31 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct t_trda
 int		fill_stack1_argv(char **str, t_llist **stack1);
 int		split_parse_fill_argv(char *argv, t_llist **stack1);
 int		more_args(int argc, char *argv[], t_llist **stack1);
+void	*check_frst_arg(int argc, char *argv[], t_llist **stack1);
 
 //sceleton.c
 void	sort_2_3(t_llist **stack1, int size);
