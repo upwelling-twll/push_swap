@@ -85,7 +85,10 @@ int	ft_parse_input(int argc, char *argv[], t_llist **stack1)
 	char	**str;
 
 	if (argc < 2)
+	{
+		free(*stack1);
 		return (0);
+	}
 	argv++;
 	str = ft_split(*argv, ' ');
 	if ((!(verify_argv(NULL, *str))))
