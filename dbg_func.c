@@ -6,13 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:45:12 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:11:16 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_itarget(i_list *lst)
+void	print_itarget(t_inst *lst)
 {
 	printf("target_data:%i\n", lst->target);
 	printf("s1_rotate_up:%i\n", lst->s1_rotate_up);
@@ -22,26 +22,26 @@ void	print_itarget(i_list *lst)
 	printf("mood:%i\n", lst->mood);
 }
 
-void	print_list(tt_list *lst)
+void	print_list(t_llist *lst)
 {
-	tt_list	*head;
+	t_llist	*head;
 
 	head = lst;
 	if (lst == NULL)
 	{
 		printf("empty\n");
-		return;
+		return ;
 	}
 	printf("data:%d\n", lst->data);
 	lst = lst->next;
-	while(lst != head)
+	while (lst != head)
 	{
 		printf("data:%i\n", lst->data);
 		lst = lst -> next;
 	}
 }
 
-int	check_if_sorted_final(tt_list *lst)
+int	check_if_sorted_final(t_llist *lst)
 {
 	int	head;
 

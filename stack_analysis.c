@@ -6,17 +6,16 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 18:41:06 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:46:04 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_if_sorted(tt_list *lst)
+int	check_if_sorted(t_llist *lst)
 {
-	tt_list	*head;
+	t_llist	*head;
 
-	//printf("check if sorted\n");
 	head = lst;
 	while (lst->next != head)
 	{
@@ -30,11 +29,10 @@ int	check_if_sorted(tt_list *lst)
 		else
 			return (0);
 	}
-	//printf("check complited\n");
 	return (1);
 }
 
-void	float_ra(tt_list **head, int position)
+void	float_ra(t_llist **head, int position)
 {
 	while (position)
 	{
@@ -44,7 +42,7 @@ void	float_ra(tt_list **head, int position)
 	}
 }
 
-void	float_rra(tt_list **head, tt_list *new_head, int position)
+void	float_rra(t_llist **head, t_llist *new_head, int position)
 {
 	position = ft_llstsize(*head) - position - 1;
 	while ((*head)->data != new_head->data)
@@ -54,9 +52,9 @@ void	float_rra(tt_list **head, tt_list *new_head, int position)
 	}
 }
 
-void	float_to_top(tt_list **head, tt_list *new_head)
+void	float_to_top(t_llist **head, t_llist *new_head)
 {
-	tt_list	*cplist;
+	t_llist	*cplist;
 	int		position;
 
 	cplist = *head;
@@ -74,9 +72,9 @@ void	float_to_top(tt_list **head, tt_list *new_head)
 		float_rra(head, new_head, position);
 }
 
-void	min_to_top(tt_list **lst)
+void	min_to_top(t_llist **lst)
 {
-	tt_list	*min;
+	t_llist	*min;
 
 	min = get_min(*lst, ft_llstsize(*lst));
 	float_to_top(lst, min);

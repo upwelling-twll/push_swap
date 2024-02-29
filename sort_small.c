@@ -6,13 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 17:55:02 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:42:39 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-tt_list	*sort_2(tt_list **lst)
+t_llist	*sort_2(t_llist **lst)
 {
 	if ((*lst)->data > (*lst)->next->data)
 	{
@@ -45,7 +45,7 @@ void	write_oper(int opt)
 	}
 }
 
-void	run(tt_list **lst, int opt)
+void	run(t_llist **lst, int opt)
 {
 	if (opt == 1)
 		sa(lst, NULL);
@@ -69,7 +69,7 @@ void	run(tt_list **lst, int opt)
 	write_oper(opt);
 }
 
-void	sort_3(tt_list **lst)
+void	sort_3(t_llist **lst)
 {
 	int	a;
 	int	b;

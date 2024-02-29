@@ -6,13 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 21:50:45 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:43:44 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-tt_list	*find_place3(tt_list *stack2, int target_data, int size)
+t_llist	*find_place3(t_llist *stack2, int target_data, int size)
 {
 	while (size)
 	{
@@ -24,7 +24,7 @@ tt_list	*find_place3(tt_list *stack2, int target_data, int size)
 	return (stack2);
 }
 
-tt_list	*find_place33(tt_list *stack2, int target_data, int size)
+t_llist	*find_place33(t_llist *stack2, int target_data, int size)
 {
 	while (size)
 	{

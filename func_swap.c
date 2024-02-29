@@ -6,17 +6,17 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:31:09 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:43:27 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	swap(tt_list **stack, tt_list **s2)
+int	swap(t_llist **stack, t_llist **s2)
 {
 	int	tmp;
 	int	data;
-	
+
 	if (!(*stack))
 		return (0);
 	if (s2)
@@ -27,7 +27,7 @@ int	swap(tt_list **stack, tt_list **s2)
 	return (1);
 }
 
-int	sa(tt_list **stack, tt_list **s2)
+int	sa(t_llist **stack, t_llist **s2)
 {
 	if (!(*stack))
 		return (0);
@@ -35,7 +35,7 @@ int	sa(tt_list **stack, tt_list **s2)
 	return (1);
 }
 
-int	sb(tt_list **stack, tt_list **s2)
+int	sb(t_llist **stack, t_llist **s2)
 {
 	if (!(*stack))
 		return (0);
@@ -43,7 +43,7 @@ int	sb(tt_list **stack, tt_list **s2)
 	return (1);
 }
 
-int	ss(tt_list **stack1, tt_list **stack2)
+int	ss(t_llist **stack1, t_llist **stack2)
 {
 	if (!(*stack1) || (!(*stack2)))
 		return (0);

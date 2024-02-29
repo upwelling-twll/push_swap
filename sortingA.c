@@ -6,15 +6,15 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 22:09:46 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:13:24 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
+void	push_under_max(t_llist *stack, t_llist *max, t_inst **instr)
 {
-	tt_list	*head;
+	t_llist	*head;
 	int		i_rb;
 	int		i_rrb;
 
@@ -36,9 +36,9 @@ void	push_under_max(tt_list *stack, tt_list *max, i_list **instr)
 	(*instr)->s2_rotate_down = i_rrb;
 }
 
-void	push_on_min(tt_list *stack, tt_list *min, i_list **instr)
+void	push_on_min(t_llist *stack, t_llist *min, t_inst **instr)
 {
-	tt_list	*head;
+	t_llist	*head;
 	int		i_rb;
 	int		i_rrb;
 
@@ -60,7 +60,7 @@ void	push_on_min(tt_list *stack, tt_list *min, i_list **instr)
 	(*instr)->s2_rotate_down = i_rrb;
 }
 
-void	fnd_tra(tt_list *head, tt_list *st2, i_list **i_target, tr_list **data)
+void	fnd_tra(t_llist *head, t_llist *st2, t_inst **i_target, t_trda **data)
 {
 	(*data)->cur_ins = inst_numa(head, st2, (*data)->cur, (*data)->ins_data);
 	if ((*data)->min_ins > (*data)->cur_ins)
@@ -71,13 +71,13 @@ void	fnd_tra(tt_list *head, tt_list *st2, i_list **i_target, tr_list **data)
 	}
 }
 
-void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s)
+void	find_targeta(t_llist *head, t_llist *stack2, t_inst **i_target, int s)
 {
-	i_list	*inumber;
-	tr_list	*tr_data;
+	t_inst	*inumber;
+	t_trda	*tr_data;
 
-	inumber = malloc(sizeof(i_list));
-	tr_data = malloc(sizeof(tr_list));
+	inumber = malloc(sizeof(t_inst));
+	tr_data = malloc(sizeof(t_trda));
 	tr_data->cur = head;
 	tr_data->ins_data = &inumber;
 	tr_data->min_ins = inst_numa(head, stack2, tr_data->cur, tr_data->ins_data);

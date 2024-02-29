@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/04 21:49:49 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/08 14:52:01 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:38:46 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	parse_one_bit(t_bits **bb, char *buf, char **rem_line, ssize_t *fe)
 	if (i == *fe)
 	{
 		if (*bb)
-			(lst_magic(NULL, *bb))->next = lst_magic(ft_strldup(buf, fe),NULL);
+			(lst_magic(NULL, *bb))->next = lst_magic(ft_strldup(buf, fe), NULL);
 		else if (ft_lsbsize(*bb) == 0)
 			*bb = lst_magic(ft_strldup(buf, fe), NULL);
 		lst_magic(NULL, *bb)->len = i;

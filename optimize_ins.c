@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:07:27 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:10:41 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	gmin_i(int a, int b, int c, int d)
 		return (d);
 }
 
-int	optimize(i_list **in)
+int	optimize(t_inst **in)
 {
 	int	ttl_up_i;
 	int	ttl_down_i;

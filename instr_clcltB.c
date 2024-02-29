@@ -6,19 +6,19 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:11:06 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:10:56 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	i_to_float(int position, int size, i_list **inumber)
+void	i_to_float(int position, int size, t_inst **inumber)
 {
 	(*inumber)->s1_rotate_up = position - 1;
 	(*inumber)->s1_rotate_down = size - position + 1;
 }
 
-tt_list	*find_place(tt_list *st2, int target_data)
+t_llist	*find_place(t_llist *st2, int target_data)
 {
 	int	size;
 
@@ -33,7 +33,7 @@ tt_list	*find_place(tt_list *st2, int target_data)
 	return (st2);
 }
 
-void	clclt_instr(tt_list *upper_nbr, tt_list *st2, int s, i_list **inumber)
+void	clclt_instr(t_llist *upper_nbr, t_llist *st2, int s, t_inst **inumber)
 {
 	int	un_position;
 
@@ -50,11 +50,11 @@ void	clclt_instr(tt_list *upper_nbr, tt_list *st2, int s, i_list **inumber)
 		(*inumber)->s2_rotate_down = 1;
 }
 
-void	i_to_place(tt_list *target_s1, tt_list *st2, i_list **inumber, int s)
+void	i_to_place(t_llist *target_s1, t_llist *st2, t_inst **inumber, int s)
 {
-	tt_list	*min_s2;
-	tt_list	*max_s2;
-	tt_list	*upper_nebor;
+	t_llist	*min_s2;
+	t_llist	*max_s2;
+	t_llist	*upper_nebor;
 
 	min_s2 = get_min(st2, s);
 	max_s2 = get_max(st2, s);
@@ -69,10 +69,10 @@ void	i_to_place(tt_list *target_s1, tt_list *st2, i_list **inumber, int s)
 	}
 }
 
-int	inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, i_list **inumber)
+int	inst_num(t_llist *stack1, t_llist *stack2, t_llist *node, t_inst **inumber)
 {
 	int		position;
-	tt_list	*heads1;
+	t_llist	*heads1;
 	int		inst_num;
 	int		size2;
 	int		size1;

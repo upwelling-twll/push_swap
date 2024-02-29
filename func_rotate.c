@@ -6,16 +6,16 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:31:18 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:43:31 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ra(tt_list **stack, tt_list **s2)
+int	ra(t_llist **stack, t_llist **s2)
 {
 	int	data;
-	
+
 	if (!(*stack))
 		return (0);
 	if (s2)
@@ -24,10 +24,10 @@ int	ra(tt_list **stack, tt_list **s2)
 	return (1);
 }
 
-int	rb(tt_list **stack, tt_list **s2)
+int	rb(t_llist **stack, t_llist **s2)
 {
 	int	data;
-	
+
 	if (!(*stack))
 		return (0);
 	if (s2)
@@ -36,7 +36,7 @@ int	rb(tt_list **stack, tt_list **s2)
 	return (1);
 }
 
-int	rr(tt_list **stack1, tt_list **stack2)
+int	rr(t_llist **stack1, t_llist **stack2)
 {
 	if (!(*stack1) || (!(*stack2)))
 		return (0);

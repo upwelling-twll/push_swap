@@ -1,5 +1,3 @@
-# green='\033[0;32m' 
-# clear='\033[0m' 
 green ='\033[0;32m' 
 clear ='\033[0m'
 
@@ -8,13 +6,13 @@ NAME = push_swap
 NAME_BONUS = checker
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
 SRCS = func_push.c func_swap.c func_revrot.c func_rotate.c optimize_ins.c	\
-	maxmin_ins.c stack_analysis.c list_operations.c verify_or_exit.c	\
+	maxmin_ins.c stack_analysis.c list_operations.c verify.c	\
 	sort_small.c sort_mode.c instr_clcltA.c sortingA.c find_place3.c	\
-	instr_clcltB.c sortingB.c sceleton.c main.c
+	instr_clcltB.c sortingB.c more_args.c sceleton.c exit.c main.c
 
 SRCS_BONUS = checker.c instructions.c list_operations.c sortingA.c	\
 	sortingB.c get_next_line.c get_next_line_utils.c

@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:32:02 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:23:44 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	main(int argc, char *argv[])
 {
-	tt_list	*stack1;
-	tt_list	*stack2;
+	t_llist	*stack1;
+	t_llist	*stack2;
 
-	stack1 = malloc(sizeof(tt_list));
+	stack1 = malloc(sizeof(t_llist));
 	if (!(ft_parse_input(argc, argv, &stack1)))
 		return (0);
 	push_to_stack2(&stack1, &stack2);

@@ -6,13 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:16:04 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:10:59 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	clclt_instr3(tt_list *upper_nbr, tt_list *st2, int size, i_list **inmb)
+void	clclt_instr3(t_llist *upper_nbr, t_llist *st2, int size, t_inst **inmb)
 {
 	int	un_position;
 
@@ -29,11 +29,11 @@ void	clclt_instr3(tt_list *upper_nbr, tt_list *st2, int size, i_list **inmb)
 		(*inmb)->s2_rotate_down = size - un_position;
 }
 
-void	i_to_placea(tt_list *tr_s1, tt_list *st2, i_list **inumber, int size)
+void	i_to_placea(t_llist *tr_s1, t_llist *st2, t_inst **inumber, int size)
 {
-	tt_list	*min_s2;
-	tt_list	*max_s2;
-	tt_list	*upper_neighbour;
+	t_llist	*min_s2;
+	t_llist	*max_s2;
+	t_llist	*upper_neighbour;
 
 	min_s2 = get_min(st2, size);
 	max_s2 = get_max(st2, size);
@@ -56,10 +56,10 @@ void	i_to_placea(tt_list *tr_s1, tt_list *st2, i_list **inumber, int size)
 	}
 }
 
-int	inst_numa(tt_list *st1, tt_list *st2, tt_list *node, i_list **inumber)
+int	inst_numa(t_llist *st1, t_llist *st2, t_llist *node, t_inst **inumber)
 {
 	int		position;
-	tt_list	*heads1;
+	t_llist	*heads1;
 	int		inst_num;
 	int		size2;
 	int		size1;

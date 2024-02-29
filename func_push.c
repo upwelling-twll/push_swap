@@ -6,16 +6,16 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:01:56 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 11:43:39 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-tt_list	*delfirst(tt_list *lst)
+t_llist	*delfirst(t_llist *lst)
 {
-	tt_list	*new_head;
-	tt_list	*lst_prev;
+	t_llist	*new_head;
+	t_llist	*lst_prev;
 
 	if (ft_llstsize(lst) == 1)
 	{
@@ -30,7 +30,7 @@ tt_list	*delfirst(tt_list *lst)
 	return (new_head);
 }
 
-void	pb_first(tt_list **stack1, tt_list **stack2)
+void	pb_first(t_llist **stack1, t_llist **stack2)
 {
 	int		tmp;
 
@@ -41,11 +41,11 @@ void	pb_first(tt_list **stack1, tt_list **stack2)
 	*stack1 = delfirst(*stack1);
 }
 
-void	move_first(tt_list **stack1, tt_list **stack2)
+void	move_first(t_llist **stack1, t_llist **stack2)
 {
 	int		tmp;
-	tt_list	*new_head;
-	tt_list	*old_last;
+	t_llist	*new_head;
+	t_llist	*old_last;
 
 	tmp = (*stack1)->data;
 	if (*stack2 == NULL)
@@ -67,7 +67,7 @@ void	move_first(tt_list **stack1, tt_list **stack2)
 	*stack1 = delfirst(*stack1);
 }
 
-int	pa(tt_list **stack1, tt_list **stack2)
+int	pa(t_llist **stack1, t_llist **stack2)
 {
 	if (!(*stack2))
 		return (0);
@@ -75,7 +75,7 @@ int	pa(tt_list **stack1, tt_list **stack2)
 	return (1);
 }
 
-int	pb(tt_list **stack1, tt_list **stack2)
+int	pb(t_llist **stack1, t_llist **stack2)
 {
 	if (!(*stack1))
 		return (0);

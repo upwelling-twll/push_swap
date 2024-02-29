@@ -6,152 +6,158 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:14:29 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:21:18 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-#include "get_next_line.h"
+# include "get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 
-typedef struct ss_list
+typedef struct s_llist
 {
-	struct ss_list	*prev;
+	struct s_llist	*prev;
 	int				data;
-	struct ss_list	*next;
-}					tt_list;
+	struct s_llist	*next;
+}					t_llist;
 
-typedef struct inst_list
+typedef struct s_inst
 {
 	int		target;
-	int		s1_rotate_up; // up = ra
-	int		s1_rotate_down; // down = rra
+	int		s1_rotate_up;
+	int		s1_rotate_down;
+	int		s2_rotate_up;
+	int		s2_rotate_down;
+	int		mood;
+}					t_inst;
 
-	int		s2_rotate_up; //  up = rb The first element becomes the last one. the number of instructions rb which are needed to place the element
-	int 	s2_rotate_down;// down = rrb The last element becomes the first one.
-	int		mood; //
-}					i_list;
-
-typedef	struct tr_data
+typedef struct t_trda
 {
-	struct ss_list 		*cur;
-	struct ss_list 		*tr;
-	struct inst_list	**ins_data;
+	struct s_llist		*cur;
+	struct s_llist		*tr;
+	struct s_inst		**ins_data;
 	int					min_ins;
 	int					cur_ins;
-}						tr_list;
+}						t_trda;
+
+//more_args.c
+int		fill_stack1_argv(char **str, t_llist **stack1);
+int		split_parse_fill_argv(char *argv, t_llist **stack1);
+int		more_args(int argc, char *argv[], t_llist **stack1);
 
 //sceleton.c
-int		ft_parse_input(int argc, char *argv[], tt_list **nlist);
-int		fill_stack1(char **str, tt_list **nlist);
-void	push_to_stack2(tt_list **stack1, tt_list **stack2);
-void	push_to_stack1(tt_list **stack1, tt_list **stack2);
+int		ft_parse_input(int argc, char *argv[], t_llist **nlist);
+int		fill_stack1(char **str, t_llist **nlist);
+void	push_to_stack2(t_llist **stack1, t_llist **stack2);
+void	push_to_stack1(t_llist **stack1, t_llist **stack2);
 
-//verify or exit.c
-void	del_stack_lst(tt_list **lst);
-int		check_overflow(const char *str, int flag, int i);
-int		verify_atoi(const char *str);
-int		verify_argv(tt_list *args_lst, char *str);
+//exit.c
+void	del_stack_lst(t_llist **lst);
 int		ft_splsize(char **str);
 void	ft_cleanstr_ext(char **arr, size_t n);
-int		ft_exit_ps(tt_list **st1, tt_list **st2, char **str, int display);
+int		ft_exit_ps(t_llist **st1, t_llist **st2, char **str, int display);
+
+//verify.c
+int		check_overflow(const char *str, int flag, int i);
+int		verify_atoi(const char *str);
+int		verify_argv(t_llist *args_lst, char *str);
 
 //list_operations.c
-tt_list	*init_list(int i);
-tt_list	*ft_llstlast(tt_list *lst);
-int		ft_llstsize(tt_list *lst);
-tt_list	*add_node(tt_list *nlist, int data);
+t_llist	*init_list(int i);
+t_llist	*ft_llstlast(t_llist *lst);
+int		ft_llstsize(t_llist *lst);
+t_llist	*add_node(t_llist *nlist, int data);
 
 //stack_analysis.c
-int		check_if_sorted(tt_list *lst);
-void	float_ra(tt_list **head, int position); //rotating until the element which is prev to min is not on the top
-void	float_rra(tt_list **head, tt_list *new_head, int position); //rotating until the element which is prev to min is not on the top
-void	float_to_top(tt_list **head, tt_list *new_head);
-void	min_to_top(tt_list **lst);
+int		check_if_sorted(t_llist *lst);
+void	float_ra(t_llist **head, int position);
+void	float_rra(t_llist **head, t_llist *new_head, int position);
+void	float_to_top(t_llist **head, t_llist *new_head);
+void	min_to_top(t_llist **lst);
 
 //sort_samll.c
-tt_list	*sort_2(tt_list **lst);
+t_llist	*sort_2(t_llist **lst);
 void	write_oper(int opt);
-void	run(tt_list **lst, int opt);
-void	sort_3(tt_list **lst);
+void	run(t_llist **lst, int opt);
+void	sort_3(t_llist **lst);
 
 //sort_mode.c
-void	rotate_2(tt_list **s1, tt_list **s2, i_list *it, int mode);
-void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
-void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
-void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
-void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
+void	rotate_2(t_llist **s1, t_llist **s2, t_inst *it, int mode);
+void	run_mood1(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr);
+void	run_mood2(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr);
+void	run_mood3(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr);
+void	run_mood4(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr);
 
 //optimize_ins.c
-char	gmin(int a, int b , int c, int d);
+char	gmin(int a, int b, int c, int d);
 int		best_option(int s1us2d, int s1ds2u, int tu, int td);
-int		gmin_i(int a, int b , int c, int d);
-int		optimize(i_list **in);
+int		gmin_i(int a, int b, int c, int d);
+int		optimize(t_inst **in);
 
 //maxmin_ins.c
-tt_list	*get_min(tt_list *stack, int size);
-tt_list	*get_max(tt_list *stack, int size);
-void	push_on_max(tt_list *stack, tt_list *max, i_list **instr);
-void	push_under_min(tt_list *stack, tt_list *min, i_list **instr);
+t_llist	*get_min(t_llist *stack, int size);
+t_llist	*get_max(t_llist *stack, int size);
+void	push_on_max(t_llist *stack, t_llist *max, t_inst **instr);
+void	push_under_min(t_llist *stack, t_llist *min, t_inst **instr);
 
 //instr_clcltB.c
-void	i_to_float(int position, int size, i_list **inumber);
-void	i_to_place(tt_list *target_s1, tt_list *st2, i_list **inumber, int s);
-tt_list	*find_place(tt_list *stack2, int target_data);
-void	clclt_instr(tt_list *upper_nebor, tt_list *stack2, int size, i_list **inumber);
-int		inst_num(tt_list *stack1, tt_list *stack2, tt_list *node, i_list **inumber);
+void	i_to_float(int position, int size, t_inst **inumber);
+void	i_to_place(t_llist *target_s1, t_llist *st2, t_inst **inumber, int s);
+t_llist	*find_place(t_llist *stack2, int target_data);
+void	clclt_instr(t_llist *up_nbr, t_llist *st2, int size, t_inst **inumber);
+int		inst_num(t_llist *st1, t_llist *st2, t_llist *node, t_inst **inumber);
 
 //sorting B
-void	exec_instr(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr);
-void	update_inst(i_list **i_target, i_list **inumber);
-void	fnd_tr(tt_list *head, tt_list *stack2, i_list **i_target, tr_list **data);
-void	find_target(tt_list *head, tt_list *stack2, i_list **i_target, int s);
+void	exec_instr(t_llist **stack1, t_llist **st2, t_inst *i_target, int dr);
+void	update_inst(t_inst **i_target, t_inst **inumber);
+void	fnd_tr(t_llist *head, t_llist *st2, t_inst **i_target, t_trda **data);
+void	find_target(t_llist *head, t_llist *stack2, t_inst **i_target, int s);
 
 //instr_clcltA.c
-void	clclt_instr3(tt_list *upper_nbr, tt_list *st2, int size, i_list **inmb);
-void	i_to_placea(tt_list *tr_s1, tt_list *st2, i_list **inumber, int size);
-int		inst_numa(tt_list *st1, tt_list *st2, tt_list *node, i_list **inumber);
+void	clclt_instr3(t_llist *upper_nbr, t_llist *st2, int size, t_inst **inmb);
+void	i_to_placea(t_llist *tr_s1, t_llist *st2, t_inst **inumber, int size);
+int		inst_numa(t_llist *st1, t_llist *st2, t_llist *node, t_inst **inumber);
 
 //find_place3.c
-tt_list	*find_place3(tt_list *stack2, int target_data, int size);
-tt_list	*find_place33(tt_list *stack2, int target_data, int size);
+t_llist	*find_place3(t_llist *stack2, int target_data, int size);
+t_llist	*find_place33(t_llist *stack2, int target_data, int size);
 
 //sorting A
-void	push_on_min(tt_list *stack, tt_list *min, i_list **instr);
-void	push_under_max(tt_list *stack, tt_list *max, i_list **instr);
-void	fnd_tra(tt_list *head, tt_list *st2, i_list **i_target, tr_list **data);
-void	find_targeta(tt_list *head, tt_list *stack2, i_list **i_target, int s);
+void	push_on_min(t_llist *stack, t_llist *min, t_inst **instr);
+void	push_under_max(t_llist *stack, t_llist *max, t_inst **instr);
+void	fnd_tra(t_llist *head, t_llist *st2, t_inst **i_target, t_trda **data);
+void	find_targeta(t_llist *head, t_llist *stack2, t_inst **i_target, int s);
 
 //func_push.c
-tt_list	*delfirst(tt_list  *lst);
-void	pb_first(tt_list **stack1, tt_list **stack2);
-void	move_first(tt_list **stack1, tt_list **stack2); //pb
-int		pa(tt_list **stack1, tt_list **stack2);
-int		pb(tt_list **stack1, tt_list **stack2);
+t_llist	*delfirst(t_llist *lst);
+void	pb_first(t_llist **stack1, t_llist **stack2);
+void	move_first(t_llist **stack1, t_llist **stack2); //pb
+int		pa(t_llist **stack1, t_llist **stack2);
+int		pb(t_llist **stack1, t_llist **stack2);
 
 //func_swap.c
-int		ss(tt_list **stack1, tt_list **stack2);
-int		sb(tt_list **stack,  tt_list **s2); //no s2);
-int		sa(tt_list **stack,  tt_list **s2); //no s2);
-int		swap(tt_list **stack,  tt_list **s2); //no s2);
+int		ss(t_llist **stack1, t_llist **stack2);
+int		sb(t_llist **stack, t_llist **s2); //no s2);
+int		sa(t_llist **stack, t_llist **s2); //no s2);
+int		swap(t_llist **stack, t_llist **s2); //no s2);
 
 //func_revrot.c
-int		rrr(tt_list **stack1, tt_list **stack2);
-int		rrb(tt_list **stack, tt_list **s2); //no s2
-int		rra(tt_list **stack, tt_list **s2); //no s2);
+int		rrr(t_llist **stack1, t_llist **stack2);
+int		rrb(t_llist **stack, t_llist **s2); //no s2
+int		rra(t_llist **stack, t_llist **s2); //no s2);
 
 //func_rotate.c
-int		rb(tt_list **stack, tt_list **s2); //no s2);
-int		ra(tt_list **stack,  tt_list **s2); //no s2);
-int		rr(tt_list **stack1, tt_list **stack2);
+int		rb(t_llist **stack, t_llist **s2); //no s2);
+int		ra(t_llist **stack, t_llist **s2); //no s2);
+int		rr(t_llist **stack1, t_llist **stack2);
 
 //dbg_func.c
-void	print_list(tt_list *lst);
-void	print_itarget(i_list *lst);
-int		check_if_sorted_final(tt_list *lst);
+void	print_list(t_llist *lst);
+void	print_itarget(t_inst *lst);
+int		check_if_sorted_final(t_llist *lst);
 
 #endif

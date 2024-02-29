@@ -6,13 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/23 16:43:56 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/02/29 12:10:29 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
+void	run_mood1(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr)
 {
 	while (i_target->s1_rotate_up != 0)
 	{
@@ -35,7 +35,7 @@ void	run_mood1(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 	pb(stack1, stack2);
 }
 
-void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int d2)
+void	run_mood2(t_llist **stack1, t_llist **stack2, t_inst *i_target, int d2)
 {
 	while (i_target->s1_rotate_down != 0)
 	{
@@ -58,7 +58,7 @@ void	run_mood2(tt_list **stack1, tt_list **stack2, i_list *i_target, int d2)
 	pb(stack1, stack2);
 }
 
-void	rotate_2(tt_list **s1, tt_list **s2, i_list *it, int mode)
+void	rotate_2(t_llist **s1, t_llist **s2, t_inst *it, int mode)
 {
 	if (mode == 3)
 	{
@@ -82,7 +82,7 @@ void	rotate_2(tt_list **s1, tt_list **s2, i_list *it, int mode)
 	}
 }
 
-void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
+void	run_mood3(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr)
 {
 	rotate_2(stack1, stack2, i_target, 3);
 	while (i_target->s1_rotate_up != 0)
@@ -106,7 +106,7 @@ void	run_mood3(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
 	pb(stack1, stack2);
 }
 
-void	run_mood4(tt_list **stack1, tt_list **stack2, i_list *i_target, int dr)
+void	run_mood4(t_llist **stack1, t_llist **stack2, t_inst *i_target, int dr)
 {
 	rotate_2(stack1, stack2, i_target, 4);
 	while (i_target->s1_rotate_down != 0)
