@@ -79,6 +79,16 @@ int	fill_stack1(char **str, t_llist **stack1)
 	return (1);
 }
 
+void	sort_2_3(t_llist **stack1, int size)
+{
+	if (size == 2)
+	{
+		sort_2(stack1);
+		return ;
+	}
+	sort_3(stack1);
+}
+
 int	ft_parse_input(int argc, char *argv[], t_llist **stack1)
 {
 	t_llist	*head;
@@ -100,9 +110,9 @@ int	ft_parse_input(int argc, char *argv[], t_llist **stack1)
 	head = *stack1;
 	if (check_if_sorted(head) || ft_llstsize(head) == 1)
 		return (ft_exit_ps(stack1, NULL, NULL, 0));
-	if (ft_llstsize(head) == 2)
+	if (ft_llstsize(head) <= 3)
 	{
-		sort_2(stack1);
+		sort_2_3(stack1, ft_llstsize(head));
 		return (ft_exit_ps(stack1, NULL, NULL, 0));
 	}
 	return (1);

@@ -50,6 +50,7 @@ int		split_parse_fill_argv(char *argv, t_llist **stack1);
 int		more_args(int argc, char *argv[], t_llist **stack1);
 
 //sceleton.c
+void	sort_2_3(t_llist **stack1, int size);
 int		ft_parse_input(int argc, char *argv[], t_llist **nlist);
 int		fill_stack1(char **str, t_llist **nlist);
 void	push_to_stack2(t_llist **stack1, t_llist **stack2);
