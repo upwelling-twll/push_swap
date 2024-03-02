@@ -14,8 +14,7 @@ SRCS = func_push.c func_swap.c func_revrot.c func_rotate.c optimize_ins.c	\
 	sort_small.c sort_mode.c instr_clcltA.c sortingA.c find_place3.c	\
 	instr_clcltB.c sortingB.c more_args.c sceleton.c exit.c main.c
 
-SRCS_BONUS = checker.c instructions.c list_operations.c sortingA.c	\
-	sortingB.c get_next_line.c get_next_line_utils.c
+SRCS_BONUS = checker.c get_next_line.c get_next_line_utils.c
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)

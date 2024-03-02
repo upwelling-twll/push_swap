@@ -9,7 +9,8 @@
 /*   Updated: 2023/10/05 18:02:01 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "ft_printf.h"
+
+#include "libft.h"
 
 void	ft_putnbr_uint(unsigned int n)
 {

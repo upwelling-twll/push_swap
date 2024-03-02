@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:47:01 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/08 14:50:34 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/02 14:05:26 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string.h>
 # include <limits.h>
 # include <stdint.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
@@ -24,6 +25,19 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+//printf
+int		ft_numlen(long long num);
+size_t	ft_putstrlen(char *s);
+int		ft_print_d(int str);
+int		ft_print_p(unsigned long long num);
+int		ft_printf(const char *format, ...);
+void	ft_putnbr_int(int n);
+int		ft_putcharlen(char c);
+int		ft_printf(const char *format, ...);
+int		ft_print_u(unsigned int num);
+int		thex(unsigned int num, int key);
+
+//libft
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
