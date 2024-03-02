@@ -1,8 +1,8 @@
-#include "push_swap.h"
-#include "checker_inc.c"
+#include "../rsc_push_swap/push_swap.h"
+//#include "checker_inc.c"
 //#include "checker_flag.c"
-#include "libft/ft_atoi.c"
-
+#include "../libft/ft_atoi.c"
+#include "checker.h"
 
 int main(int argc, char *argv[])
 {
@@ -47,8 +47,6 @@ int main(int argc, char *argv[])
 	}
 	head->prev = lst; 
 	lst->next  = head;
-	// printf("______ this is the stack1______\n");
-	// print_list(head);
 //1) add instructions from stdin to the list instr *oper;
 	oper = malloc(sizeof(t_chins));
 	ins = read_stdin(0);
@@ -64,35 +62,15 @@ int main(int argc, char *argv[])
 		oper = oper->next;
 	}
 	oper = hoper;
-	// printf("stack1 adr:%p\n", head);
-	// printf("stack2 adr:%p\n", stack2);
-	// printf("instr adr:%p\n", hoper);
-//2) process instructions from the list by alidation and apply
-	// printf("BEFORE instructions---** stack1 **---\n");
-	// print_list(head);
-	// printf("BEFORE instructions====stack2=====\n");
-	// print_list(stack2);
 	i = 0;
 	while (oper != NULL)
 	{
-		if ((i = valid_ins(oper->content)) >= 0)
+		if (!(oper_valid_apply(oper, &head, &stack2, hoper)))
 		{
-			if (!(apply_ins(&head, &stack2, pssbl_op[i])))
-				return (ft_exit(head, stack2, hoper, 2)); // maybe replace lst to head
+			return (0);
 		}
-		else
-			return (ft_exit(head, stack2, hoper, 1)); // maybe replace lst to head
 		oper = oper ->next;
-		// printf("---------------------------------\n");
-		// 	printf("		stack1\n");
-		// 	print_list(head);
-		// 	printf("		stack2\n");
-		// 	print_list(stack2);
 	}
-	// printf("RESULT---** stack1 **---\n");
-	// print_list(head);
-	// printf("RESULT====stack2=====\n");
-	// print_list(stack2);
 	if (!(check_if_sorted(head)) || ft_llstsize(stack2) != 0)
 		write(1, "KO\n", 3);
 	else

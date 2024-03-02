@@ -1,7 +1,8 @@
 #ifndef CHECKER_H
 # define CHECKER_H
-# include "libft/libft.h"
-#include "get_next_line.h"
+# include "../libft/libft.h"
+# include "../rsc_push_swap/push_swap.h"
+#include "../rsc_gnl/get_next_line.h"
 // #include "libft/ft_strdup.c"
 // #include "libft/ft_memcpy.c"
 // #include "libft/ft_strlen.c"
@@ -12,28 +13,13 @@
 # include <stdlib.h>
 # include <stdio.h>
 
+typedef int	(*ins_func)(t_llist **, t_llist **);
+
 typedef struct in_list
 {
 	char			*content;
 	struct in_list	*next;
 }					t_chins;
-
-typedef struct s_llist
-{
-	struct s_llist	*prev;
-	int				data;
-	struct s_llist	*next;
-}					t_llist;
-
-typedef struct s_inst
-{
-	int		target;
-	int		s1_rotate_up;
-	int		s1_rotate_down;
-	int		s2_rotate_up;
-	int		s2_rotate_down;
-	int		mood;
-}					t_inst;
 
 int ft_llstsize(t_llist *lst);
 int ft_strcmp(char *s1, char *s2);
@@ -46,12 +32,13 @@ char *read_stdin(int fd);
 int check_overflow(const char *str, int flag, int i);
 int verify_atoi(const char *str);
 int verify_argv(t_llist *args_lst, char *argv);
-void del_stack_lst(t_llist *lst);
+void del_stack_lst_ch(t_llist *lst);
 int ft_exit(t_llist *st1, t_llist *st2, t_chins *oper, int display);
 void print_list(t_llist *lst);
 t_llist *ft_llstlast(t_llist *lst);
 t_llist *init_list(int i);
 int check_if_sorted(t_llist *lst);
+int	oper_valid_apply(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper);
 
 
  t_llist	*add_node(t_llist *nlist, int data);

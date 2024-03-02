@@ -1,10 +1,11 @@
-#include "push_swap.h"
-#include "libft/ft_strdup.c"
-#include "libft/ft_memcpy.c"
-#include "libft/ft_strlen.c"
-#include "libft/ft_strchr.c"
-#include "libft/ft_strlcpy.c"
-#include "libft/ft_isdigit.c"
+#include "../rsc_push_swap/push_swap.h"
+#include "../libft/ft_strdup.c"
+#include "../libft/ft_memcpy.c"
+#include "../libft/ft_strlen.c"
+#include "../libft/ft_strchr.c"
+#include "../libft/ft_strlcpy.c"
+#include "../libft/ft_isdigit.c"
+#include "checker.h" 
 
 #  define SA "sa" //1
 #  define SB "sb" //2
@@ -25,12 +26,6 @@ typedef int	(*ins_func)(t_llist **, t_llist **);
 
 //this a definition of arrey of function pointers to instruction finctions;
 ins_func	pssbl_op[]={sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
-
-typedef struct in_list
-{
-	char			*content;
-	struct in_list	*next;
-}					t_chins;
 
 int	ft_strcmp(char *s1, char *s2)
 {
@@ -223,7 +218,7 @@ int	verify_argv(t_llist *args_lst, char *argv)
 	return(1);
 }
 
-void	del_stack_lst(t_llist *lst)
+void	del_stack_lst_ch(t_llist *lst)
 {
 	t_llist	*tmp;
 	t_llist	*tmp2;
@@ -247,10 +242,10 @@ int	ft_exit(t_llist *st1, t_llist *st2, t_chins *oper, int display)
 {
 	printf("\nmission aborted with flag %i\n", display);
 	if (st1)
-		del_stack_lst(st1);
+		del_stack_lst_ch(st1);
 		printf("s1 deleted\n");
 	if (st2)
-		del_stack_lst(st2);
+		del_stack_lst_ch(st2);
 		printf("s2 deleted\n");
 	if (oper)
 		del_instr_list(oper);
@@ -259,4 +254,18 @@ int	ft_exit(t_llist *st1, t_llist *st2, t_chins *oper, int display)
 	else if (display == 2)
 		write(1, "KO\n", 3);
 	return (0);
+}
+
+int	oper_valid_apply(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper)
+{
+	int	i;
+
+	if ((i = valid_ins(oper->content)) >= 0)
+	{
+		if (!(apply_ins(head, stack2, pssbl_op[i])))
+			return (ft_exit(*head, *stack2, hoper, 2)); // maybe replace lst to head
+	}
+	else
+		return (ft_exit(*head, *stack2, hoper, 1)); // maybe replace lst to head
+	return (1);
 }

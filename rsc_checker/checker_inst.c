@@ -1,16 +1,4 @@
 #include "checker.h" 
-//#include "checker_inc.c"
- 
- t_llist	*add_node(t_llist *nlist, int data)
-{
-	t_llist	*new;
-
-	new = malloc(sizeof(t_llist));
-	new -> prev = nlist;
-	new -> data = data;
-	new -> next = NULL;
-	return (new);
-}
 
 t_llist	*delfirst(t_llist  *lst)
 {

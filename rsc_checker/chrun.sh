@@ -1,0 +1,3 @@
+gcc checker.c checker_inc.c checker_inst.c ../rsc_push_swap/optimize_ins.c ../rsc_push_swap/find_place3.c ../rsc_push_swap/sort_mode.c ../rsc_push_swap/instr_clcltA.c ../rsc_push_swap/instr_clcltB.c ../rsc_push_swap/maxmin_ins.c ../rsc_push_swap/list_operations.c ../rsc_push_swap/stack_analysis.c ../rsc_push_swap/sortingA.c ../rsc_push_swap/sortingB.c ../rsc_gnl/get_next_line.c ../rsc_gnl/get_next_line_utils.c -g3 -fsanitize=address -o checker
+
+#-g -fsanitize=address
