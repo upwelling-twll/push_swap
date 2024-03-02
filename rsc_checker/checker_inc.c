@@ -5,6 +5,7 @@
 #include "../libft/ft_strchr.c"
 #include "../libft/ft_strlcpy.c"
 #include "../libft/ft_isdigit.c"
+# include "../libft/ft_split.c"
 #include "checker.h" 
 
 #  define SA "sa" //1
@@ -156,68 +157,6 @@ char	*read_stdin(int fd)
 	return (str);
 }
 
-int	check_overflow(const char *str, int flag, int i)
-{
-	long long	n;
-	long long	cn;
-
-	n = 0;
-	cn = 0;
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		if (str[i] >= '0' && str[i] <= '9')
-			n = n * 10 + (str[i] - '0');
-		if (n*flag > 2147483647 || n*flag < -2147483648)
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
-int	verify_atoi(const char *str)
-{
-	long long	i;
-	long long	n;
-	long long	flag;
-
-	i = 0;
-	flag = 1;
-	if (str[i] == '-' && str[i + 1] != '\0')
-		i++;
-	while(str[i])
-	{
-		if (!(ft_isdigit(str[i])))
-			return(0);
-		i++;
-	}
-	i = 0;
-	if (str[i] == '-')
-	{
-		flag = -1;
-		i++;
-	}
-	return (check_overflow(str, flag, i));
-}
-
-int	verify_argv(t_llist *args_lst, char *argv)
-{
-	int	num;
-	int	size;
-
-	if(!(verify_atoi(argv)))
-		return (0);
-	num = ft_atoi(argv);
-	size = ft_llstsize(args_lst);
-	while(size)
-	{
-		if (args_lst->data == num)
-			return (0);
-		args_lst = args_lst->next;
-		size--;
-	}
-	return(1);
-}
-
 void	del_stack_lst_ch(t_llist *lst)
 {
 	t_llist	*tmp;
@@ -267,5 +206,88 @@ int	oper_valid_apply(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *h
 	}
 	else
 		return (ft_exit(*head, *stack2, hoper, 1)); // maybe replace lst to head
+	return (1);
+}
+
+int	split_parse_fill_argv_ch(char *argv, t_llist **stack1)
+{
+	char	**str;
+
+	str = ft_split(argv, ' ');
+	if (!(str))
+		return (ft_exit(*stack1, NULL, NULL, 1));
+	if (!(fill_stack1_argv(str, stack1)))
+	{
+		ft_cleanstr_ext(str, ft_splsize(str));
+		return (ft_exit(*stack1, NULL, NULL, 1));
+	}
+	return (1);
+}
+
+int	more_args_ch(int argc, char *argv[], t_llist **stack1)
+{
+	argc--;
+	argv++;
+	while (argc >= 2)
+	{
+		if (!(split_parse_fill_argv_ch(*argv, stack1)))
+			return (0);
+		argc--;
+		argv++;
+	}
+	return (1);
+}
+
+int	fill_num_stack(char **str, t_llist **stack1)
+{
+	t_llist	*head;
+	char	**str_h;
+
+	str_h = str;
+	(*stack1)->prev = *stack1;
+	(*stack1)->data = ft_atoi(*str);
+	(*stack1)->next = *stack1;
+	head = *stack1;
+	str++;
+	while (*str != NULL)
+	{
+		if ((!(verify_argv(head, *str))))
+		{
+			ft_cleanstr_ext(str, ft_splsize(str));
+			return (ft_exit(*stack1, NULL, NULL, 1));
+		}
+		(*stack1)->next = add_node(*stack1, ft_atoi(*str));
+		head->prev = *stack1;
+		str++;
+		*stack1 = (*stack1)->next;
+		(*stack1)->next = head;
+	}
+	head->prev = *stack1;
+	(*stack1)->next = head;
+	*stack1 = head;
+	str = str_h;
+	ft_cleanstr_ext(str, ft_splsize(str));
+	return (1);
+}
+
+int	ft_parse_input_ch(int argc, char *argv[], t_llist **stack1)
+{
+	t_llist	*head;
+	char	**str;
+
+	str = (check_frst_arg(argc, argv, stack1));
+	if (!(str))
+		return (0);
+	if ((!(verify_argv(NULL, *str))))
+	{
+		ft_cleanstr_ext(str, ft_splsize(str));
+		return (ft_exit(*stack1, NULL, NULL, 1));
+	}
+	if (!fill_num_stack(str, stack1))
+		return (0);
+	argv++;
+	if (!(more_args_ch(argc, argv, stack1)))
+		return (0);
+	head = *stack1;
 	return (1);
 }

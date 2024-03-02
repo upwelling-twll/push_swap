@@ -39,7 +39,7 @@ t_llist *ft_llstlast(t_llist *lst);
 t_llist *init_list(int i);
 int check_if_sorted(t_llist *lst);
 int	oper_valid_apply(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper);
-
+int	ft_parse_input_ch(int argc, char *argv[], t_llist **stack1);
 
  t_llist	*add_node(t_llist *nlist, int data);
 t_llist	*delfirst(t_llist  *lst);
