@@ -16,13 +16,5 @@ int main(int argc, char *argv[])
 		return (0);
 	if (!(parse_instr(&lst, &oper)))
 		return (0);
-	if (check_if_sorted(lst) && ft_olstsize(oper))
-		return(ft_exit(lst, NULL, oper, 2));
 	return(apply_instructions(&lst, &stack2, oper));
 }
-
-// in_cmd="#" input="1 2" return KO
-// in_cmd="123" input="1 2" return KO
-// in_cmd="@" input="1 2" return KO -> error
-
-//!!!!if sorted still apply instructions
