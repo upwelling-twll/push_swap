@@ -76,7 +76,13 @@ void	*check_frst_arg(int argc, char *argv[], t_llist **stack1)
 	}
 	argv++;
 	str = ft_split(*argv, ' ');
-	if (!(str) || *str == NULL)
+	if (!(str))
+	{
+		free(*stack1);
+		write(2, "Error\n", 6);
+		return (0);
+	}
+	if (!(*str))
 	{
 		free(*stack1);
 		write(2, "Error\n", 6);

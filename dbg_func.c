@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "rsc_push_swap/push_swap.h"
 
 void	print_itarget(t_inst *lst)
 {

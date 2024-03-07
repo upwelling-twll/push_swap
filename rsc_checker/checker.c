@@ -1,57 +1,28 @@
 #include "../rsc_push_swap/push_swap.h"
-//#include "checker_inc.c"
-//#include "checker_flag.c"
 #include "../libft/ft_atoi.c"
 #include "checker.h"
 
 int main(int argc, char *argv[])
 {
-	char *ins;
 	t_llist	*lst;
-	t_llist	*head;
 	t_llist	*stack2;
 	t_chins	*oper;
-	t_chins	*hoper;
-	int i;
 
-	i = 0;
 	if (argc < 2)
 		return (0);
 	lst = malloc(sizeof(t_llist));
-	//stack2 = malloc(sizeof(stack2));
-	// if (is_flag(*argv))
-	// {
-	// 	process_flag_input(argv);
-	// }
+	stack2 = NULL;
 	if (!(ft_parse_input_ch(argc, argv, &lst)))
 		return (0);
-//1) add instructions from stdin to the list instr *oper;
-	oper = malloc(sizeof(t_chins));
-	ins = read_stdin(0);
-	oper = add_node_ins(oper,ins);
-	hoper = oper;
-	while (ins != NULL)
-	{
-		free(ins);
-		ins = read_stdin(0);
-		if (!ins)
-			break;
-		oper->next = add_node_ins(oper, ins);
-		oper = oper->next;
-	}
-	free(ins);
-	oper = hoper;
-	i = 0;
-	while (oper != NULL)
-	{
-		if (!(oper_valid_apply(oper, &head, &stack2, hoper)))
-			return (0);
-		oper = oper ->next;
-	}
-	if (!(check_if_sorted(head)) || ft_llstsize(stack2) != 0)
-		write(1, "KO\n", 3);
-	else
-		write(1, "OK\n", 3);
-	ft_exit(head, stack2,oper, 0);
-	return (0);
+	if (!(parse_instr(&lst, &oper)))
+		return (0);
+	if (check_if_sorted(lst) && ft_olstsize(oper))
+		return(ft_exit(lst, NULL, oper, 2));
+	return(apply_instructions(&lst, &stack2, oper));
 }
+
+// in_cmd="#" input="1 2" return KO
+// in_cmd="123" input="1 2" return KO
+// in_cmd="@" input="1 2" return KO -> error
+
+//!!!!if sorted still apply instructions

@@ -16,6 +16,8 @@ int	check_if_sorted(t_llist *lst)
 {
 	t_llist	*head;
 
+	if (!lst)
+		return (0);
 	head = lst;
 	while (lst->next != head)
 	{

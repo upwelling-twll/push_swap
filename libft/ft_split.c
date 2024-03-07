@@ -92,7 +92,10 @@ static char	**ft_fillstr(char **str, const char *s, char c)
 		str[i][j] = '\0';
 		i++;
 	}
-	str[i] = NULL;
+	if (i == 0)
+		return(NULL);
+	else
+		str[i] = NULL;
 	return (str);
 }
 
@@ -105,6 +108,10 @@ char	**ft_split(char const *s, char c)
 	str = malloc(sizeof(char *) * (ft_sepamount(s, c) + 1));
 	if (str == NULL)
 		return (NULL);
-	ft_fillstr(str, s, c);
+	if (ft_fillstr(str, s, c) == NULL)
+	{
+		free(str);
+		str = NULL;
+	}
 	return (str);
 }
