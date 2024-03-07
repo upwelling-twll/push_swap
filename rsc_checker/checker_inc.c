@@ -32,7 +32,7 @@ char	*other_str(char *str, t_llist *st1, int flag)
 {
 	if (flag && (!str) && (ft_llstsize(st1) == 1 || check_if_sorted(st1)))
 	{
-		free (str);
+		free(str);
 		return("OK");
 	}
 	free(str);

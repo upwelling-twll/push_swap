@@ -30,21 +30,24 @@ ins_func	pssbl_op[]={sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
 
 int	apply_ins(t_llist **stack1, t_llist **stack2, ins_func ins_recived)
 {
-	if (ins_recived == rrb)
+	if (ins_recived == rrb || ins_recived == rb || ins_recived == sb)
 	{
 		if (ins_recived(stack2, stack1))
 			return (1);
-		return (0);
+		return (1);
+		//return (0);
 	}
-	else if (ins_recived == rb)
+	else if (ins_recived == rr || ins_recived == pa || ins_recived == ss)
 	{
-		if (ins_recived(stack2, stack1))
+		if (ins_recived(stack1, stack2))
 			return (1);
-		return (0);
+		return (1);
+		//return (0);
 	}
 	if (ins_recived(stack1, stack2))
 		return (1);
-	return (0);
+	return (1);
+	//return (0);
 }
 
 int	valid_ins(char *ins)
