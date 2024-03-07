@@ -1,4 +1,16 @@
-#include "checker.h" 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "checker.h"
 
 int	ft_olstsize(t_chins *lst)
 {
@@ -17,28 +29,24 @@ int	ft_olstsize(t_chins *lst)
 	return (i);
 }
 
-
 void	print_list_ins(t_chins *lst)
 {
 	if (lst == NULL)
-		return;
+		return ;
 	while (lst != NULL)
 		lst = lst -> next;
 }
-
-
 
 char	*other_str(char *str, t_llist *st1, int flag)
 {
 	if (flag && (!str) && (ft_llstsize(st1) == 1 || check_if_sorted(st1)))
 	{
 		free(str);
-		return("OK");
+		return ("OK");
 	}
 	free(str);
 	return (NULL);
 }
-
 
 int	fill_str(t_llist **stack1, t_llist *head, char **str, char **str_h)
 {
@@ -53,4 +61,3 @@ int	fill_str(t_llist **stack1, t_llist *head, char **str, char **str_h)
 	(*stack1)->next = head;
 	return (1);
 }
-

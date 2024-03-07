@@ -1,8 +1,20 @@
-#include "checker.h" 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	swap(t_llist **stack,  t_llist **s2)
+#include "checker.h"
+
+int	swap(t_llist **stack, t_llist **s2)
 {
-	int tmp;
+	int	tmp;
 
 	if (!(*stack))
 		return (0);

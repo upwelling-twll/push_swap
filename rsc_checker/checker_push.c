@@ -1,11 +1,23 @@
-#include "checker.h" 
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	move_first(t_llist **stack1, t_llist **stack2) //pb
+#include "checker.h"
+
+void	move_first(t_llist **stack1, t_llist **stack2)
 {
-	int	tmp;
+	int		tmp;
 	t_llist	*tmp_s2;
-	t_llist *new_head;
-	t_llist *old_last;
+	t_llist	*new_head;
+	t_llist	*old_last;
 
 	tmp = (*stack1)->data;
 	if (*stack2 == NULL)
@@ -17,12 +29,12 @@ void	move_first(t_llist **stack1, t_llist **stack2) //pb
 	else
 	{
 		old_last = ft_llstlast(*stack2);
-		new_head =  add_node(*stack2, tmp);
+		new_head = add_node(*stack2, tmp);
 		old_last->next = new_head;
 		new_head->next = *stack2;
 		new_head->prev = old_last;
 		(*stack2)->prev = new_head;
-		*stack2= new_head;
+		*stack2 = new_head;
 	}
 	*stack1 = delfirst(*stack1);
 }
@@ -50,7 +62,7 @@ int	pb(t_llist **stack1, t_llist **stack2)
 {
 	if (!(*stack1))
 		return (0);
-	if ((*stack2)== NULL)
+	if ((*stack2) == NULL)
 	{
 		pb_first_ch(stack1, stack2);
 		return (1);

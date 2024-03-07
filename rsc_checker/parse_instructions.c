@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exit.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
+/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "checker.h"
 
 int	ft_strcmp(char *s1, char *s2)
@@ -60,14 +72,14 @@ char	*read_stdin(int fd, t_llist *st1, int flag)
 
 int	parse_instr(t_llist **lst, t_chins **oper)
 {
-	char 	*ins;
+	char	*ins;
 	t_chins	*hoper;
 
 	ins = read_stdin(0, *lst, 1);
 	if (!ins)
-		return(ft_exit(*lst, NULL, NULL,  2));
+		return (ft_exit(*lst, NULL, NULL, 2));
 	else if (!(ft_strcmp(ins, "OK")))
-		return(ft_exit(*lst, NULL, NULL,  3));
+		return (ft_exit(*lst, NULL, NULL, 3));
 	*oper = add_node_ins(*oper, ins);
 	hoper = *oper;
 	while (ins != NULL)
@@ -75,7 +87,7 @@ int	parse_instr(t_llist **lst, t_chins **oper)
 		free(ins);
 		ins = read_stdin(0, *lst, 0);
 		if (!ins)
-			break;
+			break ;
 		(*oper)->next = add_node_ins(*oper, ins);
 		*oper = (*oper)->next;
 	}
