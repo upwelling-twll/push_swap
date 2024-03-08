@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:45:01 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 18:05:16 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:11:07 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,18 @@ static size_t	ft_singleword(const char *s, const char c)
 	return (wordlen);
 }
 
-static char	**ft_cleanstr(char **arr, size_t n)
+static char	**ft_cleanstr(char **arr, size_t n, int flag)
 {
 	size_t	i;
 
+	if (flag)
+	{
+		if (n == 0)
+			return (NULL);
+		else
+			arr[n] = NULL;
+		return (arr);
+	}
 	if (arr)
 	{
 		i = 0;
@@ -81,7 +89,7 @@ static char	**ft_fillstr(char **str, const char *s, char c)
 			continue ;
 		str[i] = malloc(sizeof(char) * ft_singleword(s, c) + 1);
 		if (str[i] == NULL)
-			return (ft_cleanstr(str, i));
+			return (ft_cleanstr(str, i, 0));
 		j = 0;
 		while (*s != '\0' && *s != c)
 		{
@@ -92,7 +100,7 @@ static char	**ft_fillstr(char **str, const char *s, char c)
 		str[i][j] = '\0';
 		i++;
 	}
-	str = split_ret(str, i);
+	str = ft_cleanstr(str, i, 1);
 	return (str);
 }
 

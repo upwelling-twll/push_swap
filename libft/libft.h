@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:47:01 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 18:01:01 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:11:47 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void		*ft_memcpy(void *dst, const void *src, size_t n);
 void		*ft_memmove(void *dst, const void *src, size_t n);
 size_t		ft_strlcpy(char *dst, const char *src,
 				size_t dstsize);
-static char	**split_ret(char **str, size_t i);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *str);
 void		*ft_memchr(const void *s, int c, size_t n);
