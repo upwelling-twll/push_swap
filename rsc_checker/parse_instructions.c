@@ -35,7 +35,7 @@ int	ft_strcmp(char *s1, char *s2)
 	return (-1);
 }
 
-t_chins	*add_node_ins(t_chins *lst, char *ins)
+t_chins	*add_node_ins(char *ins)
 {
 	t_chins	*new;
 
@@ -49,7 +49,6 @@ char	*read_stdin(int fd, t_llist *st1, int flag)
 {
 	char	*str;
 	char	*res;
-	size_t	len;
 
 	str = get_next_line(fd);
 	if (str)
@@ -80,7 +79,7 @@ int	parse_instr(t_llist **lst, t_chins **oper)
 		return (ft_exit(*lst, NULL, NULL, 2));
 	else if (!(ft_strcmp(ins, "OK")))
 		return (ft_exit(*lst, NULL, NULL, 3));
-	*oper = add_node_ins(*oper, ins);
+	*oper = add_node_ins(ins);
 	hoper = *oper;
 	while (ins != NULL)
 	{
@@ -88,7 +87,7 @@ int	parse_instr(t_llist **lst, t_chins **oper)
 		ins = read_stdin(0, *lst, 0);
 		if (!ins)
 			break ;
-		(*oper)->next = add_node_ins(*oper, ins);
+		(*oper)->next = add_node_ins(ins);
 		*oper = (*oper)->next;
 	}
 	*oper = hoper;

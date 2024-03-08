@@ -15,7 +15,6 @@
 void	move_first(t_llist **stack1, t_llist **stack2)
 {
 	int		tmp;
-	t_llist	*tmp_s2;
 	t_llist	*new_head;
 	t_llist	*old_last;
 

@@ -10,14 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rsc_push_swap/push_swap.h"
-#include "../libft/ft_strdup.c"
-#include "../libft/ft_memcpy.c"
-#include "../libft/ft_strlen.c"
-#include "../libft/ft_strchr.c"
-#include "../libft/ft_strlcpy.c"
-#include "../libft/ft_isdigit.c"
-#include "../libft/ft_split.c"
+//#include "../rsc_push_swap/push_swap.h"
+// #include "../libft/ft_strdup.c"
+// #include "../libft/ft_memcpy.c"
+// #include "../libft/ft_strlen.c"
+// #include "../libft/ft_strchr.c"
+// #include "../libft/ft_strlcpy.c"
+// #include "../libft/ft_isdigit.c"
+// #include "../libft/ft_split.c"
 #include "checker.h"
 
 #define SA "sa" //1
@@ -91,9 +91,7 @@ int	proc_all(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper)
 int	apply_instructions(t_llist **lst, t_llist **stack2, t_chins *oper)
 {
 	t_chins	*hoper;
-	int		i;
 
-	i = 0;
 	hoper = oper;
 	while (oper != NULL)
 	{

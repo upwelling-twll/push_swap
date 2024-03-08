@@ -68,7 +68,6 @@ int	fill_num_stack(char **str, t_llist **stack1)
 
 int	ft_parse_input_ch(int argc, char *argv[], t_llist **stack1)
 {
-	t_llist	*head;
 	char	**str;
 
 	str = (check_frst_arg(argc, argv, stack1));
@@ -89,6 +88,5 @@ int	ft_parse_input_ch(int argc, char *argv[], t_llist **stack1)
 	argv++;
 	if (!(more_args_ch(argc, argv, stack1)))
 		return (0);
-	head = *stack1;
 	return (1);
 }

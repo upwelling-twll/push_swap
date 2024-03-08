@@ -15,9 +15,15 @@
 int	swap(t_llist **stack, t_llist **s2)
 {
 	int	tmp;
+	int	data;
 
 	if (!(*stack))
 		return (0);
+	if (s2)
+	{
+		data = (*s2)->data;
+		(*s2)->data = data;
+	}
 	tmp = (*stack)->data;
 	(*stack)->data = (*stack)->next->data;
 	(*stack)->next->data = tmp;

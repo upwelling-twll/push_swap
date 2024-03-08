@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../rsc_push_swap/push_swap.h"
-#include "../libft/ft_atoi.c"
+// #include "../libft/ft_atoi.c"
 #include "checker.h"
 
 int	main(int argc, char *argv[])

@@ -30,7 +30,7 @@ typedef struct t_inslist
 //apply_instructions.c
 int		apply_ins(t_llist **stack1, t_llist **stack2, t_insfunc ins_recived);
 int		valid_ins(char *ins);
-int		proc_all(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper);
+int		proc_all(t_chins *oper, t_llist **head, t_llist **st2, t_chins *hoper);
 int		apply_instructions(t_llist **lst, t_llist **stack2, t_chins *oper);
 
 //exit_del.c
@@ -47,7 +47,7 @@ int		fill_str(t_llist **stack1, t_llist *head, char **str, char **str_h);
 
 //parse_instructions.c
 int		ft_strcmp(char *s1, char *s2);
-t_chins	*add_node_ins(t_chins *lst, char *ins);
+t_chins	*add_node_ins(char *ins);
 char	*read_stdin(int fd, t_llist *st1, int flag);
 int		parse_instr(t_llist **lst, t_chins **oper);
 
