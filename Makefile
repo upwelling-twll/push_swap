@@ -36,11 +36,8 @@ bonus:  $(NAME) $(NAME_BONUS)
 $(NAME): libft $(OBJS)
 	@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) libft/*.o
 
-$(NAME_BONUS): libft $(OBJS_BONUS)
-	@ $(CC) $(FLAGS) -o $(OBJS_BONUS) libft/*.o
-
-bonus/%.o : bonus/%.c ./rsc_checker/checker.h ./libft/libft.h
-	$(CC) $(CFLAGS) -c $< -o $@
+$(NAME_BONUS): $(OBJS_BONUS)
+	@ $(CC) $(FLAGS) -o $(NAME_BONUS) $(OBJS_BONUS) libft/*.o
 
 libft:
 	@ make -C libft/
