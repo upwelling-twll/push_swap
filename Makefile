@@ -9,17 +9,27 @@ CC = cc
 FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
-SRCS = ./rsc_push_swap/func_push.c ./rsc_push_swap/func_swap.c ./rsc_push_swap/func_revrot.c ./rsc_push_swap/func_rotate.c ./rsc_push_swap/optimize_ins.c \
-       ./rsc_push_swap/maxmin_ins.c ./rsc_push_swap/stack_analysis.c ./rsc_push_swap/list_operations.c ./rsc_push_swap/verify.c \
-       ./rsc_push_swap/sort_small.c ./rsc_push_swap/sort_mode.c ./rsc_push_swap/instr_clcltA.c ./rsc_push_swap/sortingA.c \
-       ./rsc_push_swap/find_place3.c ./rsc_push_swap/instr_clcltB.c ./rsc_push_swap/sortingB.c ./rsc_push_swap/more_args.c \
-       ./rsc_push_swap/sceleton.c ./rsc_push_swap/exit.c ./rsc_push_swap/main.c
+SRCS = ./rsc_push_swap/func_push.c ./rsc_push_swap/func_swap.c ./rsc_push_swap/func_revrot.c \
+		./rsc_push_swap/func_rotate.c ./rsc_push_swap/optimize_ins.c \
+		./rsc_push_swap/maxmin_ins.c ./rsc_push_swap/stack_analysis.c \
+		./rsc_push_swap/list_operations.c ./rsc_push_swap/verify.c \
+		./rsc_push_swap/sort_small.c ./rsc_push_swap/sort_mode.c \
+		 ./rsc_push_swap/instr_clcltA.c ./rsc_push_swap/sortingA.c \
+		./rsc_push_swap/find_place3.c ./rsc_push_swap/instr_clcltB.c \
+		./rsc_push_swap/sortingB.c ./rsc_push_swap/more_args.c \
+		./rsc_push_swap/sceleton.c ./rsc_push_swap/exit.c ./rsc_push_swap/main.c
 
-SRCS_BONUS = ./rsc_gnl/get_next_line.c ./rsc_gnl/get_next_line_utils.c ./rsc_checker/checker_push.c \
-             ./rsc_checker/checker_swap.c ./rsc_checker/checker_revrot.c ./rsc_checker/checker_rotate.c \
+SRCS_BONUS = ./rsc_checker/checker_push.c ./rsc_checker/checker_swap.c ./rsc_checker/checker_revrot.c \
+			 ./rsc_checker/checker_rotate.c \
              ./rsc_checker/exit_del.c ./rsc_checker/parse_instructions.c ./rsc_checker/parse_nums.c \
-             ./rsc_checker/apply_instructions.c ./rsc_checker/checker.c ./rsc_checker/checker_inc.c
-
+             ./rsc_checker/apply_instructions.c ./rsc_checker/checker.c ./rsc_checker/checker_inc.c \
+			 ./rsc_push_swap/sortingB.c ./rsc_push_swap/sortingA.c \
+			 ./rsc_push_swap/stack_analysis.c ./rsc_push_swap/list_operations.c \
+			 ./rsc_push_swap/maxmin_ins.c  ./rsc_push_swap/instr_clcltB.c \
+			./rsc_push_swap/instr_clcltA.c ./rsc_push_swap/sort_mode.c \
+			./rsc_push_swap/find_place3.c ./rsc_push_swap/optimize_ins.c \
+			./rsc_push_swap/more_args.c ./rsc_push_swap/verify.c \
+			./rsc_push_swap/exit.c ./rsc_push_swap/sort_small.c \
 
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
@@ -34,8 +44,8 @@ bonus: $(NAME_BONUS)
 $(NAME): libft $(OBJS)
 	@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) libft/*.o
 
-$(NAME_BONUS): libft $(OBJS_BONUS) $(OBJS)
-	@ $(CC) $(FLAGS) -o $(OBJS_BONUS) $(OBJS) libft/*.o
+$(NAME_BONUS): libft $(OBJS_BONUS)
+	@ $(CC) $(FLAGS) -o $(OBJS_BONUS) libft/*.o
 
 libft:
 	@ make -C libft/

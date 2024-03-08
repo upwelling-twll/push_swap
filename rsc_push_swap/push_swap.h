@@ -6,14 +6,13 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/02 15:10:16 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:38:19 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "../libft/libft.h"
-# include "../rsc_gnl/get_next_line.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>

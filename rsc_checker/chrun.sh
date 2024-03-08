@@ -1,4 +1,4 @@
-gcc -c ../dbg_func.c
+gcc -c ../dbg_func.c 
 gcc -c checker.c
 gcc -c checker_inc.c
 gcc -c ../rsc_push_swap/sort_small.c

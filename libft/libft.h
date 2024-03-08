@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:47:01 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/02 14:05:26 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:34:09 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,33 @@
 # include <limits.h>
 # include <stdint.h>
 # include <stdarg.h>
+# include <fcntl.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }					t_list;
+
+//gnl
+typedef struct new_line_bit
+{
+	char				*line_bit;
+	size_t				len;
+	struct new_line_bit	*next;
+}		t_bits;
+
+char	*get_next_line(int fd);
+
+size_t	ft_lsbsize(t_bits *lst);
+char	*ft_strcat(char *s1, const char *s2);
+t_bits	*lst_magic(void *content, t_bits *lst);
+char	*ft_strldup(const char *s1, ssize_t *fe);
+char	*fill_line(t_bits *bits);
 
 //printf
 int		ft_numlen(long long num);
