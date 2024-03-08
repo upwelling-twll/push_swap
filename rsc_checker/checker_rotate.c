@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 14:42:17 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:17:21 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,7 @@ int	ra(t_llist **stack, t_llist **s2)
 	if (!(*stack))
 		return (0);
 	if (s2)
-	{
-		data = (*s2)->data;
-		(*s2)->data = data;
-	}
+		data = 0;
 	*stack = (*stack)->next;
 	return (1);
 }

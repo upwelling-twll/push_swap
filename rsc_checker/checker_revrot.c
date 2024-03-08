@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   checker_revrot.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:17:06 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ int	rra(t_llist **stack, t_llist **s2)
 		return (0);
 	if (s2)
 	{
-		data = (*s2)->data;
-		(*s2)->data = data;
+		data = 0;
 	}
 	*stack = (*stack)->prev;
 	return (1);
@@ -34,10 +33,7 @@ int	rrb(t_llist **stack, t_llist **s2)
 	if (!(*stack))
 		return (0);
 	if (s2)
-	{
-		data = (*s2)->data;
-		(*s2)->data = data;
-	}
+		data = 0;
 	*stack = (*stack)->prev;
 	return (1);
 }

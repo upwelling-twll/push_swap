@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:45:01 by nmagdano          #+#    #+#             */
-/*   Updated: 2023/09/12 20:02:56 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 18:05:16 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,10 +92,7 @@ static char	**ft_fillstr(char **str, const char *s, char c)
 		str[i][j] = '\0';
 		i++;
 	}
-	if (i == 0)
-		return(NULL);
-	else
-		str[i] = NULL;
+	str = split_ret(str, i);
 	return (str);
 }
 

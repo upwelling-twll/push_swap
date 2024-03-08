@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 16:36:00 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 17:41:57 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,71 +24,8 @@
 #define RRB "rrb" //10
 #define RRR "rrr" //11
 
-static char	*pssbl_op_list[] = {SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
-
 //this is a new type-function pointer type which will be used for instr func-s;
 typedef int	(*t_insfunc)(t_llist **, t_llist **);
-
-//this a definition of arrey of function pointers to instruction finctions;
-t_insfunc	pssbl_op[] = {sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
-
-// void	move_first(t_llist **stack1, t_llist **stack2)
-// {
-// 	int		tmp;
-// 	t_llist	*new_head;
-// 	t_llist	*old_last;
-
-// 	tmp = (*stack1)->data;
-// 	if (*stack2 == NULL)
-// 	{
-// 		*stack2 = add_node(*stack2, tmp);
-// 		(*stack2)->next = *stack2;
-// 		(*stack2)->prev = (*stack2);
-// 	}
-// 	else
-// 	{
-// 		old_last = ft_llstlast(*stack2);
-// 		new_head = add_node(*stack2, tmp);
-// 		old_last->next = new_head;
-// 		new_head->next = *stack2;
-// 		new_head->prev = old_last;
-// 		(*stack2)->prev = new_head;
-// 		*stack2 = new_head;
-// 	}
-// 	*stack1 = delfirst_ch(*stack1);
-// }
-
-// void	pb_first_ch(t_llist **stack1, t_llist **stack2)
-// {
-// 	int		tmp;
-
-// 	tmp = (*stack1)->data;
-// 	*stack2 = add_node(*stack2, tmp);
-// 	(*stack2)->next = *stack2;
-// 	(*stack2)->prev = (*stack2);
-// 	*stack1 = delfirst_ch(*stack1);
-// }
-
-// int	pa(t_llist **stack1, t_llist **stack2)
-// {
-// 	if (!(*stack2))
-// 		return (0);
-// 	move_first(stack2, stack1);
-// 	return (1);
-// }
-
-// int	pb(t_llist **stack1, t_llist **stack2)
-// {
-// 	if (!(*stack1))
-// 		return (0);
-// 	if ((*stack2) == NULL)
-// 	{
-// 		pb_first_ch(stack1, stack2);
-// 		return (1);
-// 	}
-// 	move_first(stack1, stack2);
-// 	return (1);
-// }
 
 int	apply_ins(t_llist **stack1, t_llist **stack2, t_insfunc ins_recived)
 {
@@ -111,9 +48,21 @@ int	apply_ins(t_llist **stack1, t_llist **stack2, t_insfunc ins_recived)
 
 int	valid_ins(char *ins)
 {
-	int	i;
+	int			i;
+	static char	*pssbl_op_list[11];
 
 	i = 0;
+	pssbl_op_list[0] = SA;
+	pssbl_op_list[1] = SB;
+	pssbl_op_list[2] = SS;
+	pssbl_op_list[3] = PA;
+	pssbl_op_list[4] = PB;
+	pssbl_op_list[5] = RA;
+	pssbl_op_list[6] = RB;
+	pssbl_op_list[7] = RR;
+	pssbl_op_list[8] = RRA;
+	pssbl_op_list[9] = RRB;
+	pssbl_op_list[10] = RRR;
 	while (i < 11)
 	{
 		if ((ft_strcmp(ins, pssbl_op_list[i]) == 0))
@@ -125,9 +74,20 @@ int	valid_ins(char *ins)
 
 int	proc_all(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper)
 {
-	//t_insfunc	pssbl_op[] = {sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
-	int	i;
+	t_insfunc	pssbl_op[11];
+	int			i;
 
+	pssbl_op[0] = sa;
+	pssbl_op[1] = sb;
+	pssbl_op[2] = ss;
+	pssbl_op[3] = pa;
+	pssbl_op[4] = pb;
+	pssbl_op[5] = ra;
+	pssbl_op[6] = rb;
+	pssbl_op[7] = rr;
+	pssbl_op[8] = rra;
+	pssbl_op[9] = rrb;
+	pssbl_op[10] = rrr;
 	i = valid_ins(oper ->content);
 	if (i >= 0)
 	{
