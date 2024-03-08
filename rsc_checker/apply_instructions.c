@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   apply_instructions.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 14:52:23 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "../rsc_push_swap/push_swap.h"
-// #include "../libft/ft_strdup.c"
-// #include "../libft/ft_memcpy.c"
-// #include "../libft/ft_strlen.c"
-// #include "../libft/ft_strchr.c"
-// #include "../libft/ft_strlcpy.c"
-// #include "../libft/ft_isdigit.c"
-// #include "../libft/ft_split.c"
 #include "checker.h"
 
 #define SA "sa" //1

@@ -1,17 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/02/29 11:48:39 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 13:59:43 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../rsc_push_swap/push_swap.h"
-// #include "../libft/ft_atoi.c"
 #include "checker.h"
 
 int	main(int argc, char *argv[])
