@@ -1,6 +1,3 @@
-# green ='\033[0;32m' 
-# clear ='\033[0m'
-
 NAME = push_swap
 
 NAME_BONUS = checker
@@ -21,11 +18,12 @@ SRCS = ./rsc_push_swap/func_push.c ./rsc_push_swap/func_swap.c ./rsc_push_swap/f
 
 SRCS_BONUS = ./rsc_checker/checker_push.c ./rsc_checker/checker_swap.c ./rsc_checker/checker_revrot.c \
 			 ./rsc_checker/checker_rotate.c ./rsc_checker/exit_del.c ./rsc_checker/parse_instructions.c \
-			 ./rsc_checker/parse_nums.c ./rsc_checker/apply_instructions.c ./rsc_checker/checker.c \
+			 ./rsc_checker/parse_nums.c ./rsc_checker/apply_instructions.c ./rsc_checker/main_ch.c \
 			 ./rsc_checker/checker_inc.c ./rsc_checker/checker_supp.c ./rsc_checker/proc_args.c \
 			 ./rsc_checker/verify_args.c \
 
 OBJS = $(SRCS:.c=.o)
+
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 %.o: %.c
@@ -33,13 +31,16 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
  
-bonus: $(NAME_BONUS)
+bonus:  $(NAME) $(NAME_BONUS)
 
 $(NAME): libft $(OBJS)
 	@ $(CC) $(FLAGS) -o $(NAME) $(OBJS) libft/*.o
 
 $(NAME_BONUS): libft $(OBJS_BONUS)
 	@ $(CC) $(FLAGS) -o $(OBJS_BONUS) libft/*.o
+
+bonus/%.o : bonus/%.c ./rsc_checker/checker.h ./libft/libft.h
+	$(CC) $(CFLAGS) -c $< -o $@
 
 libft:
 	@ make -C libft/

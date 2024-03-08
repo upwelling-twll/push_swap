@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 14:54:17 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/08 15:32:33 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_llist
 	int				data;
 	struct s_llist	*next;
 }					t_llist;
-
 
 typedef int	(*t_insfunc)(t_llist **, t_llist **);
 
