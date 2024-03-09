@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/08 14:23:53 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/09 17:23:27 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	verify_atoi(const char *str)
 
 	i = 0;
 	flag = 1;
-	if (str[i] == '-' && str[i + 1] != '\0')
+	if ((str[i] == '-' || str[i] == '+') && str[i + 1] != '\0')
 		i++;
 	while (str[i])
 	{
@@ -75,9 +75,10 @@ int	verify_atoi(const char *str)
 		i++;
 	}
 	i = 0;
-	if (str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		flag = -1;
+		if (str[i] == '-')
+			flag = -1;
 		i++;
 	}
 	return (check_overflow(str, flag, i));
