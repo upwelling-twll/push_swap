@@ -6,7 +6,7 @@
 /*   By: nmagdano <nmagdano@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:41:11 by nmagdano          #+#    #+#             */
-/*   Updated: 2024/03/09 17:17:02 by nmagdano         ###   ########.fr       */
+/*   Updated: 2024/03/09 18:04:53 by nmagdano         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,9 @@ int	apply_ins(t_llist **stack1, t_llist **stack2, t_insfunc ins_recived)
 int	valid_ins(char *ins)
 {
 	int			i;
-	static char	*pssbl_op_list[11];
+	static char	*pssbl_op_list[11] = {SA, SB, SS, PA, PB, RA, RB, RR, RRA, RRB, RRR};
 
 	i = 0;
-	pssbl_op_list[0] = SA;
-	pssbl_op_list[1] = SB;
-	pssbl_op_list[2] = SS;
-	pssbl_op_list[3] = PA;
-	pssbl_op_list[4] = PB;
-	pssbl_op_list[5] = RA;
-	pssbl_op_list[6] = RB;
-	pssbl_op_list[7] = RR;
-	pssbl_op_list[8] = RRA;
-	pssbl_op_list[9] = RRB;
-	pssbl_op_list[10] = RRR;
 	while (i < 11)
 	{
 		if ((ft_strcmp(ins, pssbl_op_list[i]) == 0))
@@ -74,20 +63,9 @@ int	valid_ins(char *ins)
 
 int	proc_all(t_chins *oper, t_llist **head, t_llist **stack2, t_chins *hoper)
 {
-	t_insfunc	pssbl_op[11];
+	t_insfunc	pssbl_op[11] = {sa, sb, ss, pa, pb, ra, rb, rr, rra, rrb, rrr};
 	int			i;
 
-	pssbl_op[0] = sa;
-	pssbl_op[1] = sb;
-	pssbl_op[2] = ss;
-	pssbl_op[3] = pa;
-	pssbl_op[4] = pb;
-	pssbl_op[5] = ra;
-	pssbl_op[6] = rb;
-	pssbl_op[7] = rr;
-	pssbl_op[8] = rra;
-	pssbl_op[9] = rrb;
-	pssbl_op[10] = rrr;
 	i = valid_ins(oper ->content);
 	if (i >= 0)
 	{
