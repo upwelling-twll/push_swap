@@ -3,7 +3,7 @@ NAME = push_swap
 NAME_BONUS = checker
 
 CC = cc
-FLAGS = -Wall -Wextra -Werror #-g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 RM = rm -f
 
 SRCS = ./rsc_push_swap/func_push.c ./rsc_push_swap/func_swap.c ./rsc_push_swap/func_revrot.c \
